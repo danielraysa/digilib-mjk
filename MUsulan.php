@@ -4,22 +4,22 @@
 	if(isset($_POST['tambah'])){
 		$id = $_POST['id_baru'];
         $kegiatan = $_POST['kegiatan_baru'];
-        $angka = $_POST['donasi_baru'];
-		$query = mysqli_query($conn, "INSERT INTO donasis VALUES ('$id','$kegiatan','$angka')");
+        $angka = $_POST['usulan_baru'];
+		$query = mysqli_query($conn, "INSERT INTO usulans VALUES ('$id','$kegiatan','$angka')");
 		echo "string";
 	}
 	// proses edit
 	if(isset($_POST['edit'])){
-		$id = $_POST['id_donasi'];
+		$id = $_POST['id_usulan'];
         $kegiatan = $_POST['jenis_kegiatan'];
-        $donasi = $_POST['donasi'];
-		//echo "UPDATE donasi SET kegiatan_donasi='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_donasi='$id'";
-		$query = mysqli_query($conn, "UPDATE donasis SET jenis_kegiatan='$kegiatan', donasi='$angka' WHERE id_donasi='$id'");
+        $usulan = $_POST['usulan'];
+		//echo "UPDATE usulan SET kegiatan_usulan='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_usulan='$id'";
+		$query = mysqli_query($conn, "UPDATE usulans SET jenis_kegiatan='$kegiatan', usulan='$angka' WHERE id_usulan='$id'");
 	}
 	if(isset($_POST['hapus'])){
-		$id = $_POST['id_donasi'];
-		//echo "UPDATE donasi SET status = 'Tidak Aktif' WHERE id_donasi = '".$id."'";
-		$query = mysqli_query($conn, "DELETE from donasis WHERE id_donasi = '".$id."'");
+		$id = $_POST['id_usulan'];
+		//echo "UPDATE usulan SET status = 'Tidak Aktif' WHERE id_usulan = '".$id."'";
+		$query = mysqli_query($conn, "DELETE from usulans WHERE id_usulan = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
@@ -43,10 +43,10 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">donasi</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">usulan</h6>
 						</div>
 						<div class="col-lg-6 col-5 text-right">
-							<h6 class="h2 text-white d-inline-block mb-0">donasi</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">usulan</h6>
 							<a href="#" class="btn btn-sm btn-neutral" data-toggle="modal"
 								data-target="#ModalTambah">Tambah</a>
 						</div>
@@ -64,29 +64,29 @@
 						<table id="myTable" class="table table-bordered">
 							<thead>
 								<tr>
-									<th>Id donasi</th>
+									<th>Id usulan</th>
 									<th>Jenis Kegiatan</th>
-                                    <th>donasi</th>
+                                    <th>usulan</th>
 								</tr>
 
 							</thead>
 							<tbody>
 
 								<?php
-                  $query = mysqli_query($conn, "SELECT * from donasis");
+                  $query = mysqli_query($conn, "SELECT * from usulans");
                   //for($row = 0; $row < 10; $row++)) {
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
 								<tr>
-									<td><?php echo $row['id_donasi'] ?></td>
+									<td><?php echo $row['id_usulan'] ?></td>
 									<td><?php echo $row['jenis_kegiatan'] ?></td>
-									<td><?php echo $row['donasi'] ?></td>
+									<td><?php echo $row['usulan'] ?></td>
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
-											data-id="<?php echo $row['id_donasi'] ?>">Edit</button>
+											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
 											<button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalHapus"
-											data-id="<?php echo $row['id_donasi'] ?>">Hapus</button></td>
+											data-id="<?php echo $row['id_usulan'] ?>">Hapus</button></td>
 								</tr>
 								<?php } ?>
 							</tbody>
@@ -103,7 +103,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Tambah Data donasi</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Tambah Data usulan</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -111,7 +111,7 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="kegiatan">ID donasi</label>
+							<label for="kegiatan">ID usulan</label>
 							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
 						<div class="form-group">
@@ -119,8 +119,8 @@
 							<input type="text" name="kegiatan_baru" id="kegiatan_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
                         <div class="form-group">
-							<label for="donasi">donasi</label>
-							<input type="text" name="donasi_baru" id="donasi_baru" class="form-control form-control-sm" placeholder="donasi Baru">
+							<label for="usulan">usulan</label>
+							<input type="text" name="usulan_baru" id="usulan_baru" class="form-control form-control-sm" placeholder="usulan Baru">
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -137,7 +137,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Edit Data donasi</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Edit Data usulan</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -145,16 +145,16 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="kegiatan">ID donasi</label>
-							<input type="text" name="id_donasi" id="id_donasi" class="form-control form-control-sm" readonly>
+							<label for="kegiatan">ID usulan</label>
+							<input type="text" name="id_usulan" id="id_usulan" class="form-control form-control-sm" readonly>
 						</div>
 						<div class="form-group">
 							<label for="kegiatan">Jenis Kegiatan</label>
 							<input type="text" name="kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
                         <div class="form-group">
-							<label for="donasi">donasi</label>
-							<input type="number" name="donasi" id="donasi" class="form-control form-control-sm" placeholder="donasi Kegiatan">
+							<label for="usulan">usulan</label>
+							<input type="number" name="usulan" id="usulan" class="form-control form-control-sm" placeholder="usulan Kegiatan">
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -170,15 +170,15 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Hapus Data donasi</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Hapus Data usulan</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<form action="" method="post">
-					Apakah anda akan menghapus data donasi ini?
-					<input type="hidden" name="id_donasi" id="id_donasi_hapus" class="form-control form-control-sm" readonly>
+					Apakah anda akan menghapus data usulan ini?
+					<input type="hidden" name="id_usulan" id="id_usulan_hapus" class="form-control form-control-sm" readonly>
 						
 				</div>
 				<div class="modal-footer">
@@ -193,28 +193,27 @@
 	<script>
 		$('#myTable').DataTable();
 		$('.btnEdit').on('click', function () {
-			var iddonasi = $(this).attr('data-id');
+			var idusulan = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
 				type: 'post',
 				data: {
-					editdonasi: true,
-					id_donasi: iddonasi
+					editusulan: true,
+					id_usulan: idusulan
 				},
 				dataType: 'json',
 				success: function (result) {
 					console.log(result);
-					$("#id_donasi").val(iddonasi);
+					$("#id_usulan").val(idusulan);
 					$("#kegiatan").val(result.kegiatan);
-                    $("#donasi").val(result.donasi);
+                    $("#usulan").val(result.usulan);
 				}
 			});
 		});
 		$('.btnHapus').on('click', function () {
-			var iddonasi = $(this).attr('data-id');
-			$("#id_donasi_hapus").val(iddonasi);
+			var idusulan = $(this).attr('data-id');
+			$("#id_usulan_hapus").val(idusulan);
 		});
 	</script>
 </body>
-
 </html>

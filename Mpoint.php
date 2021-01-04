@@ -2,8 +2,8 @@
 <?php 
 // poses tambah
 	if(isset($_POST['tambah'])){
-		$id = $_POST['id_point_baru'];
-        $kegiatan = $_POST['jenis_kegiatan_baru'];
+		$id = $_POST['id_baru'];
+        $kegiatan = $_POST['kegiatan_baru'];
         $angka = $_POST['point_baru'];
 		$query = mysqli_query($conn, "INSERT INTO points VALUES ('$id','$kegiatan','$angka')");
 		echo "string";
@@ -99,7 +99,7 @@
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
 											data-id="<?php echo $row['id_point'] ?>">Edit</button>
-											<button class="btn btn-success btnEdit" data-toggle="modal"
+											<button class="btn btn-danger btnHapus" data-toggle="modal"
 											data-target="#ModalHapus"
 											data-id="<?php echo $row['id_point'] ?>">Hapus</button></td>
 								</tr>
