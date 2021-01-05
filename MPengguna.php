@@ -489,7 +489,7 @@
 	<?php include "js-script.php"; ?>
 	<script>
 		$('#Tabel1').DataTable();
-		$('.btnEdit').on('click', function () {
+		$('#Tabel1 tbody').on('click', '.btnEdit', function () {
 			var idsiswa = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
@@ -510,12 +510,12 @@
 				}
 			});
 		});
-		$('.btnHapus').on('click', function () {
+		$('#Tabel1 tbody').on('click', '.btnHapus', function () {
 			var idsiswa = $(this).attr('data-id');
 			$("#id_siswa_hapus").val(idsiswa);
 		});
 		$('#Tabel2').DataTable();
-		$('.btnEditKar').on('click', function () {
+		$('#Tabel2 tbody').on('click', '.btnEditKar', function () {
 			var idkaryawan = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
@@ -536,7 +536,7 @@
 				}
 			});
 		});
-		$('.btnHapusKar').on('click', function () {
+		$('#Tabel2 tbody').on('click', '.btnHapusKar', function () {
 			var idkaryawan = $(this).attr('data-id');
 			$("#id_karyawan_hapus").val(idkaryawan);
 		});

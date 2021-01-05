@@ -192,7 +192,7 @@
 	<?php include "js-script.php"; ?>
 	<script>
 		$('#myTable').DataTable();
-		$('.btnEdit').on('click', function () {
+		$('#myTable tbody').on('click', '.btnEdit', function () {
 			var iddonasi = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
@@ -210,7 +210,7 @@
 				}
 			});
 		});
-		$('.btnHapus').on('click', function () {
+		$('#myTable tbody').on('click', '.btnHapus', function () {
 			var iddonasi = $(this).attr('data-id');
 			$("#id_donasi_hapus").val(iddonasi);
 		});

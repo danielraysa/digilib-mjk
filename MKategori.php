@@ -190,7 +190,7 @@
 	<script>
 		
 		$('#Tabel2').DataTable();
-		$('.btnEditKat').on('click', function () {
+		$('#Tabel2 tbody').on('click', '.btnEditKat', function () {
 			var idKategori = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',

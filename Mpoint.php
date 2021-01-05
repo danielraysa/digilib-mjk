@@ -5,7 +5,7 @@
 		$id = $_POST['id_baru'];
         $kegiatan = $_POST['kegiatan_baru'];
         $angka = $_POST['point_baru'];
-		$query = mysqli_query($conn, "INSERT INTO points VALUES ('$id','$kegiatan','$angka')");
+		$query = mysqli_query($conn, "INSERT INTO points VALUES ('$id','$kegiatan','$angka','Aktif')");
 		echo "string";
 	}
 	// proses edit
@@ -14,34 +14,19 @@
         $kegiatan = $_POST['jenis_kegiatan'];
         $point = $_POST['point'];
 		//echo "UPDATE point SET kegiatan_point='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_point='$id'";
-		$query = mysqli_query($conn, "UPDATE points SET jenis_kegiatan='$kegiatan', point='$angka' WHERE id_point='$id'");
+		$query = mysqli_query($conn, "UPDATE points SET jenis_kegiatan = '$kegiatan', point = '$point' WHERE id_point = '$id'");
 	}
-	// if(isset($_POST['hapus'])){
-	// 	$id = $_POST['id_point'];
-	// 	echo "UPDATE point SET status = 'Tidak Aktif' WHERE id_point = '".$id."'";
-	// 	$query = mysqli_query($conn, "UPDATE point SET status = 'Tidak Aktif' WHERE id_point = '".$id."'");
-	// }
+	if(isset($_POST['hapus'])){
+		$id = $_POST['id_point'];
+		// echo "UPDATE point SET status = 'Tidak Aktif' WHERE id_point = '".$id."'";
+		$query = mysqli_query($conn, "UPDATE points SET status = 'Tidak Aktif' WHERE id_point = '".$id."'");
+	}
 ?>
 <!DOCTYPE html>
 <html>
 <!-- form asli -->
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-	<meta name="author" content="Creative Tim">
-	<title>MAN 2 Mojokerto</title>
-	<!-- Favicon -->
-	<link rel="icon" href="admin/img/brand/favicon.png" type="image/png">
-	<!-- Fonts -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-	<!-- Icons -->
-	<link rel="stylesheet" href="admin/vendor/nucleo/css/nucleo.css" type="text/css">
-	<link rel="stylesheet" href="admin/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-	<!-- Page plugins -->
-	<!-- Argon CSS -->
-	<link rel="stylesheet" href="admin/css/argon.css?v=1.2.0" type="text/css">
-	<link rel="stylesheet" type="text/css" href="DataTable/css/dataTables.bootstrap4.min.css">
+	<?php include 'css-script.php'; ?>
 </head>
 
 <body>
@@ -76,36 +61,37 @@
 				<div class="col-xl-12 col-md-12">
 					<div class="card card-stats">
 						<!-- Card body -->
-						<table id="myTable" class="table table-bordered">
-							<thead>
-								<tr>
-									<th>Id point</th>
-									<th>Jenis Kegiatan</th>
-                                    <th>Point</th>
-								</tr>
-
-							</thead>
-							<tbody>
-
-								<?php
-                  $query = mysqli_query($conn, "SELECT * from points");
-                  //for($row = 0; $row < 10; $row++)) {
-                  while ($row = mysqli_fetch_array($query)) {
-                  ?>
-								<tr>
-									<td><?php echo $row['id_point'] ?></td>
-									<td><?php echo $row['jenis_kegiatan'] ?></td>
-									<td><?php echo $row['point'] ?></td>
-									<td><button class="btn btn-success btnEdit" data-toggle="modal"
-											data-target="#ModalEdit"
-											data-id="<?php echo $row['id_point'] ?>">Edit</button>
-											<button class="btn btn-danger btnHapus" data-toggle="modal"
-											data-target="#ModalHapus"
-											data-id="<?php echo $row['id_point'] ?>">Hapus</button></td>
-								</tr>
-								<?php } ?>
-							</tbody>
-						</table>
+						<div class="card-body table-responsive">
+							<table id="myTable" class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Id point</th>
+										<th>Jenis Kegiatan</th>
+										<th>Point</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+					$query = mysqli_query($conn, "SELECT * from points");
+					//for($row = 0; $row < 10; $row++)) {
+					while ($row = mysqli_fetch_array($query)) {
+					?>
+									<tr>
+										<td><?php echo $row['id_point'] ?></td>
+										<td><?php echo $row['jenis_kegiatan'] ?></td>
+										<td><?php echo $row['point'] ?></td>
+										<td><button class="btn btn-success btnEdit" data-toggle="modal"
+												data-target="#ModalEdit"
+												data-id="<?php echo $row['id_point'] ?>">Edit</button>
+												<button class="btn btn-danger btnHapus" data-toggle="modal"
+												data-target="#ModalHapus"
+												data-id="<?php echo $row['id_point'] ?>">Hapus</button></td>
+									</tr>
+									<?php } ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -165,7 +151,7 @@
 						</div>
 						<div class="form-group">
 							<label for="kegiatan">Jenis Kegiatan</label>
-							<input type="text" name="kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
+							<input type="text" name="jenis_kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
                         <div class="form-group">
 							<label for="point">Point</label>
@@ -204,25 +190,10 @@
 			</div>
 		</div>
 	</div>
-	<!-- Argon Scripts -->
-	<!-- Core -->
-	<script src="admin/vendor/jquery/dist/jquery.min.js"></script>
-	<script src="admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="admin/vendor/js-cookie/js.cookie.js"></script>
-	<script src="admin/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-	<script src="admin/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-	<script src="hadir/js/bootstrap.min.js"></script>
-	<!-- Optional JS -->
-	<script src="admin/vendor/chart.js/dist/Chart.min.js"></script>
-	<script src="admin/vendor/chart.js/dist/Chart.extension.js"></script>
-	<!-- Argon JS -->
-	<script src="admin/js/argon.js?v=1.2.0"></script>
-	<!-- DataTable -->
-	<script src="DataTable/js/jquery.dataTables.min.js"></script>
-	<script src="DataTable/js/dataTables.bootstrap4.min.js"></script>
+	<?php include 'js-script.php'; ?>
 	<script>
 		$('#myTable').DataTable();
-		$('.btnEdit').on('click', function () {
+		$('#myTable tbody').on('click', '.btnEdit', function () {
 			var idpoint = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
@@ -235,12 +206,12 @@
 				success: function (result) {
 					console.log(result);
 					$("#id_point").val(idpoint);
-					$("#kegiatan").val(result.kegiatan);
+					$("#kegiatan").val(result.jenis_kegiatan);
                     $("#point").val(result.point);
 				}
 			});
 		});
-		$('.btnHapus').on('click', function () {
+		$('#myTable tbody').on('click', '.btnHapus', function () {
 			var idpoint = $(this).attr('data-id');
 			$("#id_point_hapus").val(idpoint);
 		});

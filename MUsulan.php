@@ -24,7 +24,6 @@
 ?>
 <!DOCTYPE html>
 <html>
-<!-- form asli -->
 <head>
 <?php include "css-script.php"; ?>
 </head>
@@ -192,7 +191,7 @@
 	<?php include "js-script.php"; ?>
 	<script>
 		$('#myTable').DataTable();
-		$('.btnEdit').on('click', function () {
+		$('#myTable tbody').on('click', '.btnEdit', function () {
 			var idusulan = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
@@ -210,7 +209,7 @@
 				}
 			});
 		});
-		$('.btnHapus').on('click', function () {
+		$('#myTable tbody').on('click', '.btnHapus', function () {
 			var idusulan = $(this).attr('data-id');
 			$("#id_usulan_hapus").val(idusulan);
 		});
