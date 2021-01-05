@@ -1,16 +1,22 @@
-<!-- Argon Scripts -->
-<!-- Core -->
-<script src="admin/vendor/jquery/dist/jquery.min.js"></script>
-<script src="admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="admin/vendor/js-cookie/js.cookie.js"></script>
-<script src="admin/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-<script src="admin/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-<script src="hadir/js/bootstrap.min.js"></script>
-<!-- Optional JS -->
-<script src="admin/vendor/chart.js/dist/Chart.min.js"></script>
-<script src="admin/vendor/chart.js/dist/Chart.extension.js"></script>
-<!-- Argon JS -->
-<script src="admin/js/argon.js?v=1.2.0"></script>
-<!-- DataTable -->
-<script src="DataTable/js/jquery.dataTables.min.js"></script>
-<script src="DataTable/js/dataTables.bootstrap4.min.js"></script>
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+				stroke="#F96D00" /></svg></div>
+
+<script src="pengguna/js/jquery.min.js"></script>
+<script src="pengguna/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="pengguna/js/popper.min.js"></script>
+<script src="pengguna/js/bootstrap.min.js"></script>
+<script src="pengguna/js/jquery.easing.1.3.js"></script>
+<script src="pengguna/js/jquery.waypoints.min.js"></script>
+<script src="pengguna/js/jquery.stellar.min.js"></script>
+<script src="pengguna/js/owl.carousel.min.js"></script>
+<script src="pengguna/js/jquery.magnific-popup.min.js"></script>
+<script src="pengguna/js/jquery.animateNumber.min.js"></script>
+<script src="pengguna/js/scrollax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+</script> -->
+<!-- <script src="pengguna/js/google-map.js"></script> -->
+<script src="pengguna/js/main.js"></script>
