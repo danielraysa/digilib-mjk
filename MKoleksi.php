@@ -238,7 +238,7 @@
 								$query_kat = mysqli_query($conn, "SELECT * FROM kategori");
 								while ($row = mysqli_fetch_array($query_kat)) {
 							?>
-								<option value="<?php echo $row['id_kategori']; ?>"><?php echo $row['nama_kategori'] ?></option>
+								<option value="<?php echo $row['id_kategori']; ?>">Kategori : <?php echo $row['nama_kategori'] ?></option>
 							<?php } ?>
 						</select>
 					</div>
