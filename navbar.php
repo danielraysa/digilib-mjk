@@ -3,16 +3,20 @@
         <div class="col-md-8 order-md-last">
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <a class="navbar-brand" href="index.php">Digital <span>Library</span> <small>Man 2
-                            Mojokerto</small></a>
+                    <a class="navbar-brand" href="index.php">Digital <span>Library</span>
+                        <small>Man 2Mojokerto</small>
+                    </a>
                 </div>
                 <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-                    <form action="#" class="searchform order-lg-last">
-                        <div class="form-group d-flex">
-                            <input type="text" class="form-control pl-3" placeholder="Search">
-                            <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
-                        </div>
-                    </form>
+                    <?php if(isset($_SESSION['user'])) { ?>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="admin/logout.php" class="nav-link">Logout</a></li>
+                    </ul>
+                    <?php } else { ?>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
+                    </ul>
+                    <?php } ?>
                 </div>
             </div>
         </div>
