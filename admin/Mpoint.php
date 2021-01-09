@@ -1,31 +1,32 @@
-<?php include "koneksi.php"; ?>
+<?php include "../koneksi.php"; ?>
 <?php 
 // poses tambah
 	if(isset($_POST['tambah'])){
 		$id = $_POST['id_baru'];
         $kegiatan = $_POST['kegiatan_baru'];
-        $angka = $_POST['usulan_baru'];
-		$query = mysqli_query($conn, "INSERT INTO usulans VALUES ('$id','$kegiatan','$angka')");
+        $angka = $_POST['point_baru'];
+		$query = mysqli_query($conn, "INSERT INTO points VALUES ('$id','$kegiatan','$angka','Aktif')");
 		echo "string";
 	}
 	// proses edit
 	if(isset($_POST['edit'])){
-		$id = $_POST['id_usulan'];
+		$id = $_POST['id_point'];
         $kegiatan = $_POST['jenis_kegiatan'];
-        $usulan = $_POST['usulan'];
-		//echo "UPDATE usulan SET kegiatan_usulan='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_usulan='$id'";
-		$query = mysqli_query($conn, "UPDATE usulans SET jenis_kegiatan='$kegiatan', usulan='$angka' WHERE id_usulan='$id'");
+        $point = $_POST['point'];
+		//echo "UPDATE point SET kegiatan_point='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_point='$id'";
+		$query = mysqli_query($conn, "UPDATE points SET jenis_kegiatan = '$kegiatan', point = '$point' WHERE id_point = '$id'");
 	}
 	if(isset($_POST['hapus'])){
-		$id = $_POST['id_usulan'];
-		//echo "UPDATE usulan SET status = 'Tidak Aktif' WHERE id_usulan = '".$id."'";
-		$query = mysqli_query($conn, "DELETE from usulans WHERE id_usulan = '".$id."'");
+		$id = $_POST['id_point'];
+		// echo "UPDATE point SET status = 'Tidak Aktif' WHERE id_point = '".$id."'";
+		$query = mysqli_query($conn, "UPDATE points SET status = 'Tidak Aktif' WHERE id_point = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
 <html>
+<!-- form asli -->
 <head>
-<?php include "css-script.php"; ?>
+	<?php include 'css-script.php'; ?>
 </head>
 
 <body>
@@ -42,10 +43,10 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">usulan</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">Point</h6>
 						</div>
 						<div class="col-lg-6 col-5 text-right">
-							<h6 class="h2 text-white d-inline-block mb-0">usulan</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">Point</h6>
 							<a href="#" class="btn btn-sm btn-neutral" data-toggle="modal"
 								data-target="#ModalTambah">Tambah</a>
 						</div>
@@ -60,36 +61,37 @@
 				<div class="col-xl-12 col-md-12">
 					<div class="card card-stats">
 						<!-- Card body -->
-						<table id="myTable" class="table table-bordered">
-							<thead>
-								<tr>
-									<th>Id usulan</th>
-									<th>Jenis Kegiatan</th>
-                                    <th>usulan</th>
-								</tr>
-
-							</thead>
-							<tbody>
-
-								<?php
-                  $query = mysqli_query($conn, "SELECT * from usulans");
-                  //for($row = 0; $row < 10; $row++)) {
-                  while ($row = mysqli_fetch_array($query)) {
-                  ?>
-								<tr>
-									<td><?php echo $row['id_usulan'] ?></td>
-									<td><?php echo $row['jenis_kegiatan'] ?></td>
-									<td><?php echo $row['usulan'] ?></td>
-									<td><button class="btn btn-success btnEdit" data-toggle="modal"
-											data-target="#ModalEdit"
-											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
-											<button class="btn btn-success btnEdit" data-toggle="modal"
-											data-target="#ModalHapus"
-											data-id="<?php echo $row['id_usulan'] ?>">Hapus</button></td>
-								</tr>
-								<?php } ?>
-							</tbody>
-						</table>
+						<div class="card-body table-responsive">
+							<table id="myTable" class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Id point</th>
+										<th>Jenis Kegiatan</th>
+										<th>Point</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+					$query = mysqli_query($conn, "SELECT * from points");
+					//for($row = 0; $row < 10; $row++)) {
+					while ($row = mysqli_fetch_array($query)) {
+					?>
+									<tr>
+										<td><?php echo $row['id_point'] ?></td>
+										<td><?php echo $row['jenis_kegiatan'] ?></td>
+										<td><?php echo $row['point'] ?></td>
+										<td><button class="btn btn-success btnEdit" data-toggle="modal"
+												data-target="#ModalEdit"
+												data-id="<?php echo $row['id_point'] ?>">Edit</button>
+												<button class="btn btn-danger btnHapus" data-toggle="modal"
+												data-target="#ModalHapus"
+												data-id="<?php echo $row['id_point'] ?>">Hapus</button></td>
+									</tr>
+									<?php } ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -102,7 +104,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Tambah Data usulan</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Tambah Data point</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -110,7 +112,7 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="kegiatan">ID usulan</label>
+							<label for="kegiatan">ID Point</label>
 							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
 						<div class="form-group">
@@ -118,8 +120,8 @@
 							<input type="text" name="kegiatan_baru" id="kegiatan_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
                         <div class="form-group">
-							<label for="usulan">usulan</label>
-							<input type="text" name="usulan_baru" id="usulan_baru" class="form-control form-control-sm" placeholder="usulan Baru">
+							<label for="point">Point</label>
+							<input type="text" name="point_baru" id="point_baru" class="form-control form-control-sm" placeholder="Point Baru">
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -136,7 +138,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Edit Data usulan</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Edit Data point</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -144,16 +146,16 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="kegiatan">ID usulan</label>
-							<input type="text" name="id_usulan" id="id_usulan" class="form-control form-control-sm" readonly>
+							<label for="kegiatan">ID Point</label>
+							<input type="text" name="id_point" id="id_point" class="form-control form-control-sm" readonly>
 						</div>
 						<div class="form-group">
 							<label for="kegiatan">Jenis Kegiatan</label>
-							<input type="text" name="kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
+							<input type="text" name="jenis_kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
                         <div class="form-group">
-							<label for="usulan">usulan</label>
-							<input type="number" name="usulan" id="usulan" class="form-control form-control-sm" placeholder="usulan Kegiatan">
+							<label for="point">Point</label>
+							<input type="number" name="point" id="point" class="form-control form-control-sm" placeholder="Point Kegiatan">
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -169,15 +171,15 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Hapus Data usulan</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Hapus Data point</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<form action="" method="post">
-					Apakah anda akan menghapus data usulan ini?
-					<input type="hidden" name="id_usulan" id="id_usulan_hapus" class="form-control form-control-sm" readonly>
+					Apakah anda akan menghapus data point ini?
+					<input type="hidden" name="id_point" id="id_point_hapus" class="form-control form-control-sm" readonly>
 						
 				</div>
 				<div class="modal-footer">
@@ -188,31 +190,32 @@
 			</div>
 		</div>
 	</div>
-	<?php include "js-script.php"; ?>
+	<?php include 'js-script.php'; ?>
 	<script>
 		$('#myTable').DataTable();
 		$('#myTable tbody').on('click', '.btnEdit', function () {
-			var idusulan = $(this).attr('data-id');
+			var idpoint = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
 				type: 'post',
 				data: {
-					editusulan: true,
-					id_usulan: idusulan
+					editpoint: true,
+					id_point: idpoint
 				},
 				dataType: 'json',
 				success: function (result) {
 					console.log(result);
-					$("#id_usulan").val(idusulan);
-					$("#kegiatan").val(result.kegiatan);
-                    $("#usulan").val(result.usulan);
+					$("#id_point").val(idpoint);
+					$("#kegiatan").val(result.jenis_kegiatan);
+                    $("#point").val(result.point);
 				}
 			});
 		});
 		$('#myTable tbody').on('click', '.btnHapus', function () {
-			var idusulan = $(this).attr('data-id');
-			$("#id_usulan_hapus").val(idusulan);
+			var idpoint = $(this).attr('data-id');
+			$("#id_point_hapus").val(idpoint);
 		});
 	</script>
 </body>
+
 </html>

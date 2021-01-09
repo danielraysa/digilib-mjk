@@ -1,4 +1,4 @@
-<?php include "koneksi.php"; ?>
+<?php include "../koneksi.php"; ?>
 <?php 
 // poses tambah
 	if(isset($_POST['tambah_siswa'])){
@@ -367,12 +367,12 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id_karyawan">ID Karyawan</label>
-						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Nama Anda">
+						<input type="text" name="id_baru" id="id_karyawan_baru" class="form-control form-control-sm" placeholder="Nama Anda">
 					</div>
 
 					<div class="form-group">
 						<label for="nama">Nama Karyawan</label>
-						<input type="text" name="nama_baru" id="nama_baru" class="form-control form-control-sm" placeholder="Nama Anda">
+						<input type="text" name="nama_baru" id="nama_karyawan_baru" class="form-control form-control-sm" placeholder="Nama Anda">
 					</div>
 
 					<div class="form-group">
@@ -382,12 +382,12 @@
 				
 					<div class="form-group">
 						<label for="alamat">Alamat</label>
-						<input type="text" name="alamat_baru" id="alamat_baru" class="form-control form-control-sm" placeholder="Alamat">
+						<input type="text" name="alamat_baru" id="alamat_karyawan_baru" class="form-control form-control-sm" placeholder="Alamat">
 					</div>
 
 					<div class="form-group">
 						<label for="status">Jenis Kelamin</label>
-						<select name="jkelamin" id="jkelamin" class="form-control form-control-sm">
+						<select name="jkelamin" id="jkelamin_karyawan_baru" class="form-control form-control-sm">
 							<option value="Perempuan">Perempuan</option>
 							<option value="Laki-laki">Laki-laki</option>
 						</select>
@@ -395,7 +395,7 @@
 
 					<div class="form-group">
 						<label for="status">Status</label>
-						<select name="status" id="status" class="form-control form-control-sm">
+						<select name="status" id="status_karyawan_baru" class="form-control form-control-sm">
 							<option value="Aktif">Aktif</option>
 							<option value="Tidak Aktif">Tidak Aktif</option>
 						</select>
@@ -475,7 +475,7 @@
 				</div>
 				<form action="" method="post">
 				<div class="modal-body">
-					Apakah anda akan menghapus data siswa ini?
+					Apakah anda akan menghapus data karyawan ini?
 					<input type="hidden" name="id_karyawan" id="id_karyawan_hapus" class="form-control form-control-sm" readonly>
 				</div>
 				<div class="modal-footer">

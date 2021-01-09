@@ -1,4 +1,4 @@
-<?php include "koneksi.php"; ?>
+<?php include "../koneksi.php"; ?>
 <?php 
 // proses tambah
 	if(isset($_POST['tambah_kategori'])){
