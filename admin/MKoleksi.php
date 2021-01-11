@@ -13,9 +13,16 @@
 	// proses tambah
 	$target_dir = "../uploads/koleksi/";
 	$target_dir_file = "../uploads/file/";
+	$query = mysqli_query($conn, "SELECT MAX(id_koleksi) as idkoleksi FROM koleksi"); // ganti tabel koleksi
+	$data = mysqli_fetch_array($query);
+	$kode = $data['idkoleksi'];
 
+	$urut = (int) substr($kode,2,3);
+	$urut++;
+	$huruf = "KL";
+	$kode = $huruf.sprintf("%03s", $urut); // yg ini
 	if(isset($_POST['tambah'])){
-		$id = $_POST['id_koleksi'];
+		$id = $_POST['id_koleksi']; // trus ini id barunya dari yg atas
 		$id_kategori = $_POST['kategori'];
 		$judul = $_POST['judul'];
 		$pengarang = $_POST['pengarang'];
@@ -218,7 +225,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					<div class="form-group">
 						<label for="judul">ID Koleksi</label>
 						<input type="text" name="id_koleksi" id="id_baru" class="form-control form-control-sm"
-							placeholder="ID Koleksi" value= "<?php echo $kode?>"required />
+							placeholder="ID Koleksi" value= "<?php echo $kode?>"required />// kalau ditaruh sini?
 					</div>
 					<div class="form-group">
 						<label for="judul">Judul</label>
