@@ -1,25 +1,22 @@
 <?php include "koneksi.php"; ?>
+
 <?php 
-// poses tambah
-	if(isset($_POST['tambah'])){
-		$id = $_POST['id_baru'];
-        $kegiatan = $_POST['kegiatan_baru'];
-        $angka = $_POST['usulan_baru'];
-		$query = mysqli_query($conn, "INSERT INTO usulans VALUES ('$id','$kegiatan','$angka')");
-		echo "string";
-	}
+
 	// proses edit
 	if(isset($_POST['edit'])){
 		$id = $_POST['id_usulan'];
-        $kegiatan = $_POST['jenis_kegiatan'];
-        $usulan = $_POST['usulan'];
+        $id_pengguna = $_POST['id_pengguna'];
+		$judul = $_POST['judul_buku'];
+		$pengarang = $_POST['pengarang'];
+		$penerbit = $_POST['penerbit'];
+		$tahun = $_POST['tahun'];
 		//echo "UPDATE usulan SET kegiatan_usulan='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_usulan='$id'";
-		$query = mysqli_query($conn, "UPDATE usulans SET jenis_kegiatan='$kegiatan', usulan='$angka' WHERE id_usulan='$id'");
+		$query = mysqli_query($conn, "UPDATE usulan SET judul_buku='$judul', pengarang = '$pengarang', penerbit='$penerbit', tahun '$tahun' WHERE id_usulan='$id'");
 	}
 	if(isset($_POST['hapus'])){
 		$id = $_POST['id_usulan'];
 		//echo "UPDATE usulan SET status = 'Tidak Aktif' WHERE id_usulan = '".$id."'";
-		$query = mysqli_query($conn, "DELETE from usulans WHERE id_usulan = '".$id."'");
+		$query = mysqli_query($conn, "DELETE from usulan WHERE id_usulan = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
@@ -42,12 +39,7 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">usulan</h6>
-						</div>
-						<div class="col-lg-6 col-5 text-right">
-							<h6 class="h2 text-white d-inline-block mb-0">usulan</h6>
-							<a href="#" class="btn btn-sm btn-neutral" data-toggle="modal"
-								data-target="#ModalTambah">Tambah</a>
+							<h6 class="h2 text-white d-inline-block mb-0">USULAN</h6>
 						</div>
 					</div>
 				</div>
@@ -64,22 +56,29 @@
 							<thead>
 								<tr>
 									<th>Id usulan</th>
-									<th>Jenis Kegiatan</th>
-                                    <th>usulan</th>
+									<th>Pengguna</th>
+                                    <th>Judul Buku</th>
+									<th>Pengarang</th>
+									<th>Penerbit</th>
+									<th>Tahun</th>
 								</tr>
 
 							</thead>
 							<tbody>
 
 								<?php
-                  $query = mysqli_query($conn, "SELECT * from usulans");
+								//querynya belum okeh
+                  $query = mysqli_query($conn, "SELECT u.id_usulan, p.username, u.judul_buku, u.pengarang, u.penerbit, u.tahun from usulan u join pengguna p on u.id_pengguna = p.id_pengguna");
                   //for($row = 0; $row < 10; $row++)) {
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
 								<tr>
 									<td><?php echo $row['id_usulan'] ?></td>
-									<td><?php echo $row['jenis_kegiatan'] ?></td>
-									<td><?php echo $row['usulan'] ?></td>
+									<td><?php echo $row['username'] ?></td>
+									<td><?php echo $row['judul_buku'] ?></td>
+									<td><?php echo $row['pengarang'] ?></td>
+									<td><?php echo $row['penerbit'] ?></td>
+									<td><?php echo $row['tahun'] ?></td>
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
 											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
@@ -96,40 +95,7 @@
 			<?php include "footer.php"; ?>
 		</div>
 	</div>
-	<!-- Modal Tambah -->
-	<div class="modal fade" id="ModalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Tambah Data usulan</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="" method="post">
-						<div class="form-group">
-							<label for="kegiatan">ID usulan</label>
-							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
-						</div>
-						<div class="form-group">
-							<label for="kegiatan">Jenis Kegiatan</label>
-							<input type="text" name="kegiatan_baru" id="kegiatan_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
-						</div>
-                        <div class="form-group">
-							<label for="usulan">usulan</label>
-							<input type="text" name="usulan_baru" id="usulan_baru" class="form-control form-control-sm" placeholder="usulan Baru">
-						</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" name="tambah" class="btn btn-primary">Save</button>
-				</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	
 	<!-- Modal Edit -->
 	<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
@@ -144,16 +110,28 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="kegiatan">ID usulan</label>
+							<label for="id">ID usulan</label>
 							<input type="text" name="id_usulan" id="id_usulan" class="form-control form-control-sm" readonly>
 						</div>
 						<div class="form-group">
-							<label for="kegiatan">Jenis Kegiatan</label>
-							<input type="text" name="kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
+							<label for="nama">Nama Pengguna</label>
+							<input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control form-control-sm" readonly>
 						</div>
                         <div class="form-group">
-							<label for="usulan">usulan</label>
-							<input type="number" name="usulan" id="usulan" class="form-control form-control-sm" placeholder="usulan Kegiatan">
+							<label for="judul">Judul Buku</label>
+							<input type="text" name="judul" id="judul" class="form-control form-control-sm" placeholder="Judul Buku">
+						</div>
+						<div class="form-group">
+							<label for="pengarang">Pengarang</label>
+							<input type="text" name="pengarang" id="pengarang" class="form-control form-control-sm" placeholder="Pengarang">
+						</div>
+						<div class="form-group">
+							<label for="penerbit">Penerbit</label>
+							<input type="text" name="penerbit" id="penerbit" class="form-control form-control-sm" placeholder="Penerbit">
+						</div>
+						<div class="form-group">
+							<label for="tahun">Tahun</label>
+							<input type="text" name="tahun" id="tahun" class="form-control form-control-sm" placeholder="Tahun">
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -204,8 +182,11 @@
 				success: function (result) {
 					console.log(result);
 					$("#id_usulan").val(idusulan);
-					$("#kegiatan").val(result.kegiatan);
-                    $("#usulan").val(result.usulan);
+					$("#").val(result.kegiatan);
+					$("#judul").val(result.judul_buku);
+                    $("#pengarang").val(result.pengarang);
+					$("#penerbit").val(result.penerbit);
+					$("#tahun").val(result.tahun);
 				}
 			});
 		});

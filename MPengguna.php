@@ -1,5 +1,35 @@
 <?php include "koneksi.php"; ?>
 <?php 
+$query = mysqli_query($conn, "SELECT MAX(id_siswa) as idsiswa FROM siswa");
+$data1 = mysqli_fetch_array($query);
+$kode1 = $data1['idsiswa'];
+
+$urut1 = (int) substr($kode1,2,3);
+$urut1++;
+$huruf1 = "SI";
+$kode1 = $huruf1.sprintf("%03s", $urut1);
+?>
+<?php 
+$query = mysqli_query($conn, "SELECT MAX(id_karyawan) as idkaryawan FROM karyawan");
+$data2 = mysqli_fetch_array($query);
+$kode2 = $data2['idkaryawan'];
+
+$urut2 = (int) substr($kode2,2,3);
+$urut2++;
+$huruf2 = "KA";
+$kode2 = $huruf2.sprintf("%03s", $urut2);
+?>
+<?php 
+$query = mysqli_query($conn, "SELECT MAX(id_pengguna) as idpengguna FROM pengguna");
+$data3 = mysqli_fetch_array($query);
+$kode3 = $data3['idpengguna'];
+
+$urut3 = (int) substr($kode2,2,3);
+$urut3++;
+$huruf3 = "PA";
+$kode3 = $huruf3.sprintf("%03s", $urut3);
+?>
+<?php 
 // poses tambah
 	if(isset($_POST['tambah_siswa'])){
 		$id = $_POST['id_baru'];
@@ -8,8 +38,11 @@
 		$jkelamin = $_POST['jkelamin_baru'];
 		$alamat = $_POST['alamat_baru'];
 		$status = $_POST['status_baru'];
+		$user = $_POST['username'];
+		$pass = $_POST['password'];
 		// echo "INSERT INTO siswa VALUES ('$id','$nama','$kelas','$jkelamin','$alamat','$status')";
 		$query = mysqli_query($conn, "INSERT INTO siswa VALUES ('$id','$nama','$kelas','$jkelamin','$alamat','$status')");
+		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass')");
 		if(!$query){
 			echo mysqli_error($conn);
 		}
@@ -104,7 +137,7 @@
 							<table id="Tabel1" class="table table-bordered">
 								<thead>
 									<tr>
-										<th>ID Siswa</th>
+										<!-- <th>ID Siswa</th> -->
 										<th>Nama</th>
 										<th>Kelas</th>
 										<th>Jenis Kelamin</th>
@@ -122,7 +155,7 @@
 					while ($row = mysqli_fetch_array($query)) {
 					?>
 									<tr>
-										<td><?php echo $row['id_siswa'] ?></td>
+										<!-- <td><?php echo $row['id_siswa'] ?></td> -->
 										<td><?php echo $row['nama_siswa'] ?></td>
 										<td><?php echo $row['kelas'] ?></td>
 										<td><?php // echo $row['jenis_kelamin'] ?></td>
@@ -176,7 +209,7 @@
 							<table id="Tabel2" class="table table-bordered">
 								<thead>
 									<tr>
-										<th>ID Karyawan</th>
+										<!-- <th>ID Karyawan</th> -->
 										<th>Nama</th>
 										<th>Jabatan</th>
 										<th>Alamat</th>
@@ -195,7 +228,7 @@
 					while ($row = mysqli_fetch_array($query)) {
 					?>
 									<tr>
-										<td><?php echo $row['id_karyawan'] ?></td>
+										<!-- <td><?php echo $row['id_karyawan'] ?></td> -->
 										<td><?php echo $row['nama'] ?></td>
 										<td><?php echo $row['jabatan'] ?></td>
 										<td><?php echo $row['alamat'] ?></td>
@@ -233,7 +266,7 @@
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="id_siswa">ID Siswa</label>
-							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" maxlength="10" placeholder="Nama Anda">
+							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" maxlength="10" placeholder="Nama Anda" value = "<?php echo $kode1?>" readonly>
 						</div>
 						<div class="form-group">
 							<label for="nama">Nama</label>
@@ -264,11 +297,20 @@
 							<option value="Tidak Aktif">Tidak Aktif</option>
 						</select>
 					</div>
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="text" name="password" id="password" class="form-control form-control-sm" placeholder="Password">
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					<button type="submit" name="tambah_siswa" class="btn btn-primary">Save</button>
 				</div>
+				
 				</form>
 			</div>
 		</div>
@@ -367,7 +409,7 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id_karyawan">ID Karyawan</label>
-						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Nama Anda">
+						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Nama Anda" value = "<?php echo $kode1?>" readonly>
 					</div>
 
 					<div class="form-group">
@@ -399,6 +441,14 @@
 							<option value="Aktif">Aktif</option>
 							<option value="Tidak Aktif">Tidak Aktif</option>
 						</select>
+					</div>
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="text" name="password" id="password" class="form-control form-control-sm" placeholder="Password">
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -1,4 +1,14 @@
 <?php include "koneksi.php"; ?>
+<?php
+$query = mysqli_query($conn, "SELECT MAX(id_kategori) as idkategori FROM kategori");
+$data = mysqli_fetch_array($query);
+$kode = $data['idkategori'];
+
+$urut = (int) substr($kode,2,3);
+$urut++;
+$huruf = "T";
+$kode = $huruf.sprintf("%03s", $urut);
+?>
 <?php 
 // proses tambah
 	if(isset($_POST['tambah_kategori'])){
@@ -18,8 +28,8 @@
 	if(isset($_POST['hapus_kategori'])){
 		$id = $_POST['id_kategori'];
 		// echo "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'";
-		$query = mysqli_query($conn, "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'");
-		// $query = mysqli_query($conn, "DELETE from kategori WHERE id_kategori = '".$id."'");
+		// $query = mysqli_query($conn, "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'");
+		$query = mysqli_query($conn, "DELETE from kategori WHERE id_kategori = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
@@ -116,7 +126,7 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id">ID Kategori</label>
-						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Id">
+						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Id" value ="<?php echo $kode?>" readonly>
 					</div>
 
 					<div class="form-group">

@@ -46,4 +46,10 @@
 		$row = mysqli_fetch_array($query);
 		echo json_encode($row);
 	}
+	if(isset($_POST['editusulan'])){
+		$id = $_POST['id_usulan'];
+		$query = mysqli_query($conn, "SELECT * FROM usulan WHERE id_usulan = '".$id."'");
+		$row = mysqli_fetch_array($query);
+		echo json_encode($row);
+	}
 ?>

@@ -103,6 +103,16 @@
 		}
 	}
 ?>
+<?php 
+$query = mysqli_query($conn, "SELECT MAX(id_koleksi) as idkoleksi FROM koleksi");
+$data = mysqli_fetch_array($query);
+$kode = $data['idkoleksi'];
+
+$urut = (int) substr($kode,2,3);
+$urut++;
+$huruf = "KL";
+$kode = $huruf.sprintf("%03s", $urut);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -208,7 +218,7 @@
 					<div class="form-group">
 						<label for="judul">ID Koleksi</label>
 						<input type="text" name="id_koleksi" id="id_baru" class="form-control form-control-sm"
-							placeholder="ID Koleksi" required />
+							placeholder="ID Koleksi" value= "<?php echo $kode?>"required />
 					</div>
 					<div class="form-group">
 						<label for="judul">Judul</label>
@@ -238,7 +248,7 @@
 								$query_kat = mysqli_query($conn, "SELECT * FROM kategori");
 								while ($row = mysqli_fetch_array($query_kat)) {
 							?>
-								<option value="<?php echo $row['id_kategori']; ?>">Kategori : <?php echo $row['nama_kategori'] ?></option>
+								<option value="<?php echo $row['id_kategori']; ?>"><?php echo $row['nama_kategori'] ?></option>
 							<?php } ?>
 						</select>
 					</div>

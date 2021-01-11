@@ -1,5 +1,17 @@
 <?php include "koneksi.php"; ?>
+<?php
+$query = mysqli_query($conn, "SELECT MAX(id_donasi) as iddonasi FROM donasi");
+$data = mysqli_fetch_array($query);
+$kode = $data['iddonasi'];
+
+$urut = (int) substr($kode,2,3);
+$urut++;
+$huruf = "DN";
+$kode = $huruf.sprintf("%03s", $urut);
+?>
 <?php 
+//tanggal auto
+$tgl = date('Y-m-d');
 // poses tambah
 	if(isset($_POST['tambah'])){
 		$id = $_POST['id_baru'];

@@ -1,4 +1,28 @@
 <!doctype html>
+<?php include "koneksi.php"; ?>
+<?php
+$query = mysqli_query($conn, "SELECT MAX(id_kunjungan) as idkunjungan FROM kunjungan");
+$data = mysqli_fetch_array($query);
+$kode = $data['idkunjungan'];
+
+$urut = (int) substr($kode,2,3);
+$urut++;
+$huruf = "KUN";
+$kode = $huruf.sprintf("%03s", $urut);
+?>
+<?php 
+//tanggal auto
+$tgl = date('Y-m-d');
+// poses tambah
+	if(isset($_POST['tambah'])){
+		// $id = $_POST['id_baru'];
+    $nama = $_POST['kegiatan_baru'];
+    $instansi = $_POST['donasi_baru'];
+    $status = $_POST['kegiatan_baru'];
+    $keterangan = $_POST['donasi_baru'];
+		$query = mysqli_query($conn, "INSERT INTO kunjungan VALUES ('$kode','$nama','$instansi','$status','$tgl')");
+		 echo "string";
+	}?>
 <html lang="en">
 
   <head>
@@ -85,28 +109,29 @@
       <form>
         <div class="form-group"> 
           <label for="nama">Nama</label>
-          <input type="text" id="nama" class="form-control form-control-sm" placeholder="Nama Anda">
+          <input type="text" name="nama" id="nama" class="form-control form-control-sm" placeholder="Nama Anda">
         </div>
        
         <div class="form-group">
-          <label for="nomor">Kelas/Instansi/Lembaga</label>
-          <input type="text" id="kelas" class="form-control form-control-sm" placeholder="Kelas/Instansi/Lembaga">
+          <label for="instansi">Kelas/Instansi/Lembaga</label>
+          <input type="text" name="instansi" id="instansi" class="form-control form-control-sm" placeholder="Kelas/Instansi/Lembaga">
         </div>
        
         <div class="form-group">
           <label for="status">Status</label>
-          <select id="status" class="form-control form-control-sm">
+          <select id="status" name="status" class="form-control form-control-sm">
             <option value="">-- Pilih Status --</option>
             <option value="">Siswa</option>
             <option value="">Karyawan</option>
+            <option value="">Alumni</option>
             <option value="">Pengunjung Luar</option>
           </select>
         </div>
        
         <div class="form-group">
           <label for="keterangan">Keterangan</label>
-          <select class="form-control form-control-sm" id="keterangan" rows="3" placeholder="Keterangan Kunjungan">
-            <option value="">-- Pilih Status --</option>
+          <select class="form-control form-control-sm" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan Kunjungan">
+            <option value="">-- Pilih Keterangan --</option>
             <option value="">Kunjungan</option>
             <option value="">Membaca Buku</option>
             <option value="">Peminjaman Buku</option>
@@ -115,7 +140,7 @@
           </select>
         </div>
        
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="tambah" class="btn btn-primary">Submit</button>
       </form>
       </div>
     </div>
