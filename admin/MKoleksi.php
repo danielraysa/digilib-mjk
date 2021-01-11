@@ -1,5 +1,5 @@
 <?php 
-	include "koneksi.php"; 
+	include "../koneksi.php"; 
 
 	function generateRandomString($length = 20) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -11,8 +11,8 @@
 		return $randomString;
 	}
 	// proses tambah
-	$target_dir = "uploads/koleksi/";
-	$target_dir_file = "uploads/file/";
+	$target_dir = "../uploads/koleksi/";
+	$target_dir_file = "../uploads/file/";
 
 	if(isset($_POST['tambah'])){
 		$id = $_POST['id_koleksi'];

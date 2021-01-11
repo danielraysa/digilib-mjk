@@ -1,42 +1,48 @@
+<<<<<<< HEAD:MDonasi.php
 <?php include "koneksi.php"; ?>
-<?php 
-$query = mysqli_query($conn, "SELECT MAX(id_point) as idpoint FROM points");
+<?php
+$query = mysqli_query($conn, "SELECT MAX(id_donasi) as iddonasi FROM donasi");
 $data = mysqli_fetch_array($query);
-$kode = $data['idpoint'];
+$kode = $data['iddonasi'];
 
 $urut = (int) substr($kode,2,3);
 $urut++;
-$huruf = "PO";
+$huruf = "DN";
 $kode = $huruf.sprintf("%03s", $urut);
 ?>
+=======
+<?php include "../koneksi.php"; ?>
+>>>>>>> 3209f70519a5535bab0d5729d80efad7f294d59d:admin/MDonasi.php
 <?php 
+//tanggal auto
+$tgl = date('Y-m-d');
 // poses tambah
 	if(isset($_POST['tambah'])){
 		$id = $_POST['id_baru'];
         $kegiatan = $_POST['kegiatan_baru'];
-        $angka = $_POST['point_baru'];
-		$query = mysqli_query($conn, "INSERT INTO points VALUES ('$id','$kegiatan','$angka','Aktif')");
-		//echo "string";
+        $angka = $_POST['donasi_baru'];
+		$query = mysqli_query($conn, "INSERT INTO donasis VALUES ('$id','$kegiatan','$angka')");
+		echo "string";
 	}
 	// proses edit
 	if(isset($_POST['edit'])){
-		$id = $_POST['id_point'];
+		$id = $_POST['id_donasi'];
         $kegiatan = $_POST['jenis_kegiatan'];
-        $point = $_POST['point'];
-		//echo "UPDATE point SET kegiatan_point='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_point='$id'";
-		$query = mysqli_query($conn, "UPDATE points SET jenis_kegiatan = '$kegiatan', point = '$point' WHERE id_point = '$id'");
+        $donasi = $_POST['donasi'];
+		//echo "UPDATE donasi SET kegiatan_donasi='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_donasi='$id'";
+		$query = mysqli_query($conn, "UPDATE donasis SET jenis_kegiatan='$kegiatan', donasi='$angka' WHERE id_donasi='$id'");
 	}
 	if(isset($_POST['hapus'])){
-		$id = $_POST['id_point'];
-		// echo "UPDATE point SET status = 'Tidak Aktif' WHERE id_point = '".$id."'";
-		$query = mysqli_query($conn, "DELETE from points WHERE id_point = '".$id."'");
+		$id = $_POST['id_donasi'];
+		//echo "UPDATE donasi SET status = 'Tidak Aktif' WHERE id_donasi = '".$id."'";
+		$query = mysqli_query($conn, "DELETE from donasis WHERE id_donasi = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
 <html>
 <!-- form asli -->
 <head>
-	<?php include 'css-script.php'; ?>
+<?php include "css-script.php"; ?>
 </head>
 
 <body>
@@ -53,10 +59,10 @@ $kode = $huruf.sprintf("%03s", $urut);
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">Point</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">donasi</h6>
 						</div>
 						<div class="col-lg-6 col-5 text-right">
-							<h6 class="h2 text-white d-inline-block mb-0">Point</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">donasi</h6>
 							<a href="#" class="btn btn-sm btn-neutral" data-toggle="modal"
 								data-target="#ModalTambah">Tambah</a>
 						</div>
@@ -71,37 +77,36 @@ $kode = $huruf.sprintf("%03s", $urut);
 				<div class="col-xl-12 col-md-12">
 					<div class="card card-stats">
 						<!-- Card body -->
-						<div class="card-body table-responsive">
-							<table id="myTable" class="table table-bordered">
-								<thead>
-									<tr>
-										<th>Id point</th>
-										<th>Jenis Kegiatan</th>
-										<th>Point</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-					$query = mysqli_query($conn, "SELECT * from points");
-					//for($row = 0; $row < 10; $row++)) {
-					while ($row = mysqli_fetch_array($query)) {
-					?>
-									<tr>
-										<td><?php echo $row['id_point'] ?></td>
-										<td><?php echo $row['jenis_kegiatan'] ?></td>
-										<td><?php echo $row['point'] ?></td>
-										<td><button class="btn btn-success btnEdit" data-toggle="modal"
-												data-target="#ModalEdit"
-												data-id="<?php echo $row['id_point'] ?>">Edit</button>
-												<button class="btn btn-danger btnHapus" data-toggle="modal"
-												data-target="#ModalHapus"
-												data-id="<?php echo $row['id_point'] ?>">Hapus</button></td>
-									</tr>
-									<?php } ?>
-								</tbody>
-							</table>
-						</div>
+						<table id="myTable" class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Id donasi</th>
+									<th>Jenis Kegiatan</th>
+                                    <th>donasi</th>
+								</tr>
+
+							</thead>
+							<tbody>
+
+								<?php
+                  $query = mysqli_query($conn, "SELECT * from donasis");
+                  //for($row = 0; $row < 10; $row++)) {
+                  while ($row = mysqli_fetch_array($query)) {
+                  ?>
+								<tr>
+									<td><?php echo $row['id_donasi'] ?></td>
+									<td><?php echo $row['jenis_kegiatan'] ?></td>
+									<td><?php echo $row['donasi'] ?></td>
+									<td><button class="btn btn-success btnEdit" data-toggle="modal"
+											data-target="#ModalEdit"
+											data-id="<?php echo $row['id_donasi'] ?>">Edit</button>
+											<button class="btn btn-success btnEdit" data-toggle="modal"
+											data-target="#ModalHapus"
+											data-id="<?php echo $row['id_donasi'] ?>">Hapus</button></td>
+								</tr>
+								<?php } ?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -114,7 +119,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Tambah Data point</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Tambah Data donasi</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -122,16 +127,16 @@ $kode = $huruf.sprintf("%03s", $urut);
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="kegiatan">ID Point</label>
-							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="kegiatan Anda" value="<?php echo $kode?>" readonly>
+							<label for="kegiatan">ID donasi</label>
+							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
 						<div class="form-group">
 							<label for="kegiatan">Jenis Kegiatan</label>
 							<input type="text" name="kegiatan_baru" id="kegiatan_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
                         <div class="form-group">
-							<label for="point">Point</label>
-							<input type="number" name="point_baru" id="point_baru" class="form-control form-control-sm" placeholder="Point Baru">
+							<label for="donasi">donasi</label>
+							<input type="text" name="donasi_baru" id="donasi_baru" class="form-control form-control-sm" placeholder="donasi Baru">
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -148,7 +153,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Edit Data point</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Edit Data donasi</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -156,16 +161,16 @@ $kode = $huruf.sprintf("%03s", $urut);
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="id">ID Point</label>
-							<input type="text" name="id_point" id="id_point" class="form-control form-control-sm" readonly>
+							<label for="kegiatan">ID donasi</label>
+							<input type="text" name="id_donasi" id="id_donasi" class="form-control form-control-sm" readonly>
 						</div>
 						<div class="form-group">
 							<label for="kegiatan">Jenis Kegiatan</label>
-							<input type="text" name="jenis_kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
+							<input type="text" name="kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
                         <div class="form-group">
-							<label for="point">Point</label>
-							<input type="number" name="point" id="point" class="form-control form-control-sm" placeholder="Point Kegiatan">
+							<label for="donasi">donasi</label>
+							<input type="number" name="donasi" id="donasi" class="form-control form-control-sm" placeholder="donasi Kegiatan">
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -181,15 +186,15 @@ $kode = $huruf.sprintf("%03s", $urut);
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Hapus Data point</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Hapus Data donasi</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<form action="" method="post">
-					Apakah anda akan menghapus data point ini?
-					<input type="hidden" name="id_point" id="id_point_hapus" class="form-control form-control-sm" readonly>
+					Apakah anda akan menghapus data donasi ini?
+					<input type="hidden" name="id_donasi" id="id_donasi_hapus" class="form-control form-control-sm" readonly>
 						
 				</div>
 				<div class="modal-footer">
@@ -200,30 +205,30 @@ $kode = $huruf.sprintf("%03s", $urut);
 			</div>
 		</div>
 	</div>
-	<?php include 'js-script.php'; ?>
+	<?php include "js-script.php"; ?>
 	<script>
 		$('#myTable').DataTable();
 		$('#myTable tbody').on('click', '.btnEdit', function () {
-			var idpoint = $(this).attr('data-id');
+			var iddonasi = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
 				type: 'post',
 				data: {
-					editpoint: true,
-					id_point: idpoint
+					editdonasi: true,
+					id_donasi: iddonasi
 				},
 				dataType: 'json',
 				success: function (result) {
 					console.log(result);
-					$("#id_point").val(idpoint);
-					$("#kegiatan").val(result.jenis_kegiatan);
-                    $("#point").val(result.point);
+					$("#id_donasi").val(iddonasi);
+					$("#kegiatan").val(result.kegiatan);
+                    $("#donasi").val(result.donasi);
 				}
 			});
 		});
 		$('#myTable tbody').on('click', '.btnHapus', function () {
-			var idpoint = $(this).attr('data-id');
-			$("#id_point_hapus").val(idpoint);
+			var iddonasi = $(this).attr('data-id');
+			$("#id_donasi_hapus").val(iddonasi);
 		});
 	</script>
 </body>

@@ -1,5 +1,5 @@
 <?php
-	include 'koneksi.php';
+	include "../koneksi.php";
 	if(isset($_POST['edituser'])){
 		$id = $_POST['id_siswa'];
 		$query = mysqli_query($conn, "SELECT * FROM siswa WHERE id_siswa = '".$id."'");

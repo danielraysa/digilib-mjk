@@ -3,7 +3,7 @@
 	<!-- Brand -->
 		<div class="sidenav-header  align-items-center" >
 			<a class="navbar-brand" href="javascript:void(0)" style="padding: 0.5rem !important">
-			<img src="admin/img/brand/logo.png" class="navbar-brand-img" alt="..." style="max-height: 5rem !important">
+			<img src="img/brand/logo.png" class="navbar-brand-img" alt="..." style="max-height: 5rem !important">
 			</a>
 		</div>
 		<div class="navbar-inner">
