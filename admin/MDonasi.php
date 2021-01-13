@@ -1,5 +1,5 @@
 <<<<<<< HEAD:MDonasi.php
-<?php include "koneksi.php"; ?>
+<?php include "../koneksi.php"; ?>
 <?php
 $query = mysqli_query($conn, "SELECT MAX(id_donasi) as iddonasi FROM donasi");
 $data = mysqli_fetch_array($query);
@@ -19,7 +19,7 @@ $tgl = date('Y-m-d');
 // poses tambah
 	if(isset($_POST['tambah'])){
 		$id = $_POST['id_baru'];
-        $kegiatan = $_POST['kegiatan_baru'];
+        $judul = $_POST['kegiatan_baru'];
         $angka = $_POST['donasi_baru'];
 		$query = mysqli_query($conn, "INSERT INTO donasis VALUES ('$id','$kegiatan','$angka')");
 		echo "string";
@@ -54,7 +54,7 @@ $tgl = date('Y-m-d');
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
 		<!-- Header -->
-		<div class="header bg-primary" style="background-color: green !important">
+		<div class="header bg-primary" style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
 				<div class="header-body">
 					<div class="row align-items-center py-4">

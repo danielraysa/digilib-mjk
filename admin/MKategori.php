@@ -1,5 +1,5 @@
-<<<<<<< HEAD:MKategori.php
-<?php include "koneksi.php"; ?>
+<!-- <<<<<<< HEAD:MKategori.php -->
+<?php include "../koneksi.php"; ?>
 <?php
 $query = mysqli_query($conn, "SELECT MAX(id_kategori) as idkategori FROM kategori");
 $data = mysqli_fetch_array($query);
@@ -10,9 +10,7 @@ $urut++;
 $huruf = "T";
 $kode = $huruf.sprintf("%03s", $urut);
 ?>
-=======
-<?php include "../koneksi.php"; ?>
->>>>>>> 3209f70519a5535bab0d5729d80efad7f294d59d:admin/MKategori.php
+<!-- //>>>>>>> 3209f70519a5535bab0d5729d80efad7f294d59d:admin/MKategori.php -->
 <?php 
 // proses tambah
 	if(isset($_POST['tambah_kategori'])){
@@ -48,13 +46,13 @@ $kode = $huruf.sprintf("%03s", $urut);
 	<?php include "sidebar.php"; ?>
 	<!-- Main content -->
 	<!--Kategori-->
-	<div class="main-content" id="panel">
+	<div class="main-content" id="panel" style = >
 		<!-- Topnav -->
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
 
 		<!-- Header -->
-		<div class="header bg-primary" style="background-color: green !important">
+		<div class="header " style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
 				<div class="header-body">
 					<div class="row align-items-center py-4">

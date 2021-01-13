@@ -50,7 +50,7 @@ $tgl = date('Y-m-d');
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
 		<!-- Header -->
-		<div class="header bg-primary" style="background-color: green !important">
+		<div class="header bg-primary" style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
 				<div class="header-body">
 					<div class="row align-items-center py-4">

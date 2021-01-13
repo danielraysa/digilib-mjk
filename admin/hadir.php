@@ -1,5 +1,5 @@
 <!doctype html>
-<?php include "koneksi.php"; ?>
+<?php include "../koneksi.php"; ?>
 <?php
 $query = mysqli_query($conn, "SELECT MAX(id_kunjungan) as idkunjungan FROM kunjungan");
 $data = mysqli_fetch_array($query);

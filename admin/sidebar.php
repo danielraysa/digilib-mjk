@@ -1,4 +1,4 @@
-<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light ml-md-auto" style="background-color: #f5f5f5 !Important" id="sidenav-main">
 	<div class="scrollbar-inner">
 	<!-- Brand -->
 		<div class="sidenav-header  align-items-center" >
@@ -33,7 +33,7 @@
 					<i class="ni ni-planet text-blue"></i> Data Transaksi </a>
 					<ul class="collapse list-unstyled" id="homesubmenu1" >
 						<li class="nav-item"><a class="nav-link ml-4" href="#">Point Pengguna</a></li>
-						<li class="nav-item"><a class="nav-link ml-4" href="#">Kunjungan</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="MKunjungan.php">Kunjungan</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MUsulan.php">Usulan</a></li>
 					</ul>
 					<li class="nav-item">

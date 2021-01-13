@@ -10,6 +10,14 @@
 		return $randomString;
 	}
 // poses tambah
+	$query = mysqli_query($conn, "SELECT MAX(id_pertanyaan) as idpertanyaan FROM pertanyaan"); // ganti tabel koleksi
+	$data = mysqli_fetch_array($query);
+	$kode = $data['idpertanyaan'];
+
+	$urut = (int) substr($kode,2,3);
+	$urut++;
+	$huruf = "PT";
+	$kode = $huruf.sprintf("%03s", $urut);
 	if(isset($_POST['tambah'])){
 		$id_pertanyaan = $_POST['id_pertanyaan'];
 		$koleksi = $_POST['koleksi'];
@@ -46,7 +54,7 @@
 		<!-- Topnav -->
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
-		<div class="header bg-primary" style="background-color: green !important">
+		<div class="header bg-primary" style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
 				<div class="header-body">
 					<div class="row align-items-center py-4">
@@ -120,7 +128,7 @@
 					<div class="form-group">
 						<label for="judul">ID Pertanyaan</label>
 						<input type="text" name="id_pertanyaan" id="id_baru" class="form-control form-control-sm"
-							placeholder="ID Pertanyaan" required />
+							placeholder="ID Pertanyaan" value="<?php echo $kode ?>" required />
 					</div>
 					<div class="form-group">
 						<label for="kategori">Koleksi</label>

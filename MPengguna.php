@@ -110,7 +110,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
 		<!-- Header -->
-		<div class="header bg-primary" style="background-color: green !important">
+		<div class="header bg-primary" style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
 				<div class="header-body">
 					<div class="row align-items-center py-4">
@@ -183,7 +183,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		<!-- Header -->
 
 		<!-- Header -->
-		<div class="header bg-primary" style="background-color: green !important">
+		<div class="header bg-primary" style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
 				<div class="header-body">
 					<div class="row align-items-center py-4">

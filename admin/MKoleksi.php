@@ -134,7 +134,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 		<!-- Topnav -->
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
-		<div class="header bg-primary" style="background-color: green !important">
+		<div class="header bg-primary" style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
 				<div class="header-body">
 					<div class="row align-items-center py-4">
@@ -223,7 +223,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="judul">ID Koleksi</label>
+						<label for="id">ID Koleksi</label>
 						<input type="text" name="id_koleksi" id="id_baru" class="form-control form-control-sm"
 							placeholder="ID Koleksi" value= "<?php echo $kode?>"required />// kalau ditaruh sini?
 					</div>

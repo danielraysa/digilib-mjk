@@ -13,7 +13,7 @@
 		<!-- Topnav -->
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
-		<div class="header bg-primary" style="background-color: green !important">
+		<div class="header bg-primary" style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
 				<div class="header-body">
 					<div class="row align-items-center py-4">
@@ -82,7 +82,7 @@
 									<span class="h2 font-weight-bold mb-0">924</span>
 								</div>
 								<div class="col-auto">
-									<div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+									<div class="icon icon-shape bg-gradient-#B0C4DE text-white rounded-circle shadow">
 										<i class="ni ni-money-coins"></i>
 									</div>
 								</div>
