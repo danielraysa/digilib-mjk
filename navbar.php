@@ -13,9 +13,19 @@
                         <li class="nav-item"><a href="admin/logout.php" class="nav-link">Logout</a></li>
                     </ul>
                     <?php } else { ?>
-                    <ul class="navbar-nav ml-auto">
+                    <!-- <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
-                    </ul>
+                    </ul> -->
+                    <!-- <div class="d-flex justify-content-around align-items-center" style="width: 125px"> -->
+                        <a href="#" class="d-flex justify-content-around align-items-center" data-toggle="dropdown" style="width: 125px">
+                            <small>Namaku</small>
+                            <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" style="width: 40px; height: 40px;" >
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    <!-- </div> -->
                     <?php } ?>
                 </div>
             </div>
