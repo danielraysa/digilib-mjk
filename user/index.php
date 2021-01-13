@@ -19,49 +19,84 @@
 		<div class="container-fluid mt-3">
 			<!-- Card stats -->
 			<div class="row">
-				<div class="col-lg-4 col-md-12">
-					<div class="card bg-success mb-1">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+				<div class="col-lg-4 col-md-12 text-center">
+					<div class="card mb-1">
+						<div class="card-body p-0">
+							<div id="myChart" style="height: 200px"></div>
 						</div>
 					</div>
-					<div class="d-flex justify-content-between">
-						<div class="card bg-danger mb-1">
+					<div class="d-flex justify-content-between" style="height: 100px">
+						<div class="card w-100 bg-danger m-1">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some </p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<h3 class="card-title">21</h3>
 							</div>
 						</div>
-						<div class="card bg-warning mb-1">
+						<div class="card w-100 bg-warning m-1">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<!-- <h5 class="card-title">Card title</h5>
 								<p class="card-text">Some quick </p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<a href="#" class="btn btn-primary">Go somewhere</a> -->
+								<h3 class="card-title">11</h3>
 							</div>
 						</div>
 					</div>
-					<div class="d-flex justify-content-between">
-						<div class="card bg-warning mb-1">
+					<div class="d-flex justify-content-between" style="height: 100px;">
+						<div class="card w-100 bg-warning m-1">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some </p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<h3 class="card-title">11</h3>
 							</div>
 						</div>
-						<div class="card bg-danger mb-1">
+						<div class="card w-100 bg-danger m-1">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick </p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<h3 class="card-title">13</h3>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-8 col-md-12">
-
+					<div class="row">
+						<div class="col-lg-6 col-md-12">
+						<div id="lineChart" style="height: 200px"></div>
+						</div>
+						<div class="col-lg-6 col-md-12">
+							foto foto
+						</div>
+					</div>
+					<div class="card table-responsive">
+						<div class="card-body p-1">
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr class="bg-primary text-white">
+									<th>No.</th>
+									<th>User</th>
+									<th>Point</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1.</td>
+									<td>User A</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>1.</td>
+									<td>User A</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>1.</td>
+									<td>User A</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>1.</td>
+									<td>User A</td>
+									<td>100</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					</div>
 				</div>
 			</div>
 			<?php include "user-footer.php"; ?>
@@ -69,7 +104,75 @@
 	</div>
 	
 	<?php include 'user-js-script.php'; ?>
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 	<script>
+	$(document).ready(function() {
+		var myConfig6 = {
+			"type": "gauge",
+			// "style": { "padding": "-1px" },
+			"scale-r": {
+				"aperture": 200,
+				"values": "0:100:20",
+				"center": {
+				"size": 5,
+				"background-color": "#66CCFF #FFCCFF",
+				"border-color": "none"
+				},
+				"ring": { //Ring with Rules
+				"size": 10,
+				"rules": [{
+					"rule": "%v >= 0 && %v <= 20",
+					"background-color": "red"
+					},
+					{
+					"rule": "%v >= 20 && %v <= 40",
+					"background-color": "orange"
+					},
+					{
+					"rule": "%v >= 40 && %v <= 60",
+					"background-color": "yellow"
+					},
+					{
+					"rule": "%v >= 60 && %v <= 80",
+					"background-color": "green"
+					},
+					{
+					"rule": "%v >= 80 && %v <=100",
+					"background-color": "blue"
+					}
+				]
+				}
+			},
+			/* "plotarea": {
+				// "margin": "40px 0px 0px 0px",
+				// "backgroundColor": '#fff'
+			}, */
+			"plot": {
+				"csize": "5%",
+				"size": "100%",
+				"background-color": "#000000",
+			},
+			"series": [{
+				"values": [87]
+			}]
+		};
+		// ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+		zingchart.render({
+		// $('#myChart').zingchart({
+			id: 'myChart',
+			data: myConfig6,
+			// height: "100%",
+			height: "280px",
+			width: "100%"
+		});
+		zingchart.render({
+		// $('#myChart').zingchart({
+			id: 'lineChart',
+			data: myConfig6,
+			// height: "100%",
+			height: "280px",
+			width: "100%"
+		});
 		$('#myTable').DataTable();
 		$('#myTable tbody').on('click', '.btnEdit', function () {
 			var idpoint = $(this).attr('data-id');
@@ -93,6 +196,7 @@
 			var idpoint = $(this).attr('data-id');
 			$("#id_point_hapus").val(idpoint);
 		});
+	})
 	</script>
 </body>
 

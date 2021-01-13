@@ -1,9 +1,5 @@
-<<<<<<< HEAD:MUsulan.php
 <?php include "../koneksi.php"; ?>
 
-=======
-<?php include "../koneksi.php"; ?>
->>>>>>> 3209f70519a5535bab0d5729d80efad7f294d59d:admin/MUsulan.php
 <?php 
 
 	// proses edit

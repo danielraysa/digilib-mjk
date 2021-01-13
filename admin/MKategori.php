@@ -1,4 +1,3 @@
-<!-- <<<<<<< HEAD:MKategori.php -->
 <?php include "../koneksi.php"; ?>
 <?php
 $query = mysqli_query($conn, "SELECT MAX(id_kategori) as idkategori FROM kategori");
@@ -10,7 +9,7 @@ $urut++;
 $huruf = "T";
 $kode = $huruf.sprintf("%03s", $urut);
 ?>
-<!-- //>>>>>>> 3209f70519a5535bab0d5729d80efad7f294d59d:admin/MKategori.php -->
+
 <?php 
 // proses tambah
 	if(isset($_POST['tambah_kategori'])){

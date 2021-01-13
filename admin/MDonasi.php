@@ -1,4 +1,3 @@
-<<<<<<< HEAD:MDonasi.php
 <?php include "../koneksi.php"; ?>
 <?php
 $query = mysqli_query($conn, "SELECT MAX(id_donasi) as iddonasi FROM donasi");
@@ -10,9 +9,6 @@ $urut++;
 $huruf = "DN";
 $kode = $huruf.sprintf("%03s", $urut);
 ?>
-=======
-<?php include "../koneksi.php"; ?>
->>>>>>> 3209f70519a5535bab0d5729d80efad7f294d59d:admin/MDonasi.php
 <?php 
 //tanggal auto
 $tgl = date('Y-m-d');
