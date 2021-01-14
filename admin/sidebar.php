@@ -24,7 +24,7 @@
 						<li class="nav-item"><a class="nav-link ml-4" href="MKoleksi.php">Koleksi</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MKategori.php">Kategori</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MPertanyaan.php">Pertanyaan</a></li>
-						<li class="nav-item"><a class="nav-link ml-4" href="Mpoint.php">Point</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="MPoint.php">Point</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MDonasi.php">Donasi</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MLomba.php">Lomba</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MEvent.php">Event</a></li>

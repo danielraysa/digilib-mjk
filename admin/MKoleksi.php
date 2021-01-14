@@ -32,15 +32,16 @@
 		$file = "";
 		if(file_exists($_FILES['cover']['tmp_name'])){
 			$target_cover = $target_dir . basename($_FILES['cover']['name']);
-			$imageFileType = strtolower(pathinfo($target_cover,PATHINFO_EXTENSION));
-			if (file_exists($target_cover)) {
-				$target_cover = $target_dir . generateRandomString() .".". $imageFileType;
+			$imageCoverType = strtolower(pathinfo($target_cover,PATHINFO_EXTENSION));
+			if (file_exists($target_cover) || strlen(basename($_FILES['cover']['name'])) >= 100) {
+				$target_cover = $target_dir . generateRandomString() .".". $imageCoverType;
 			}
 			if (move_uploaded_file($_FILES['cover']['tmp_name'], $target_cover)) {
 				// echo "The file ". htmlspecialchars(basename( $_FILES['cover']['name'])). " has been uploaded.";
 			} else {
 				var_dump($_FILES['cover']['error']);
 				echo "Sorry, there was an error uploading your file.";
+				exit;
 			}
 			$cover = $target_cover;
 		}
@@ -48,14 +49,15 @@
 			$target_file = $target_dir_file . basename($_FILES['file']['name']);
 			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 			// Check if file already exists
-			if (file_exists($target_file)) {
-				$target_file = $target_dir_file . generateRandomString() . $imageFileType;
+			if (file_exists($target_file) || strlen(basename($_FILES['file']['name'])) >= 100) {
+				$target_file = $target_dir_file . generateRandomString() ."." . $imageFileType;
 			}
 			if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
 				// echo "The file ". htmlspecialchars(basename($_FILES['file']['name'])). " has been uploaded.";
 			} else {
 				var_dump($_FILES['file']['error']);
 				echo "Sorry, there was an error uploading your file.";
+				exit;
 			}
 			$file = $target_file;
 		}

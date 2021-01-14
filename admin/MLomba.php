@@ -27,17 +27,17 @@ $kode = $huruf.sprintf("%03s", $urut);
 	// proses edit
 	if(isset($_POST['edit_lomba'])){
 		$id = $_POST['id_lomba'];
-		$judul = $_POST['judul'];
+		$judul = $_POST['judul_lomba'];
 		$poster= $_POST['poster'];
 		$keterangan= $_POST['ket'];
 		$tgl = $_POST['tgl'];
-		$query = mysqli_query($conn, "UPDATE lomba SET judul_lomba='$judul', poster='$poster', keterangan='$keterangan', tgl='$tgl' WHERE id_lomba='$id'");
+		$query = mysqli_query($conn, "UPDATE lomba SET judul_lomba='$judul', poster='$poster', keterangan='$keterangan', tgl='$tgl' WHERE id_lomba='$id'") or die (mysqli_error($conn));
 	}
 	if(isset($_POST['hapus_lomba'])){
 		$id = $_POST['id_lomba'];
 		// echo "UPDATE lomba SET status = 'Tidak Aktif' WHERE id_lomba = '".$id."'";
 		// $query = mysqli_query($conn, "UPDATE lomba SET status = 'Tidak Aktif' WHERE id_lomba = '".$id."'");
-		$query = mysqli_query($conn, "DELETE from lomba WHERE id_lomba = '".$id."'");
+		$query = mysqli_query($conn, "DELETE from lomba WHERE id_lomba = '".$id."'") or die (mysqli_error($conn));
 	}
 ?>
 <!DOCTYPE html>
@@ -155,7 +155,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</div>
 					<div class="form-group">
 						<label for="tgl">Tanggal</label>
-						<input type="text" name="tgl_baru" id="tgl_baru" class="form-control form-control-sm" placeholder="Tanggal">
+						<input type="date" name="tgl_baru" id="tgl_baru" class="form-control form-control-sm" placeholder="Tanggal">
 					</div>
 
 
@@ -200,7 +200,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</div>
 					<div class="form-group">
 						<label for="tgl">Tanggal</label>
-						<input type="text" name="tgl" id="tgl" class="form-control form-control-sm" placeholder="Tanggal">
+						<input type="date" name="tgl" id="tgl" class="form-control form-control-sm" placeholder="Tanggal">
 					</div>
 				</div>
 				<div class="modal-footer">

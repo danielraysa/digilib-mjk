@@ -68,16 +68,16 @@
 								</div>
 
 								<div class="card-body">
-									<form>
+									<form action="login-check.php" method="post">
 										<div class="form-group">
 											<label for="username">Username</label>
-											<input type="text" id="username" class="form-control form-control-sm"
+											<input type="text" name="username" id="username" class="form-control form-control-sm"
 												placeholder="Nama Anda">
 										</div>
 
 										<div class="form-group">
 											<label for="pass">Password</label>
-											<input type="password" id="nomor" class="form-control form-control-sm"
+											<input type="password" name="password" id="password" class="form-control form-control-sm"
 												placeholder="Password">
 										</div>
 

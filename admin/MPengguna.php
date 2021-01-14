@@ -75,7 +75,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$pass = $_POST['password'];
 		$query = mysqli_query($conn, "INSERT INTO karyawan VALUES ('$id','$kode3','$nama','$jabatan','$alamat','$jkelamin','$status')");
 		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass','-')");
-		if(!$query || $query1){
+		if(!$query || !$query1){
 			echo mysqli_error($conn);
 		}
 	}
