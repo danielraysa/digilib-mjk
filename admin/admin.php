@@ -32,11 +32,15 @@
 				<div class="col-xl-3 col-md-6">
 					<div class="card card-stats">
 						<!-- Card body -->
+						<?php 
+						$query2= mysqli_query($conn, "SELECT count(id_siswa)siswa FROM siswa");
+								$data2= mysqli_fetch_array($query2);
+								?>
 						<div class="card-body">
 							<div class="row">
 								<div class="col">
-									<h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
-									<span class="h2 font-weight-bold mb-0">350,897</span>
+									<h5 class="card-title text-uppercase text-muted mb-0">Siswa</h5>
+									<span class="h2 font-weight-bold mb-0"><?php echo $data2['siswa']?> Siswa</span>
 								</div>
 								<div class="col-auto">
 									<div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -44,10 +48,7 @@
 									</div>
 								</div>
 							</div>
-							<p class="mt-3 mb-0 text-sm">
-								<span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-								<span class="text-nowrap">Since last month</span>
-							</p>
+							
 						</div>
 					</div>
 				</div>
@@ -57,8 +58,15 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col">
-									<h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-									<span class="h2 font-weight-bold mb-0">2,356</span>
+								<?php
+								$query1= mysqli_query($conn, "SELECT count(id_pengguna)idPengguna FROM pengguna");
+								$data1= mysqli_fetch_array($query1);
+								$peng = $data1['idPengguna'];
+
+								
+								?>
+									<h5 class="card-title text-uppercase text-muted mb-0">Pengguna</h5>
+									<span class="h2 font-weight-bold mb-0"><?php echo $peng?> Pengguna</span>
 								</div>
 								<div class="col-auto">
 									<div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -66,21 +74,22 @@
 									</div>
 								</div>
 							</div>
-							<p class="mt-3 mb-0 text-sm">
-								<span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-								<span class="text-nowrap">Since last month</span>
-							</p>
+							
 						</div>
 					</div>
 				</div>
 				<div class="col-xl-3 col-md-6">
 					<div class="card card-stats">
 						<!-- Card body -->
-						<div class="card-body">
-							<div class="row">
+						<?php 
+							$query3= mysqli_query($conn, "SELECT count(id_koleksi)koleksi FROM koleksi");
+							$data3= mysqli_fetch_array($query3);
+						?>
+						<div class="card-body" >
+							<div class="row" >
 								<div class="col">
-									<h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-									<span class="h2 font-weight-bold mb-0">924</span>
+									<h5 class="card-title text-uppercase text-muted mb-0" href="MKoleksi.php">Koleksi</h5>
+									<span class="h2 font-weight-bold mb-0"><?php echo $data3['koleksi']?> Koleksi</span>
 								</div>
 								<div class="col-auto">
 									<div class="icon icon-shape bg-gradient-#B0C4DE text-white rounded-circle shadow">
@@ -88,21 +97,22 @@
 									</div>
 								</div>
 							</div>
-							<p class="mt-3 mb-0 text-sm">
-								<span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-								<span class="text-nowrap">Since last month</span>
-							</p>
+							
 						</div>
 					</div>
 				</div>
 				<div class="col-xl-3 col-md-6">
 					<div class="card card-stats">
 						<!-- Card body -->
-						<div class="card-body">
+						<?php
+						$query4= mysqli_query($conn, "SELECT count(id_ses_kunjungan)kunjungan FROM session_kunjungan");
+								$data4= mysqli_fetch_array($query4);
+								?>
+						<div class="card-body" href="Mkunjungan.php">
 							<div class="row">
 								<div class="col">
-									<h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-									<span class="h2 font-weight-bold mb-0">49,65%</span>
+									<h5 class="card-title text-uppercase text-muted mb-0">Kunjungan</h5>
+									<span class="h2 font-weight-bold mb-0"><?php echo $data4['kunjungan'] ?> Pengunjung</span>
 								</div>
 								<div class="col-auto">
 									<div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -110,10 +120,10 @@
 									</div>
 								</div>
 							</div>
-							<p class="mt-3 mb-0 text-sm">
+							<!-- <p class="mt-3 mb-0 text-sm">
 								<span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
 								<span class="text-nowrap">Since last month</span>
-							</p>
+							</p> -->
 						</div>
 					</div>
 				</div>

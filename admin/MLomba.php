@@ -1,6 +1,19 @@
 
-<?php include "../koneksi.php"; ?>
+<?php include "../koneksi.php"; 
+function generateRandomString($length = 20) {
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, $charactersLength - 1)];
+	}
+	return $randomString;
+}
+?>
 <?php
+$target_dir = "../uploads/koleksi/";
+$target_dir_file = "../uploads/file/";
+
 $query = mysqli_query($conn, "SELECT MAX(id_lomba) as idlomba FROM lomba");
 $data = mysqli_fetch_array($query);
 $kode = $data['idlomba'];
@@ -16,7 +29,22 @@ $kode = $huruf.sprintf("%03s", $urut);
 	if(isset($_POST['tambah_lomba'])){
 		$id = $_POST['id_baru'];
 		$judul = $_POST['judul_baru'];
-		$poster= $_POST['poster_baru'];
+		$poster= '';
+		if(file_exists($_FILES['poster']['tmp_name'])){
+			$target_poster = $target_dir . basename($_FILES['poster']['name']);
+			$imageCoverType = strtolower(pathinfo($target_poster,PATHINFO_EXTENSION));
+			if (file_exists($target_poster) || strlen(basename($_FILES['poster']['name'])) >= 100) {
+				$target_poster = $target_dir . generateRandomString() .".". $imageCoverType;
+			}
+			if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_poster)) {
+				// echo "The file ". htmlspecialchars(basename( $_FILES['poster']['name'])). " has been uploaded.";
+			} else {
+				var_dump($_FILES['gambar']['error']);
+				echo "Sorry, there was an error uploading your file.";
+				exit;
+			}
+			$poster = $target_poster;
+		}
 		$keterangan= $_POST['ket_baru'];
 		$tgl = $_POST['tgl_baru'];
 		$query = mysqli_query($conn, "INSERT INTO lomba VALUES ('$id','$judul','$poster','$keterangan','$tgl')");
@@ -27,17 +55,17 @@ $kode = $huruf.sprintf("%03s", $urut);
 	// proses edit
 	if(isset($_POST['edit_lomba'])){
 		$id = $_POST['id_lomba'];
-		$judul = $_POST['judul_lomba'];
+		$judul = $_POST['judul'];
 		$poster= $_POST['poster'];
 		$keterangan= $_POST['ket'];
 		$tgl = $_POST['tgl'];
-		$query = mysqli_query($conn, "UPDATE lomba SET judul_lomba='$judul', poster='$poster', keterangan='$keterangan', tgl='$tgl' WHERE id_lomba='$id'") or die (mysqli_error($conn));
+		$query = mysqli_query($conn, "UPDATE lomba SET judul_lomba='$judul', poster='$poster', keterangan='$keterangan', tgl='$tgl' WHERE id_lomba='$id'");
 	}
 	if(isset($_POST['hapus_lomba'])){
 		$id = $_POST['id_lomba'];
 		// echo "UPDATE lomba SET status = 'Tidak Aktif' WHERE id_lomba = '".$id."'";
 		// $query = mysqli_query($conn, "UPDATE lomba SET status = 'Tidak Aktif' WHERE id_lomba = '".$id."'");
-		$query = mysqli_query($conn, "DELETE from lomba WHERE id_lomba = '".$id."'") or die (mysqli_error($conn));
+		$query = mysqli_query($conn, "DELETE from lomba WHERE id_lomba = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
@@ -102,7 +130,9 @@ $kode = $huruf.sprintf("%03s", $urut);
 					?>
 									<tr>
 										<td><?php echo $row['judul_lomba'] ?></td>
-										<td><?php echo $row['poster'] ?></td>
+										<td><?php if($row['poster']!= "") { ?>
+											<img src="<?php echo $row['poster'] ?>" width="100" />
+										<?php } ?></td>
 										<td><?php echo $row['keterangan'] ?></td>
 										<td><?php echo $row['tgl'] ?></td>
 										<td><button class="btn btn-success btnEditKat" data-toggle="modal"
@@ -147,7 +177,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</div>
 					<div class="form-group">
 						<label for="poster">Poster</label>
-						<input type="text" name="poster_baru" id="poster_baru" class="form-control form-control-sm" placeholder="Poster">
+						<input type="file" accept=".jpg,.jpeg,.png" name="poster" id="poster_baru" class="form-control form-control-sm" placeholder="Cover" />
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
@@ -192,7 +222,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</div>
 					<div class="form-group">
 						<label for="poster">Poster</label>
-						<input type="text" name="poster" id="poster" class="form-control form-control-sm" placeholder="Poster">
+						<input type="file" accept=".jpg,.jpeg,.png" name="poster" id="poster" class="form-control form-control-sm" placeholder="Cover">
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
