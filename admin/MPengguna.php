@@ -405,7 +405,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id_karyawan">ID Karyawan</label>
-						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Nama Anda" value = "<?php echo $kode1?>" readonly>
+						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Nama Anda" value = "<?php echo $kode2?>" readonly>
 					</div>
 
 					<div class="form-group">

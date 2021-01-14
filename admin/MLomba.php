@@ -7,7 +7,7 @@ $kode = $data['idlomba'];
 
 $urut = (int) substr($kode,2,3);
 $urut++;
-$huruf = "T";
+$huruf = "LO";
 $kode = $huruf.sprintf("%03s", $urut);
 ?>
 

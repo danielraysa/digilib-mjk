@@ -7,7 +7,7 @@ $kode = $data['idevent'];
 
 $urut = (int) substr($kode,2,3);
 $urut++;
-$huruf = "T";
+$huruf = "EV";
 $kode = $huruf.sprintf("%03s", $urut);
 ?>
 
