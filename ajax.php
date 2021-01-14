@@ -52,4 +52,10 @@
 		$row = mysqli_fetch_array($query);
 		echo json_encode($row);
 	}
+	if(isset($_POST['editdonasi'])){
+		$id = $_POST['id_donasi'];
+		$query = mysqli_query($conn, "SELECT * FROM donasi WHERE id_donasi = '".$id."'");
+		$row = mysqli_fetch_array($query);
+		echo json_encode($row);
+	}
 ?>

@@ -15,18 +15,24 @@ $tgl = date('Y-m-d');
 // poses tambah
 	if(isset($_POST['tambah'])){
 		$id = $_POST['id_baru'];
-        $judul = $_POST['kegiatan_baru'];
-        $angka = $_POST['donasi_baru'];
-		$query = mysqli_query($conn, "INSERT INTO donasis VALUES ('$id','$kegiatan','$angka')");
+        $judul = $_POST['judul_buku_baru'];
+		$pengarang = $_POST['pengarang_baru'];
+		$penerbit = $_POST['penerbit_baru'];
+		$thn = $_POST['tahun_baru'];
+		$jumlah = $_POST['jumlah_baru'];
+		$query = mysqli_query($conn, "INSERT INTO donasis VALUES ('$id','$judul','$pengarang','$penerbit','$thn', '$jumlah')");
 		echo "string";
 	}
 	// proses edit
 	if(isset($_POST['edit'])){
 		$id = $_POST['id_donasi'];
-        $kegiatan = $_POST['jenis_kegiatan'];
-        $donasi = $_POST['donasi'];
+        $judul = $_POST['judul_buku'];
+		$pengarang = $_POST['pengarang'];
+		$penerbit = $_POST['penerbit'];
+		$thn = $_POST['tahun'];
+		$jumlah = $_POST['jumlah'];
 		//echo "UPDATE donasi SET kegiatan_donasi='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_donasi='$id'";
-		$query = mysqli_query($conn, "UPDATE donasis SET jenis_kegiatan='$kegiatan', donasi='$angka' WHERE id_donasi='$id'");
+		$query = mysqli_query($conn, "UPDATE donasis SET judul_buku='$judul', pengarang='$pengarang', penerbit='$penerbit', tahun='$tahun', jumlah='$jumlah' WHERE id_donasi='$id'");
 	}
 	if(isset($_POST['hapus'])){
 		$id = $_POST['id_donasi'];
@@ -85,14 +91,17 @@ $tgl = date('Y-m-d');
 							<tbody>
 
 								<?php
-                  $query = mysqli_query($conn, "SELECT * from donasis");
+                  $query = mysqli_query($conn, "SELECT * from donasi");
                   //for($row = 0; $row < 10; $row++)) {
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
 								<tr>
 									<td><?php echo $row['id_donasi'] ?></td>
-									<td><?php echo $row['jenis_kegiatan'] ?></td>
-									<td><?php echo $row['donasi'] ?></td>
+									<td><?php echo $row['judul_buku'] ?></td>
+									<td><?php echo $row['pengarang'] ?></td>
+									<td><?php echo $row['penerbit'] ?></td>
+									<td><?php echo $row['tahun'] ?></td>
+									<td><?php echo $row['jumlah'] ?></td>
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
 											data-id="<?php echo $row['id_donasi'] ?>">Edit</button>
@@ -123,16 +132,28 @@ $tgl = date('Y-m-d');
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="kegiatan">ID donasi</label>
-							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
+							<label for="id">ID donasi</label>
+							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" value="<?php echo $kode ?>">
 						</div>
 						<div class="form-group">
-							<label for="kegiatan">Jenis Kegiatan</label>
-							<input type="text" name="kegiatan_baru" id="kegiatan_baru" class="form-control form-control-sm" placeholder="kegiatan Anda">
+							<label for="judul_buku_baru">Judul Buku</label>
+							<input type="text" name="judul_buku_baru" id="judul_buku_baru" class="form-control form-control-sm" >
 						</div>
                         <div class="form-group">
-							<label for="donasi">donasi</label>
-							<input type="text" name="donasi_baru" id="donasi_baru" class="form-control form-control-sm" placeholder="donasi Baru">
+							<label for="pengarang_baru">Pengarang</label>
+							<input type="text" name="pengarang_baru" id="pengarang_baru" class="form-control form-control-sm" >
+						</div>
+						<div class="form-group">
+							<label for="penerbit_baru">Penerbit</label>
+							<input type="text" name="penerbit_baru" id="penerbit_baru" class="form-control form-control-sm" >
+						</div>
+						<div class="form-group">
+							<label for="tahun_baru">Tahun</label>
+							<input type="text" name="tahun_baru" id="tahun_baru" class="form-control form-control-sm" >
+						</div>
+						<div class="form-group">
+							<label for="jumlah_baru">Jumlah</label>
+							<input type="number" name="jumlah_baru" id="jumlah_baru" class="form-control form-control-sm" >
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -156,17 +177,29 @@ $tgl = date('Y-m-d');
 				</div>
 				<div class="modal-body">
 					<form action="" method="post">
-						<div class="form-group">
-							<label for="kegiatan">ID donasi</label>
-							<input type="text" name="id_donasi" id="id_donasi" class="form-control form-control-sm" readonly>
+					<div class="form-group">
+							<label for="id">ID donasi</label>
+							<input type="text" name="id" id="id" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
 						<div class="form-group">
-							<label for="kegiatan">Jenis Kegiatan</label>
-							<input type="text" name="kegiatan" id="kegiatan" class="form-control form-control-sm" placeholder="kegiatan Anda">
+							<label for="judul_buku">Judul Buku</label>
+							<input type="text" name="judul_buku" id="judul_buku" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
                         <div class="form-group">
-							<label for="donasi">donasi</label>
-							<input type="number" name="donasi" id="donasi" class="form-control form-control-sm" placeholder="donasi Kegiatan">
+							<label for="pengarang">Pengarang</label>
+							<input type="text" name="pengarang" id="pengarang" class="form-control form-control-sm" placeholder="donasi Baru">
+						</div>
+						<div class="form-group">
+							<label for="penerbit">Penerbit</label>
+							<input type="text" name="penerbit" id="penerbit" class="form-control form-control-sm" placeholder="donasi Baru">
+						</div>
+						<div class="form-group">
+							<label for="tahun">Tahun</label>
+							<input type="text" name="tahun" id="tahun" class="form-control form-control-sm" placeholder="donasi Baru">
+						</div>
+						<div class="form-group">
+							<label for="jumlah">Jumlah</label>
+							<input type="number" name="jumlah" id="jumlah" class="form-control form-control-sm" placeholder="donasi Baru">
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -217,8 +250,11 @@ $tgl = date('Y-m-d');
 				success: function (result) {
 					console.log(result);
 					$("#id_donasi").val(iddonasi);
-					$("#kegiatan").val(result.kegiatan);
-                    $("#donasi").val(result.donasi);
+					$("#judul_buku").val(result.judul_buku);
+                    $("#pengarang").val(result.pengarang);
+					$("#penerbit").val(result.penerbit);
+                    $("#tahun").val(result.tahun);
+					$("#jumlah").val(result.jumlah);
 				}
 			});
 		});
