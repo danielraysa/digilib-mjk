@@ -30,7 +30,7 @@ $huruf3 = "PA";
 $kode3 = $huruf3.sprintf("%03s", $urut3);
 ?>
 <?php 
-// poses tambah
+// proses tambah
 	if(isset($_POST['tambah_siswa'])){
 		$id = $_POST['id_baru'];
 		$nama = $_POST['nama_baru'];
@@ -40,10 +40,9 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$status = $_POST['status_baru'];
 		$user = $_POST['username'];
 		$pass = $_POST['password'];
-		// echo "INSERT INTO siswa VALUES ('$id','$nama','$kelas','$jkelamin','$alamat','$status')";
-		$query = mysqli_query($conn, "INSERT INTO siswa VALUES ('$id','$nama','$kelas','$jkelamin','$alamat','$status')");
+		$query = mysqli_query($conn, "INSERT INTO siswa VALUES ('$id','$kode3','$nama','$kelas','$jkelamin','$alamat','$status')");
 		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass','-')");
-		if(!$query){
+		if(!$query || $query1){
 			echo mysqli_error($conn);
 		}
 	}
@@ -63,9 +62,8 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		// echo "UPDATE siswa SET status = 'Tidak Aktif' WHERE id_siswa = '".$id."'";
 		$query = mysqli_query($conn, "UPDATE siswa SET status_siswa = 'Tidak Aktif' WHERE id_siswa = '".$id."'");
 	}
-?>
-<?php 
-// poses tambah
+ 
+// proses tambah
 	if(isset($_POST['tambah_karyawan'])){
 		$id = $_POST['id_baru'];
 		$nama = $_POST['nama_baru'];
@@ -174,14 +172,10 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 						</div>
 					</div>
 				</div>
-			</div>
-			
+			</div>	
 		</div>
-	</div>
-	<!--Karyawan-->
-	<div class="main-content" id="panel" style="margin-left: 250px">
-		<!-- Header -->
 
+		<!--Karyawan-->
 		<!-- Header -->
 		<div class="header bg-primary" style="background-color: #B0C4DE !important">
 			<div class="container-fluid">
@@ -199,7 +193,6 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 			</div>
 		</div>
 		<div class="container-fluid mt-3">
-
 			<!-- Card stats -->
 			<div class="row">
 				<div class="col-xl-12 col-md-12">
