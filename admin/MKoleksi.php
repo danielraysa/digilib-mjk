@@ -108,6 +108,12 @@
 		if(!$query){
 			echo mysqli_error($conn);
 		}
+		if(isset($_POST['hapus_koleksi'])){
+			$id = $_POST['id_koleksi'];
+			// echo "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'";
+			// $query = mysqli_query($conn, "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'");
+			$query = mysqli_query($conn, "DELETE from koleksi WHERE id_koleksi = '".$id."'");
+		}
 	}
 ?>
 <?php 
@@ -195,7 +201,8 @@ $kode = $huruf.sprintf("%03s", $urut);
 											<button class="btn btn-success btnEdit" data-toggle="modal"
 												data-target="#ModalEdit"
 												data-id="<?php echo $row['id_koleksi'] ?>">Edit</button>
-											<button class="btn btn-danger btnHapus" data-toggle="modal" data-target="#ModalHapus" data-id="<?php echo $row['id_koleksi'] ?>">Hapus</button>
+											<button class="btn btn-danger btnHapus" data-toggle="modal" 
+											data-target="#ModalHapus" data-id="<?php echo $row['id_koleksi'] ?>">Hapus</button>
 										</td>
 									</tr>
 									<?php } ?>
@@ -341,6 +348,29 @@ $kode = $huruf.sprintf("%03s", $urut);
 			</div>
 		</div>
 	</div>
+		<!-- modal hapus -->
+		<div class="modal fade" id="ModalHapus" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Hapus Data Kategori</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="" method="post">
+				<div class="modal-body">
+					Apakah anda akan menghapus data koleksi ini?
+					<input type="hidden" name="id_koleksi" id="id_koleksi_hapus" class="form-control form-control-sm" readonly>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" name="hapus_koleksi" class="btn btn-primary">Save</button>
+				</div>
+				</form>	
+			</div>
+		</div>
+	</div>
 	<?php include "js-script.php"; ?>
 	<script>
 		$('#myTable').DataTable();
@@ -367,6 +397,10 @@ $kode = $huruf.sprintf("%03s", $urut);
 				}
 			})
 		})
+		$('.btnHapus').on('click', function () {
+			var idKoleksi = $(this).attr('data-id');
+			$("#id_koleksi_hapus").val(idKoleksi);
+		});
 	</script>
 </body>
 

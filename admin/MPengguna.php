@@ -71,8 +71,11 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$alamat = $_POST['alamat_baru'];
 		$jkelamin = $_POST['jkelamin'];
 		$status = $_POST['status'];
-		$query = mysqli_query($conn, "INSERT INTO karyawan VALUES ('$id','$nama','$jabatan','$alamat','$jkelamin','$status')");
-		if(!$query){
+		$user = $_POST['username'];
+		$pass = $_POST['password'];
+		$query = mysqli_query($conn, "INSERT INTO karyawan VALUES ('$id','$kode3','$nama','$jabatan','$alamat','$jkelamin','$status')");
+		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass','-')");
+		if(!$query || $query1){
 			echo mysqli_error($conn);
 		}
 	}
@@ -156,7 +159,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 										<!-- <td><?php echo $row['id_siswa'] ?></td> -->
 										<td><?php echo $row['nama_siswa'] ?></td>
 										<td><?php echo $row['kelas'] ?></td>
-										<td><?php // echo $row['jenis_kelamin'] ?></td>
+										<td><?php echo $row['jenis_kelamin'] ?></td>
 										<td><?php echo $row['alamat_siswa'] ?></td>
 										<td><?php echo $row['status_siswa'] ?></td>
 										<td><button class="btn btn-success btnEdit" data-toggle="modal"
@@ -292,7 +295,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 					</div>
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
+						<input type="text" name="username" id="username" class="form-control form-control-sm" value = "<?php echo $nama?>"placeholder="Username">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>

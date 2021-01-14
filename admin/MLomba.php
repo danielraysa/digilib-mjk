@@ -88,7 +88,8 @@ $kode = $huruf.sprintf("%03s", $urut);
 										<th>Judul</th>
 										<th>Poster</th>					
 										<th>Keterangan</th>
-										<th>Tanggal</th>					
+										<th>Tanggal</th>
+										<th>Action</th>						
 									</tr>
 
 								</thead>

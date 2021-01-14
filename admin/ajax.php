@@ -46,6 +46,30 @@
 		$row = mysqli_fetch_array($query);
 		echo json_encode($row);
 	}
+	if(isset($_POST['editdonasi'])){
+		$id = $_POST['id_donasi'];
+		$query = mysqli_query($conn, "SELECT * FROM donasi WHERE id_donasi = '".$id."'");
+		$row = mysqli_fetch_array($query);
+		echo json_encode($row);
+	}
+	if(isset($_POST['editevent'])){
+		$id = $_POST['id_event'];
+		$query = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '".$id."'");
+		$row = mysqli_fetch_array($query);
+		echo json_encode($row);
+	}
+	if(isset($_POST['editlomba'])){
+		$id = $_POST['id_lomba'];
+		$query = mysqli_query($conn, "SELECT * FROM lomba WHERE id_lomba = '".$id."'");
+		$row = mysqli_fetch_array($query);
+		echo json_encode($row);
+	}
+	if(isset($_POST['editkoleksi'])){
+		$id = $_POST['id_koleksi'];
+		$query = mysqli_query($conn, "SELECT * FROM koleksi WHERE id_koleksi = '".$id."'");
+		$row = mysqli_fetch_array($query);
+		echo json_encode($row);
+	}
 	if(isset($_POST['editusulan'])){
 		$id = $_POST['id_usulan'];
 		$query = mysqli_query($conn, "SELECT * FROM usulan WHERE id_usulan = '".$id."'");

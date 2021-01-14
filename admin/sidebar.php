@@ -26,13 +26,13 @@
 						<li class="nav-item"><a class="nav-link ml-4" href="MPertanyaan.php">Pertanyaan</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="Mpoint.php">Point</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MDonasi.php">Donasi</a></li>
-						<li class="nav-item"><a class="nav-link ml-4" href="#">Lomba</a></li>
-						<li class="nav-item"><a class="nav-link ml-4" href="#">Event</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="MLomba.php">Lomba</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="MEvent.php">Event</a></li>
 					</ul>
 					<a class="nav-link" href="#homesubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 					<i class="ni ni-planet text-blue"></i> Data Transaksi </a>
 					<ul class="collapse list-unstyled" id="homesubmenu1" >
-						<li class="nav-item"><a class="nav-link ml-4" href="#">Point Pengguna</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="point_pengguna.php">Point Pengguna</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MKunjungan.php">Kunjungan</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MUsulan.php">Usulan</a></li>
 					</ul>

@@ -20,8 +20,8 @@ $tgl = date('Y-m-d');
 		$penerbit = $_POST['penerbit_baru'];
 		$thn = $_POST['tahun_baru'];
 		$jumlah = $_POST['jumlah_baru'];
-		$query = mysqli_query($conn, "INSERT INTO donasis VALUES ('$id','$judul','$pengarang','$penerbit','$thn', '$jumlah')");
-		echo "string";
+		$query = mysqli_query($conn, "INSERT INTO donasi (id_donasi, judul_buku, pengarang, penerbit, tahun, jumlah) VALUES ('$id','$judul','$pengarang','$penerbit','$thn','$jumlah')");
+		// echo "string";
 	}
 	// proses edit
 	if(isset($_POST['edit'])){
@@ -32,12 +32,12 @@ $tgl = date('Y-m-d');
 		$thn = $_POST['tahun'];
 		$jumlah = $_POST['jumlah'];
 		//echo "UPDATE donasi SET kegiatan_donasi='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_donasi='$id'";
-		$query = mysqli_query($conn, "UPDATE donasis SET judul_buku='$judul', pengarang='$pengarang', penerbit='$penerbit', tahun='$tahun', jumlah='$jumlah' WHERE id_donasi='$id'");
+		$query = mysqli_query($conn, "UPDATE donasi SET judul_buku='$judul', pengarang='$pengarang', penerbit='$penerbit', tahun='$thn', jumlah='$jumlah' WHERE id_donasi='$id'");
 	}
 	if(isset($_POST['hapus'])){
 		$id = $_POST['id_donasi'];
 		//echo "UPDATE donasi SET status = 'Tidak Aktif' WHERE id_donasi = '".$id."'";
-		$query = mysqli_query($conn, "DELETE from donasis WHERE id_donasi = '".$id."'");
+		$query = mysqli_query($conn, "DELETE from donasi WHERE id_donasi = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
@@ -82,9 +82,12 @@ $tgl = date('Y-m-d');
 						<table id="myTable" class="table table-bordered">
 							<thead>
 								<tr>
-									<th>Id donasi</th>
-									<th>Jenis Kegiatan</th>
-                                    <th>donasi</th>
+									<th>Judul Buku</th>
+									<th>Pengarang</th>
+                                    <th>Penerbit</th>
+									<th>tahun</th>
+									<th>jumlah</th>
+									<th>action</th>
 								</tr>
 
 							</thead>
@@ -96,7 +99,6 @@ $tgl = date('Y-m-d');
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
 								<tr>
-									<td><?php echo $row['id_donasi'] ?></td>
 									<td><?php echo $row['judul_buku'] ?></td>
 									<td><?php echo $row['pengarang'] ?></td>
 									<td><?php echo $row['penerbit'] ?></td>
@@ -105,7 +107,7 @@ $tgl = date('Y-m-d');
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
 											data-id="<?php echo $row['id_donasi'] ?>">Edit</button>
-											<button class="btn btn-success btnEdit" data-toggle="modal"
+											<button class="btn btn-success btnHapus" data-toggle="modal"
 											data-target="#ModalHapus"
 											data-id="<?php echo $row['id_donasi'] ?>">Hapus</button></td>
 								</tr>
@@ -238,18 +240,18 @@ $tgl = date('Y-m-d');
 	<script>
 		$('#myTable').DataTable();
 		$('#myTable tbody').on('click', '.btnEdit', function () {
-			var iddonasi = $(this).attr('data-id');
+			var idDonasi = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
 				type: 'post',
 				data: {
 					editdonasi: true,
-					id_donasi: iddonasi
+					id_donasi: idDonasi
 				},
 				dataType: 'json',
 				success: function (result) {
 					console.log(result);
-					$("#id_donasi").val(iddonasi);
+					$("#id_donasi").val(idDonasi);
 					$("#judul_buku").val(result.judul_buku);
                     $("#pengarang").val(result.pengarang);
 					$("#penerbit").val(result.penerbit);
@@ -258,9 +260,10 @@ $tgl = date('Y-m-d');
 				}
 			});
 		});
-		$('#myTable tbody').on('click', '.btnHapus', function () {
-			var iddonasi = $(this).attr('data-id');
-			$("#id_donasi_hapus").val(iddonasi);
+		
+		$('.btnHapus').on('click', function () {
+			var idDonasi = $(this).attr('data-id');
+			$("#id_donasi_hapus").val(idDonasi);
 		});
 	</script>
 </body>

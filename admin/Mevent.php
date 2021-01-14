@@ -156,8 +156,6 @@ $kode = $huruf.sprintf("%03s", $urut);
 						<label for="tanggal">Tanggal</label>
 						<input type="text" name="tanggal_baru" id="tanggal_baru" class="form-control form-control-sm" placeholder="Tanggal">
 					</div>
-
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -238,18 +236,18 @@ $kode = $huruf.sprintf("%03s", $urut);
 		
 		$('#Tabel2').DataTable();
 		$('#Tabel2 tbody').on('click', '.btnEditKat', function () {
-			var idevent = $(this).attr('data-id');
+			var idEvent = $(this).attr('data-id');
 			$.ajax({
 				url: 'ajax.php',
 				type: 'post',
 				data: {
 					editevent: true,
-					id_event: idevent
+					id_event: idEvent
 				},
 				dataType: 'json',
 				success: function (result) {
 					console.log(result);
-					$("#id_event").val(idevent);
+					$("#id_event").val(idEvent);
 					$("#judul_event").val(result.judul_event);
 					$("#gambar").val(result.gambar);
 					$("#keterangan").val(result.ket);
