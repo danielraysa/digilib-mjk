@@ -5,16 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include 'user-css-script.php'; ?>
+	<?php include "layout/user-css-script.php"; ?>
 </head>
 
 <body>
 	<!-- Sidenav -->
-	<?php include "user-sidebar.php"; ?>
+	<?php include "layout/user-sidebar.php"; ?>
 	<!-- Main content -->
 	<div class="main-content" id="panel">
 		<!-- Topnav -->
-		<?php include "user-navbar.php"; ?>
+		<?php include "layout/user-navbar.php"; ?>
 		
 		<div class="container-fluid mt-3">
 			<!-- Card stats -->
@@ -56,10 +56,31 @@
 				<div class="col-lg-8 col-md-12">
 					<div class="row">
 						<div class="col-lg-6 col-md-12">
-						<div id="lineChart" style="height: 200px"></div>
+							<div id="lineChart" style="height: 200px"></div>
 						</div>
 						<div class="col-lg-6 col-md-12">
-							foto foto
+							<div class="d-flex h-100 justify-content-around align-items-center">
+								<div class="">
+									<img src="../admin/img/theme/team-4.jpg" class="avatar rounded-circle" />
+									<p>User 1</p>
+								</div>
+								<div class="">
+									<img src="../admin/img/theme/team-1.jpg" class="avatar rounded-circle" />
+									<p>User 5</p>
+								</div>
+								<div class="">
+									<img src="../admin/img/theme/team-2.jpg" class="avatar rounded-circle" />
+									<p>User 4</p>
+								</div>
+								<div class="">
+									<img src="../admin/img/theme/team-3.jpg" class="avatar rounded-circle" />
+									<p>User 3</p>
+								</div>
+								<div class="">
+									<img src="../admin/img/theme/team-5.jpg" class="avatar rounded-circle" />
+									<p>User 2</p>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="card table-responsive">
@@ -67,7 +88,7 @@
 						<table class="table table-bordered table-striped">
 							<thead>
 								<tr class="bg-primary text-white">
-									<th>No.</th>
+									<th style="width:10%">No.</th>
 									<th>User</th>
 									<th>Point</th>
 								</tr>
@@ -99,14 +120,34 @@
 					</div>
 				</div>
 			</div>
-			<?php include "user-footer.php"; ?>
+			<?php include "layout/user-footer.php"; ?>
 		</div>
 	</div>
 	
-	<?php include 'user-js-script.php'; ?>
+	<?php include "layout/user-js-script.php"; ?>
 	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 	<script>
 	$(document).ready(function() {
+		var myConfig = {
+			type: "bar",
+			"scale-r": {
+				aperture: 200,
+			},
+			"plotarea":{
+				"margin":"0"
+			},
+			series: [{
+				values: [33, 30, 25, 20, 15]
+				}
+			]
+		};
+			
+		zingchart.render({
+			id: 'lineChart',
+			data: myConfig,
+			height: "280px",
+			width: "100%"
+		});
 		var myConfig6 = {
 			"type": "gauge",
 			// "style": { "padding": "-1px" },
@@ -114,33 +155,33 @@
 				"aperture": 200,
 				"values": "0:100:20",
 				"center": {
-				"size": 5,
-				"background-color": "#66CCFF #FFCCFF",
-				"border-color": "none"
+					"size": 5,
+					"background-color": "#66CCFF #FFCCFF",
+					"border-color": "none"
 				},
 				"ring": { //Ring with Rules
-				"size": 10,
-				"rules": [{
-					"rule": "%v >= 0 && %v <= 20",
-					"background-color": "red"
-					},
-					{
-					"rule": "%v >= 20 && %v <= 40",
-					"background-color": "orange"
-					},
-					{
-					"rule": "%v >= 40 && %v <= 60",
-					"background-color": "yellow"
-					},
-					{
-					"rule": "%v >= 60 && %v <= 80",
-					"background-color": "green"
-					},
-					{
-					"rule": "%v >= 80 && %v <=100",
-					"background-color": "blue"
-					}
-				]
+					"size": 10,
+					"rules": [{
+							"rule": "%v >= 0 && %v <= 20",
+							"background-color": "red"
+						},
+						{
+							"rule": "%v >= 20 && %v <= 40",
+							"background-color": "orange"
+						},
+						{
+							"rule": "%v >= 40 && %v <= 60",
+							"background-color": "yellow"
+						},
+						{
+							"rule": "%v >= 60 && %v <= 80",
+							"background-color": "green"
+						},
+						{
+							"rule": "%v >= 80 && %v <=100",
+							"background-color": "blue"
+						}
+					]
 				}
 			},
 			/* "plotarea": {
@@ -165,14 +206,7 @@
 			height: "280px",
 			width: "100%"
 		});
-		zingchart.render({
-		// $('#myChart').zingchart({
-			id: 'lineChart',
-			data: myConfig6,
-			// height: "100%",
-			height: "280px",
-			width: "100%"
-		});
+		
 		$('#myTable').DataTable();
 		$('#myTable tbody').on('click', '.btnEdit', function () {
 			var idpoint = $(this).attr('data-id');

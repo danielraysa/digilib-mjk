@@ -24,7 +24,7 @@ $query = mysqli_query($conn, "SELECT MAX(id_pengguna) as idpengguna FROM penggun
 $data3 = mysqli_fetch_array($query);
 $kode3 = $data3['idpengguna'];
 
-$urut3 = (int) substr($kode2,2,3);
+$urut3 = (int) substr($kode3,2,3);
 $urut3++;
 $huruf3 = "PA";
 $kode3 = $huruf3.sprintf("%03s", $urut3);
