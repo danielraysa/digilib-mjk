@@ -42,7 +42,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$pass = $_POST['password'];
 		// echo "INSERT INTO siswa VALUES ('$id','$nama','$kelas','$jkelamin','$alamat','$status')";
 		$query = mysqli_query($conn, "INSERT INTO siswa VALUES ('$id','$nama','$kelas','$jkelamin','$alamat','$status')");
-		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass')");
+		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass','-')");
 		if(!$query){
 			echo mysqli_error($conn);
 		}
@@ -56,12 +56,12 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$alamat = $_POST['alamat'];
 		$status = $_POST['status'];
 		//echo "UPDATE siswa SET nama_siswa='$nama',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_siswa='$id'";
-		$query = mysqli_query($conn, "UPDATE siswa SET nama_siswa='$nama',kelas='$kelas',jenis_kelamin='$jkelamin',alamat='$alamat',status='$status' WHERE id_siswa='$id'");
+		$query = mysqli_query($conn, "UPDATE siswa SET nama_siswa='$nama',kelas='$kelas',jenis_kelamin='$jkelamin',alamat_siswa='$alamat',status_siswa='$status' WHERE id_siswa='$id'");
 	}
 	if(isset($_POST['hapus_siswa'])){
 		$id = $_POST['id_siswa'];
 		// echo "UPDATE siswa SET status = 'Tidak Aktif' WHERE id_siswa = '".$id."'";
-		$query = mysqli_query($conn, "UPDATE siswa SET status = 'Tidak Aktif' WHERE id_siswa = '".$id."'");
+		$query = mysqli_query($conn, "UPDATE siswa SET status_siswa = 'Tidak Aktif' WHERE id_siswa = '".$id."'");
 	}
 ?>
 <?php 
@@ -73,7 +73,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$alamat = $_POST['alamat_baru'];
 		$jkelamin = $_POST['jkelamin'];
 		$status = $_POST['status'];
-		$query = mysqli_query($conn, "INSERT INTO karyawan (id_karyawan,nama,jabatan,alamat,jenis_kelamin,status) VALUES ('$id','$nama','$jabatan','$alamat','$jkelamin','$status')");
+		$query = mysqli_query($conn, "INSERT INTO karyawan VALUES ('$id','$nama','$jabatan','$alamat','$jkelamin','$status')");
 		if(!$query){
 			echo mysqli_error($conn);
 		}
@@ -86,12 +86,12 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$alamat = $_POST['alamat'];
 		$jkelamin = $_POST['jkelamin'];
 		$status = $_POST['status'];
-		$query = mysqli_query($conn, "UPDATE karyawan SET nama='$nama',jabatan='$jabatan',alamat='$alamat',jenis_kelamin='$jkelamin',status='$status' WHERE id_karyawan='$id'");
+		$query = mysqli_query($conn, "UPDATE karyawan SET nama_karyawan='$nama',jabatan='$jabatan',alamat_karyawan='$alamat',jenis_kelamin='$jkelamin',status_karyawan='$status' WHERE id_karyawan='$id'");
 	}
 	if(isset($_POST['hapus_karyawan'])){
 		$id = $_POST['id_karyawan'];
 		// echo "UPDATE karyawan SET status = 'Tidak Aktif' WHERE id_karyawan = '".$id."'";
-		$query = mysqli_query($conn, "UPDATE karyawan SET status = 'Tidak Aktif' WHERE id_siswa = '".$id."'");
+		$query = mysqli_query($conn, "UPDATE karyawan SET status_karyawan = 'Tidak Aktif' WHERE id_siswa = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
@@ -150,7 +150,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 								<tbody>
 
 									<?php
-					$query = mysqli_query($conn, "SELECT * from siswa where status = 'Aktif'");
+					$query = mysqli_query($conn, "SELECT * from siswa where status_siswa = 'Aktif'");
 					//for($row = 0; $row < 10; $row++)) {
 					while ($row = mysqli_fetch_array($query)) {
 					?>
@@ -159,8 +159,8 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 										<td><?php echo $row['nama_siswa'] ?></td>
 										<td><?php echo $row['kelas'] ?></td>
 										<td><?php // echo $row['jenis_kelamin'] ?></td>
-										<td><?php echo $row['alamat'] ?></td>
-										<td><?php echo $row['status'] ?></td>
+										<td><?php echo $row['alamat_siswa'] ?></td>
+										<td><?php echo $row['status_siswa'] ?></td>
 										<td><button class="btn btn-success btnEdit" data-toggle="modal"
 												data-target="#ModalEditSiswa"
 												data-id="<?php echo $row['id_siswa'] ?>">Edit</button>
@@ -223,17 +223,17 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 								<tbody>
 
 									<?php
-					$query = mysqli_query($conn, "SELECT * from karyawan WHERE status = 'Aktif'");
+					$query = mysqli_query($conn, "SELECT * from karyawan WHERE status_karyawan = 'Aktif'");
 					//for($row = 0; $row < 10; $row++)) {
 					while ($row = mysqli_fetch_array($query)) {
 					?>
 									<tr>
 										<!-- <td><?php echo $row['id_karyawan'] ?></td> -->
-										<td><?php echo $row['nama'] ?></td>
+										<td><?php echo $row['nama_karyawan'] ?></td>
 										<td><?php echo $row['jabatan'] ?></td>
-										<td><?php echo $row['alamat'] ?></td>
+										<td><?php echo $row['alamat_karyawan'] ?></td>
 										<td><?php echo $row['jenis_kelamin'] ?></td>
-										<td><?php echo $row['status'] ?></td>
+										<td><?php echo $row['status_karyawan'] ?></td>
 										<td><button class="btn btn-success btnEditKar" data-toggle="modal"
 												data-target="#ModalEditKaryawan"
 												data-id="<?php echo $row['id_karyawan'] ?>">Edit</button>
@@ -409,11 +409,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id_karyawan">ID Karyawan</label>
-<<<<<<< HEAD:MPengguna.php
 						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Nama Anda" value = "<?php echo $kode1?>" readonly>
-=======
-						<input type="text" name="id_baru" id="id_karyawan_baru" class="form-control form-control-sm" placeholder="Nama Anda">
->>>>>>> 3209f70519a5535bab0d5729d80efad7f294d59d:admin/MPengguna.php
 					</div>
 
 					<div class="form-group">

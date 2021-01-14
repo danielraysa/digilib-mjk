@@ -3,6 +3,7 @@
 
 <head>
 <?php include "css-script.php"; ?>
+<?php include "../koneksi.php"; ?>
 </head>
 
 <body>
@@ -121,6 +122,7 @@
 		</div>
 	</div>
 	<!-- Argon Scripts -->
+	<?php include "js-script.php"; ?>
 	<!-- Core -->
 	<script src="admin/vendor/jquery/dist/jquery.min.js"></script>
 	<script src="admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

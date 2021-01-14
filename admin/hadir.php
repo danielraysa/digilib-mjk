@@ -16,13 +16,15 @@ $tgl = date('Y-m-d');
 // poses tambah
 	if(isset($_POST['tambah'])){
 		// $id = $_POST['id_baru'];
-    $nama = $_POST['kegiatan_baru'];
-    $instansi = $_POST['donasi_baru'];
-    $status = $_POST['kegiatan_baru'];
-    $keterangan = $_POST['donasi_baru'];
-		$query = mysqli_query($conn, "INSERT INTO kunjungan VALUES ('$kode','$nama','$instansi','$status','$tgl')");
-		 echo "string";
-	}?>
+    $nama = $_POST['nama_baru'];
+    $instansi = $_POST['instansi_baru'];
+    $status = $_POST['status_baru'];
+    $keterangan = $_POST['keterangan_baru'];
+		$query = mysqli_query($conn, "INSERT INTO kunjungan (`id_kunjungan`, `nama`, `instansi`, `status`, `keterangan`, `tgl`) VALUES ('$kode','$nama','$instansi','$status','$keterangan','$tgl')");
+     echo "string";
+
+  }
+  ?>
 <html lang="en">
 
   <head>
@@ -109,17 +111,17 @@ $tgl = date('Y-m-d');
       <form>
         <div class="form-group"> 
           <label for="nama">Nama</label>
-          <input type="text" name="nama" id="nama" class="form-control form-control-sm" placeholder="Nama Anda">
+          <input type="text" name="nama_baru" id="nama_baru" class="form-control form-control-sm" placeholder="Nama Anda">
         </div>
        
         <div class="form-group">
           <label for="instansi">Kelas/Instansi/Lembaga</label>
-          <input type="text" name="instansi" id="instansi" class="form-control form-control-sm" placeholder="Kelas/Instansi/Lembaga">
+          <input type="text" name="instansi_baru" id="instansi_baru" class="form-control form-control-sm" placeholder="Kelas/Instansi/Lembaga">
         </div>
        
         <div class="form-group">
           <label for="status">Status</label>
-          <select id="status" name="status" class="form-control form-control-sm">
+          <select id="status_baru" name="status_baru" class="form-control form-control-sm">
             <option value="">-- Pilih Status --</option>
             <option value="">Siswa</option>
             <option value="">Karyawan</option>
@@ -130,7 +132,7 @@ $tgl = date('Y-m-d');
        
         <div class="form-group">
           <label for="keterangan">Keterangan</label>
-          <select class="form-control form-control-sm" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan Kunjungan">
+          <select class="form-control form-control-sm" id="keterangan_baru" name="keterangan_baru" rows="3" placeholder="Keterangan Kunjungan">
             <option value="">-- Pilih Keterangan --</option>
             <option value="">Kunjungan</option>
             <option value="">Membaca Buku</option>
