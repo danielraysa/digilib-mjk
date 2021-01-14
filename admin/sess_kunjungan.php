@@ -48,7 +48,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 	<?php include "sidebar.php"; ?>
 	<!-- Main content -->
 	<!--ses_kunjungan-->
-	<div class="main-content" id="panel" style = >
+	<div class="main-content" id="panel">
 		<!-- Topnav -->
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
