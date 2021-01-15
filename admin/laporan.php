@@ -129,6 +129,8 @@ $karya2 = $data5['idKaryawan'];
 									</tr>
 								</tbody>
 							</table>
+							<button class="btn btn-secondary btnprint" data-toggle="modal"
+												data-target="#cetak">Cetak</button>
 						</div>
 					</div>
 				</div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Jan 2021 pada 02.41
+-- Waktu pembuatan: 15 Jan 2021 pada 07.19
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -25,6 +25,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `alumni`
+--
+
+CREATE TABLE `alumni` (
+  `id_alumni` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `nama_alumni` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `kelas` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `alamat` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `jenis_kelamin` text COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `donasi`
 --
 
@@ -33,9 +48,16 @@ CREATE TABLE `donasi` (
   `judul_buku` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `pengarang` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `penerbit` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `tahun` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `tahun` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data untuk tabel `donasi`
+--
+
+INSERT INTO `donasi` (`id_donasi`, `judul_buku`, `pengarang`, `penerbit`, `tahun`, `jumlah`) VALUES
+('DN001', 'Love in Paris', 'sutrisno', 'Suhu Nasional', '2015', 5);
 
 -- --------------------------------------------------------
 
@@ -47,9 +69,16 @@ CREATE TABLE `event` (
   `id_event` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `judul_event` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `gambar` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
-  `keterngan` varchar(10000) COLLATE utf8_unicode_ci NOT NULL,
+  `keterangan` varchar(10000) COLLATE utf8_unicode_ci NOT NULL,
   `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data untuk tabel `event`
+--
+
+INSERT INTO `event` (`id_event`, `judul_event`, `gambar`, `keterangan`, `tanggal`) VALUES
+('T001', 'Kompetisi Novel Nasional', '', 'hhhhhhhhhhhhhhhhhhhhhhhhhhhh', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -73,7 +102,8 @@ CREATE TABLE `karyawan` (
 
 INSERT INTO `karyawan` (`id_karyawan`, `id_pengguna`, `nama_karyawan`, `jabatan`, `alamat_karyawan`, `jenis_kelamin`, `status_karyawan`) VALUES
 ('12313', '0', 'da', 'ada', 'asda', 'Laki-laki', 'Aktif'),
-('1234', '0', 'danielllll', 'mbuh', 'gatau deh', 'Laki-laki', 'Aktif');
+('1234', '0', 'danielllll', 'mbuh', 'gatau deh', 'Laki-laki', 'Aktif'),
+('SI002', 'PA002', 'Rahmad Basuki', 'Guru', '', 'Laki-laki', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -131,12 +161,8 @@ CREATE TABLE `koleksi` (
 --
 
 INSERT INTO `koleksi` (`id_koleksi`, `id_kategori`, `judul`, `nama_pengarang`, `penerbit`, `tahun_terbit`, `cover`, `file`) VALUES
-('B0001', 'T006', 'Buku 3', 'danissss', 'pt asmmm', '2021-12-30', 'uploads/koleksi/laporan pengadaan aset.png', 'uploads/file/KPR.pdf'),
-('B0002', 'T003', 'Buku 4', 'adadadad', 'pt asmmm', '2019-11-30', NULL, NULL),
-('K0001', 'T001', 'Buku 1', 'dani', 'pt ptan', '2021-12-31', 'uploads/koleksi/Nobar Dua Garis Biru_210101.jpg', 'uploads/file/iw97NkyfBBpdf'),
 ('K0002', 'T002', 'Buku 2', 'dani', 'pt ptan111', '2021-12-31', NULL, NULL),
-('KL003', 'T015', 'winter in tokyo', 'BUDIONO', 'bintang kejora', '2016-02-12', '', ''),
-('KL004', 'T001', 'Aku Anak Dunia', 'Anggota Remaja Aulia', 'Yayasan Aulia', '0000-00-00', '../uploads/koleksi/cover.PNG', '');
+('KL003', 'T001', 'Aku Anak Dunia', 'Anggota Remaja Aulia', 'Yayasan Aulia', '2015-01-16', '../uploads/koleksi/cover.PNG', '');
 
 -- --------------------------------------------------------
 
@@ -164,7 +190,8 @@ CREATE TABLE `log_baca` (
   `id_koleksi` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `id_pengguna` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `halaman_bacatg` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
-  `tanggal_baca` date NOT NULL
+  `tanggal_baca` date NOT NULL,
+  `status` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -196,6 +223,16 @@ CREATE TABLE `lomba` (
   `tgl` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data untuk tabel `lomba`
+--
+
+INSERT INTO `lomba` (`id_lomba`, `judul_lomba`, `poster`, `keterangan`, `tgl`) VALUES
+('LO002', 'HIMPUNAN MAHASISWA TEKNIKK3 PROUDLY PRESENT âœ¨ â›‘ï¸ [ SAFETY COMPETITION 2021] â›‘ï¸', '', '  Dengan Tema : â€œOptimalisasi Kemandirian Masyarakat Berbudaya K3 pada Era New Normal untuk Menyongsong Revolusi Industri 4.0\"  Halo safety fellas ðŸ‘‹ðŸ» Yang dinanti-nanti sudah datang nihâ€¼ï¸ Di tengah kondisi yang tidak biasa, Safety Fellas masih bisa mengasah kreativitas di bidang menulis lho. Yak caranya dengan ikutan Safety Competition 2021 â›‘ï¸  Tunggu apalagi? Kuy kepoin poster dan segera daftarkan diri kalian yaaðŸ˜‰ Selalu pantau akun kami biar tidak ketinggalan info!.  Our social media : Instagram : @safecomppns Facebook : Safecom Ppns Twitter : safecomppns Line : @825yqzaw Email : safety.competition@ppns.ac.id', '2020-12-21'),
+('LO003', 'HIMPUNAN MAHASISWA TEKNIKK3 PROUDLY PRESENT âœ¨ â›‘ï¸ [ SAFETY COMPETITION 2021] â›‘ï¸', '', '  Dengan Tema : â€œOptimalisasi Kemandirian Masyarakat Berbudaya K3 pada Era New Normal untuk Menyongsong Revolusi Industri 4.0\"  Halo safety fellas ðŸ‘‹ðŸ» Yang dinanti-nanti sudah datang nihâ€¼ï¸ Di tengah kondisi yang tidak biasa, Safety Fellas masih bisa mengasah kreativitas di bidang menulis lho. Yak caranya dengan ikutan Safety Competition 2021 â›‘ï¸  Tunggu apalagi? Kuy kepoin poster dan segera daftarkan diri kalian yaaðŸ˜‰ Selalu pantau akun kami biar tidak ketinggalan info!.  Our social media : Instagram : @safecomppns Facebook : Safecom Ppns Twitter : safecomppns Line : @825yqzaw Email : safety.competition@ppns.ac.id', '2020-12-21'),
+('LO004', 'Kompetisi Novel Nasional', '', 'Kab. Mojokerto (MAN 2 Mojokerto) Kepala perpustakaan MAN 2 Mojokerto menjadi partisipan pelatihan perpustakaan berbasis digital dan online. Kegiatan ini diikuti dengan baik karena untuk meningkatkan pengelolaan dan pelayanan perpustakaan yang ada di MAN 2 Mojokerto yang sudah menerapkan perpustakaan secara digital. Kegiatan diklat ini sudah berjalan empat hari. Diklat ini dilakukan mulai hari kamis-senin (8-12/10) di Semarang.  Keikutsertaan kepala perpustakaan MAN 2 Mojokerto ini diharapakan dapat meningkatkan pelayanan dan pengelolaan perpustakaan di MAN 2 Mojokerto berbasis digital dan online sehingga budaya literasi di MAN 2 Mojokerto dapat berkembang. â€œPerpustakaan MAN 2 Mojokerto sudah menerapkan secara pelayanan dan pengelolaannya secara digital, didukung dengan sarana dan prasarana di MAN 2 Mojokerto sehingga perpustakaan digital berjalan dengan baikâ€ Tutur Durotun Nisaâ€™ Kepala Perpustakaan MAN 2 Mojokerto yang mengikuti diklat pustakawan angkatan 1. Diklat ini diselenggarakan oleh Direktorat Guru dan', '2021-01-08'),
+('LO005', 'HIMPUNAN MAHASISWA TEKNIKK3 PROUDLY PRESENT âœ¨ â›‘ï¸ [ SAFETY COMPETITION 2021] â›‘ï¸', '', ' HIMPUNAN MAHASISWA TEKNIK K3 PROUDLY PRESENT âœ¨\r\nâ›‘ï¸ [ SAFETY COMPETITION 2021] â›‘ï¸\r\n\r\nDengan Tema :\r\nâ€œOptimalisasi Kemandirian Masyarakat Berbudaya K3 pada Era New Normal untuk Menyongsong Revolusi Industri 4.0\"\r\n\r\nHalo safety fellas ðŸ‘‹ðŸ»\r\nYang dinanti-nanti sudah datang nihâ€¼ï¸\r\nDi tengah kondisi yang tidak biasa, Safety Fellas masih bisa mengasah kreativitas di bidang menulis lho. Yak caranya dengan ikutan Safety Competition 2021 â›‘ï¸\r\n\r\nTunggu apalagi? Kuy kepoin poster dan segera daftarkan diri kalian yaaðŸ˜‰ Selalu pantau akun kami biar tidak ketinggalan info!.\r\n\r\nOur social media :\r\nInstagram : @safecomppns\r\nFacebook : Safecom Ppns\r\nTwitter : safecomppns\r\nLine : @825yqzaw\r\nEmail : safety.competition@ppns.ac.id', '2020-12-21');
+
 -- --------------------------------------------------------
 
 --
@@ -214,7 +251,8 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id_pengguna`, `username`, `password`, `profil`) VALUES
-('PA036', '16410100098', '12345', '-');
+('PA001', 'Trinita Agustin', 'Trinita0001', '-'),
+('PA002', 'Rahmad Basuki', 'Rahmad002', '-');
 
 -- --------------------------------------------------------
 
@@ -258,9 +296,7 @@ INSERT INTO `points` (`id_point`, `jenis_kegiatan`, `point`, `status`) VALUES
 ('PO001', 'Membaca ada', 10, 'Aktif'),
 ('PO002', 'Menjawab', 10, 'Aktif'),
 ('PO003', 'Login', 5, 'Aktif'),
-('PO004', 'Berkunjung', 5, 'Aktif'),
-('PO006', 'Membaca', 6, 'Aktif'),
-('PO007', 'Okeh', 6, 'Aktif');
+('PO004', 'Berkunjung', 5, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -308,9 +344,7 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id_siswa`, `id_pengguna`, `nama_siswa`, `kelas`, `jenis_kelamin`, `alamat_siswa`, `status_siswa`) VALUES
-('10A10', '', 'Gusti Adistriani putri', '10 IPA 1', 'Perempuan', 'Mcd Juanda', 'Tidak Aktif'),
-('11A09', '', 'Dika', '11 IPA 1', 'Perempuan', 'Jampirogo', 'Tidak Aktif'),
-('12313', '', 'da', '10aa', 'Perempuan', 'asda', 'Tidak Aktif');
+('SI001', 'PA001', 'Trianita Agustin Rahmawati', '11 Bahasa', 'Perempuan', '', 'Aktif');
 
 -- --------------------------------------------------------
 
