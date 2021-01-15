@@ -53,13 +53,13 @@
 				<div class="col-md-6 col-lg-4 d-flex">
 					<div class="book-wrap d-lg-flex">
 						<div class="img d-flex justify-content-end"
-							style="background-image: url(pengguna/images/book-1.jpg);">
+							style="background-image: <?php echo $row['cover']?>">
 							<div class="in-text">
 								<!-- <a href="#" class="icon d-flex align-items-center justify-content-center"
 									data-toggle="tooltip" data-placement="left" title="Add to cart">
 									<span class="flaticon-shopping-cart"></span>
 								</a> -->
-								<a href="#" class="icon d-flex align-items-center justify-content-center"
+								<a href="<?echo $row['file']?>" class="icon d-flex align-items-center justify-content-center"
 									data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
 									<span class="flaticon-heart-1"></span>
 								</a>

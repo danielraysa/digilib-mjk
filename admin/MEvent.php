@@ -150,7 +150,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
-						<input type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" placeholder="Keterangan">
+						<textarea type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" placeholder="Keterangan"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tanggal">Tanggal</label>
@@ -193,7 +193,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
-						<input type="text" name="ket" id="ket" class="form-control form-control-sm" placeholder="Keterangan">
+						<textarea type="text" name="ket" id="ket" class="form-control form-control-sm" placeholder="Keterangan"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tanggal">Tanggal</label>

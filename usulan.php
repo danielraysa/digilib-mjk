@@ -1,4 +1,30 @@
+<?php include "koneksi.php"; ?>
 <?php $filename = basename(__FILE__); ?>
+<?php
+$query = mysqli_query($conn, "SELECT MAX(id_usulan) as idusulan FROM usulan");
+$data = mysqli_fetch_array($query);
+$kode = $data['idusulan'];
+
+$urut = (int) substr($kode,2,3);
+$urut++;
+$huruf = "US";
+$kode = $huruf.sprintf("%03s", $urut);
+?>
+
+<?php 
+//proses tambah
+if(isset($_POST['tambah_usulan'])){
+	// $id = $_POST['id_baru'];
+	$judul = $_POST['judul_buku'];
+	$gambar= $_POST['pengarang'];
+	$keterangan= $_POST['penerbit'];
+	$tanggal = $_POST['tanggal'];
+	$query = mysqli_query($conn, "INSERT INTO usulan VALUES ('$kode','$judul','$gambar','$keterangan','$tanggal')");
+	if(!$query){
+		echo mysqli_error($conn);
+	}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +52,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12">
 					<div class="wrapper px-md-4">
-						<div class="row mb-5">
+						<!-- <div class="row mb-5">
 							<div class="col-md-3">
 								<div class="dbox w-100 text-center">
 							<div class="icon d-flex align-items-center justify-content-center">
@@ -67,40 +93,44 @@
 							</div>
 						</div>
 							</div>
-						</div>
+						</div> -->
 						<div class="row no-gutters">
+						<div class="card card-stats">
+						<div class="card-body table-responsive">
+							</div>
+						</div>
 							<div class="col-md-7">
 								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3 class="mb-4">Contact Us</h3>
+									<h3 class="mb-4">Form Usulan</h3>
 									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="name">Full Name</label>
-													<input type="text" class="form-control" name="name" id="name" placeholder="Name">
+													<label class="label" for="judul">Judul Buku</label>
+													<input type="text" class="form-control" name="judul" id="judul" placeholder="Judul Buku">
 												</div>
 											</div>
 											<div class="col-md-6"> 
 												<div class="form-group">
-													<label class="label" for="email">Email Address</label>
-													<input type="email" class="form-control" name="email" id="email" placeholder="Email">
+													<label class="label" for="pengarang">Pengarang</label>
+													<input type="text" class="form-control" name="pengarang" id="pengarang" placeholder="Pengarang">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<label class="label" for="subject">Subject</label>
-													<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+													<label class="label" for="penerbit">Penerbit</label>
+													<input type="text" class="form-control" name="penerbit" id="penerbit" placeholder="Penerbit">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<label class="label" for="#">Message</label>
-													<textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
+													<label class="label" for="tahun">Tahun Terbit</label>
+													<input type="text" name="tahun" class="form-control" id="tahun" placeholder="Tahun Terbit"></input>
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<input type="submit" value="Send Message" class="btn btn-primary">
+													<input type="submit" name ="tambah_usulan" value="Send" class="btn btn-primary">
 													<div class="submitting"></div>
 												</div>
 											</div>
@@ -108,6 +138,7 @@
 									</form>
 								</div>
 							</div>
+							
 							<div class="col-md-5 order-md-first d-flex align-items-stretch">
 								<div id="map" class="map"></div>
 							</div>

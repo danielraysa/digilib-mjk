@@ -11,8 +11,7 @@ function generateRandomString($length = 20) {
 }
 ?>
 <?php
-$target_dir = "../uploads/koleksi/";
-$target_dir_file = "../uploads/file/";
+$target_dir = "../uploads/lomba/";
 
 $query = mysqli_query($conn, "SELECT MAX(id_lomba) as idlomba FROM lomba");
 $data = mysqli_fetch_array($query);
@@ -30,23 +29,24 @@ $kode = $huruf.sprintf("%03s", $urut);
 		$id = $_POST['id_baru'];
 		$judul = $_POST['judul_baru'];
 		$poster= '';
+		
+		$keterangan= $_POST['ket_baru'];
+		$tgl = $_POST['tgl_baru'];
 		if(file_exists($_FILES['poster']['tmp_name'])){
 			$target_poster = $target_dir . basename($_FILES['poster']['name']);
 			$imageCoverType = strtolower(pathinfo($target_poster,PATHINFO_EXTENSION));
 			if (file_exists($target_poster) || strlen(basename($_FILES['poster']['name'])) >= 100) {
 				$target_poster = $target_dir . generateRandomString() .".". $imageCoverType;
 			}
-			if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_poster)) {
+			if (move_uploaded_file($_FILES['poster']['tmp_name'], $target_poster)) {
 				// echo "The file ". htmlspecialchars(basename( $_FILES['poster']['name'])). " has been uploaded.";
 			} else {
-				var_dump($_FILES['gambar']['error']);
+				var_dump($_FILES['poster']['error']);
 				echo "Sorry, there was an error uploading your file.";
 				exit;
 			}
 			$poster = $target_poster;
 		}
-		$keterangan= $_POST['ket_baru'];
-		$tgl = $_POST['tgl_baru'];
 		$query = mysqli_query($conn, "INSERT INTO lomba VALUES ('$id','$judul','$poster','$keterangan','$tgl')");
 		if(!$query){
 			echo mysqli_error($conn);
@@ -56,9 +56,24 @@ $kode = $huruf.sprintf("%03s", $urut);
 	if(isset($_POST['edit_lomba'])){
 		$id = $_POST['id_lomba'];
 		$judul = $_POST['judul'];
-		$poster= $_POST['poster'];
+		$poster= "";
 		$keterangan= $_POST['ket'];
 		$tgl = $_POST['tgl'];
+		if(file_exists($_FILES['poster']['tmp_name'])){
+			$target_poster = $target_dir . basename($_FILES['poster']['name']);
+			$imageCoverType = strtolower(pathinfo($target_poster,PATHINFO_EXTENSION));
+			if (file_exists($target_poster) || strlen(basename($_FILES['poster']['name'])) >= 100) {
+				$target_poster = $target_dir . generateRandomString() .".". $imageCoverType;
+			}
+			if (move_uploaded_file($_FILES['poster']['tmp_name'], $target_poster)) {
+				// echo "The file ". htmlspecialchars(basename( $_FILES['poster']['name'])). " has been uploaded.";
+			} else {
+				var_dump($_FILES['poster']['error']);
+				echo "Sorry, there was an error uploading your file.";
+				exit;
+			}
+			$poster = $target_poster;
+		}
 		$query = mysqli_query($conn, "UPDATE lomba SET judul_lomba='$judul', poster='$poster', keterangan='$keterangan', tgl='$tgl' WHERE id_lomba='$id'");
 	}
 	if(isset($_POST['hapus_lomba'])){
@@ -127,6 +142,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					$query = mysqli_query($conn, "SELECT * from lomba ");
 					//for($row = 0; $row < 10; $row++)) {
 					while ($row = mysqli_fetch_array($query)) {
+						
 					?>
 									<tr>
 										<td><?php echo $row['judul_lomba'] ?></td>
@@ -181,7 +197,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
-						<input type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" placeholder="Keterangan">
+						<textarea type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" placeholder="Keterangan"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tgl">Tanggal</label>

@@ -30,7 +30,7 @@
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
               <div class="text text-center">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_1.jpg');">
+              	<a href="blog-single.html" class="block-20 img" style="background-image: url(<?php ?>);">
 	              </a>
 	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
                 	<div>
