@@ -1,7 +1,7 @@
 <?php include "../koneksi.php"; ?>
 <?php 
-$query = mysqli_query($conn, "SELECT MAX(id_siswa) as idsiswa FROM siswa");
-$data1 = mysqli_fetch_array($query);
+$query1 = mysqli_query($conn, "SELECT MAX(id_siswa) as idsiswa FROM siswa");
+$data1 = mysqli_fetch_array($query1);
 $kode1 = $data1['idsiswa'];
 
 $urut1 = (int) substr($kode1,2,3);
@@ -10,8 +10,8 @@ $huruf1 = "SI";
 $kode1 = $huruf1.sprintf("%03s", $urut1);
 ?>
 <?php 
-$query = mysqli_query($conn, "SELECT MAX(id_karyawan) as idkaryawan FROM karyawan");
-$data2 = mysqli_fetch_array($query);
+$query2 = mysqli_query($conn, "SELECT MAX(id_karyawan) as idkaryawan FROM karyawan");
+$data2 = mysqli_fetch_array($query2);
 $kode2 = $data2['idkaryawan'];
 
 $urut2 = (int) substr($kode2,2,3);
@@ -20,8 +20,8 @@ $huruf2 = "KA";
 $kode2 = $huruf2.sprintf("%03s", $urut2);
 ?>
 <?php 
-$query = mysqli_query($conn, "SELECT MAX(id_pengguna) as idpengguna FROM pengguna");
-$data3 = mysqli_fetch_array($query);
+$query3 = mysqli_query($conn, "SELECT MAX(id_pengguna) as idpengguna FROM pengguna");
+$data3 = mysqli_fetch_array($query3);
 $kode3 = $data3['idpengguna'];
 
 $urut3 = (int) substr($kode3,2,3);
@@ -83,16 +83,16 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 	if(isset($_POST['edit_karyawan'])){
 		$id = $_POST['id_karyawan'];
 		$nama = $_POST['nama_karyawan'];
-		$jabatan = $_POST['jabatan'];
-		$alamat = $_POST['alamat'];
-		$jkelamin = $_POST['jkelamin'];
-		$status = $_POST['status'];
+		$jabatan = $_POST['jabatan_karyawan'];
+		$alamat = $_POST['alamat_karyawan'];
+		$jkelamin = $_POST['jkelamin_karyawan'];
+		$status = $_POST['status_karyawan'];
 		$query = mysqli_query($conn, "UPDATE karyawan SET nama_karyawan='$nama',jabatan='$jabatan',alamat_karyawan='$alamat',jenis_kelamin='$jkelamin',status_karyawan='$status' WHERE id_karyawan='$id'");
 	}
 	if(isset($_POST['hapus_karyawan'])){
 		$id = $_POST['id_karyawan'];
 		// echo "UPDATE karyawan SET status = 'Tidak Aktif' WHERE id_karyawan = '".$id."'";
-		$query = mysqli_query($conn, "UPDATE karyawan SET status_karyawan = 'Tidak Aktif' WHERE id_siswa = '".$id."'");
+		$query = mysqli_query($conn, "DELETE from karyawan WHERE id_karyawan = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
@@ -479,23 +479,23 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 
 						<div class="form-group">
 							<label for="jabatan">Jabatan</label>
-							<input type="text" name="jabatan" id="jabatan_karyawan" class="form-control form-control-sm" placeholder="Jabatan">
+							<input type="text" name="jabatan_karyawan" id="jabatan_karyawan" class="form-control form-control-sm" placeholder="Jabatan">
 						</div>
 					<div class="form-group">
 						<label for="alamat">Alamat</label>
-						<input type="text" name="alamat" id="alamat_karyawan" class="form-control form-control-sm" placeholder="Alamat">
+						<input type="text" name="alamat_karyawan" id="alamat_karyawan" class="form-control form-control-sm" placeholder="Alamat">
 					</div>
 					
 					<div class="form-group">
 						<label for="jkelamin">Jenis Kelamin</label>
-						<select name="jkelamin" id="jkelamin_karyawan" class="form-control form-control-sm">
+						<select name="jkelamin_karyawan" id="jkelamin_karyawan" class="form-control form-control-sm">
 							<option value="Perempuan">Perempuan</option>
 							<option value="Laki-laki">Laki-laki</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="status">Status</label>
-						<select name="status" id="status_karyawan" class="form-control form-control-sm">
+						<select name="status_karyawan" id="status_karyawan" class="form-control form-control-sm">
 							<option value="Aktif">Aktif</option>
 							<option value="Tidak Aktif">Tidak Aktif</option>
 						</select>
@@ -574,11 +574,11 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 				success: function (result) {
 					console.log(result);
 					$("#id_karyawan").val(idkaryawan);
-					$("#nama_karyawan").val(result.nama);
+					$("#nama_karyawan").val(result.nama_karyawan);
 					$("#jabatan_karyawan").val(result.jabatan);					
-					$("#alamat_karyawan").val(result.alamat);
+					$("#alamat_karyawan").val(result.alamat_karyawan);
 					$("#jkelamin_karyawan").val(result.jenis_kelamin);
-					$("#status_karyawan").val(result.status);
+					$("#status_karyawan").val(result.status_karyawan);
 				}
 			});
 		});

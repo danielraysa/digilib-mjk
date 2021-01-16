@@ -96,8 +96,8 @@ if(isset($_POST['tambah_usulan'])){
 						</div> -->
 						<div class="row no-gutters">
 						<div class="card card-stats">
-						<div class="card-body table-responsive">
-							</div>
+						<!-- <div class="card-body table-responsive">
+							</div> -->
 						</div>
 							<div class="col-md-7">
 								<div class="contact-wrap w-100 p-md-5 p-4">

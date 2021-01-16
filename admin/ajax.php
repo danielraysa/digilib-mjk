@@ -42,7 +42,7 @@
 	}
 	if(isset($_POST['editkoleksi'])){
 		$id = $_POST['id_koleksi'];
-		$query = mysqli_query($conn, "SELECT * FROM koleksi WHERE id_koleksi = '".$id."'");
+		$query = mysqli_query($conn, "SELECT * FROM koleksi join kategori ON koleksi.id_kategori = kategori.id_kategori WHERE id_koleksi = '".$id."'");
 		$row = mysqli_fetch_array($query);
 		echo json_encode($row);
 	}

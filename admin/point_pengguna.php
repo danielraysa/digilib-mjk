@@ -51,15 +51,17 @@
 			<div class="row">
 				<div class="col-xl-12 col-md-12">
 					<div class="card card-stats">
+					<div class="card-body table-responsive">
 						<!-- Card body -->
 						<table id="myTable" class="table table-bordered">
 							<thead>
 								<tr>
-									<th>Id Point Pengguna</th>
+									
 									<th>Pengguna</th>
                                     <th>Jenis Kegiatan</th>
 									<th>Point</th>
 									<th>Jumlah Point</th>
+									<th>Action</th>
 								</tr>
 
 							</thead>
@@ -67,7 +69,7 @@
 
 								<?php
 								//querynya belum okeh
-                  $query = mysqli_query($conn, "SELECT username, jenis_kegiatan, point,jumlah_point from pengguna p join point_pengguna pp on p.id_pengguna=pp.id_pengguna join pt points on pp.id_point=pt.id_point ");
+                  $query = mysqli_query($conn, "SELECT username, jenis_kegiatan, point,jumlah_point from pengguna p join point_pengguna pp on p.id_pengguna=pp.id_pengguna join points pt on pp.id_point=pt.id_point");
                   //for($row = 0; $row < 10; $row++)) {
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
@@ -189,7 +191,7 @@
 		// });
 		$('#myTable tbody').on('click', '.btnHapus', function () {
 			var Point_Pengguna = $(this).attr('data-id');
-			$("#Point Pengguna_hapus").val(Point _engguna);
+			$("#Point Pengguna_hapus").val(Point_Pengguna);
 		});
 	</script>
 </body>

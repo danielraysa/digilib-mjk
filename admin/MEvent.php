@@ -12,13 +12,29 @@ $kode = $huruf.sprintf("%03s", $urut);
 ?>
 
 <?php 
+$target_dir = "../uploads/event/";
 // proses tambah
 	if(isset($_POST['tambah_event'])){
 		$id = $_POST['id_baru'];
 		$judul = $_POST['judul_baru'];
-		$gambar= $_POST['gambar_baru'];
+		$gambar= '';
 		$keterangan= $_POST['ket_baru'];
 		$tanggal = $_POST['tanggal_baru'];
+		if(file_exists($_FILES['gambar']['tmp_name'])){
+			$target_gambar = $target_dir . basename($_FILES['gambar']['name']);
+			$imageCoverType = strtolower(pathinfo($target_gambar,PATHINFO_EXTENSION));
+			if (file_exists($target_gambar) || strlen(basename($_FILES['gambar']['name'])) >= 100) {
+				$target_gambar = $target_dir . generateRandomString() .".". $imageCoverType;
+			}
+			if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_gambar)) {
+				// echo "The file ". htmlspecialchars(basename( $_FILES['gambar']['name'])). " has been uploaded.";
+			} else {
+				var_dump($_FILES['gambar']['error']);
+				echo "Sorry, there was an error uploading your file.";
+				exit;
+			}
+			$gambar = $target_gambar;
+		}
 		$query = mysqli_query($conn, "INSERT INTO event VALUES ('$id','$judul','$gambar','$keterangan','$tanggal')");
 		if(!$query){
 			echo mysqli_error($conn);
@@ -28,9 +44,24 @@ $kode = $huruf.sprintf("%03s", $urut);
 	if(isset($_POST['edit_event'])){
 		$id = $_POST['id_event'];
 		$judul = $_POST['judul_event'];
-		$gambar= $_POST['gambar'];
+		$gambar= '';
 		$keterangan= $_POST['ket'];
 		$tanggal = $_POST['tanggal'];
+		if(file_exists($_FILES['gambar']['tmp_name'])){
+			$target_gambar = $target_dir . basename($_FILES['gambar']['name']);
+			$imageCoverType = strtolower(pathinfo($target_gambar,PATHINFO_EXTENSION));
+			if (file_exists($target_gambar) || strlen(basename($_FILES['gambar']['name'])) >= 100) {
+				$target_gambar = $target_dir . generateRandomString() .".". $imageCoverType;
+			}
+			if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_gambar)) {
+				// echo "The file ". htmlspecialchars(basename( $_FILES['gambar']['name'])). " has been uploaded.";
+			} else {
+				var_dump($_FILES['gambar']['error']);
+				echo "Sorry, there was an error uploading your file.";
+				exit;
+			}
+			$gambar = $target_gambar;
+		}
 		$query = mysqli_query($conn, "UPDATE event SET judul_event='$judul', gambar='$gambar', keterangan='$keterangan', tanggal='$tanggal' WHERE id_event='$id'") or die (mysqli_error($conn));
 	}
 	if(isset($_POST['hapus_event'])){
@@ -88,7 +119,8 @@ $kode = $huruf.sprintf("%03s", $urut);
 										<th>Judul</th>
 										<th>gambar</th>					
 										<th>Keterangan</th>
-										<th>Tanggal</th>					
+										<th>Tanggal</th>
+										<th>Action</th>
 									</tr>
 
 								</thead>
@@ -101,7 +133,9 @@ $kode = $huruf.sprintf("%03s", $urut);
 					?>
 									<tr>
 										<td><?php echo $row['judul_event'] ?></td>
-										<td><?php echo $row['gambar'] ?></td>
+										<td><?php if($row['gambar']!= "") { ?>
+											<img src="<?php echo $row['gambar'] ?>" width="100" />
+										<?php } ?></td>
 										<td><?php echo $row['keterangan'] ?></td>
 										<td><?php echo $row['tanggal'] ?></td>
 										<td><button class="btn btn-success btnEditKat" data-toggle="modal"
@@ -133,7 +167,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="" method="post">
+				<form action="" method="post" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id">ID event</label>
@@ -146,7 +180,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</div>
 					<div class="form-group">
 						<label for="gambar">gambar</label>
-						<input type="text" name="gambar_baru" id="gambar_baru" class="form-control form-control-sm" placeholder="gambar">
+						<input type="file" accept=".jpg,.jpeg,.png" name="gambar" id="gambar_baru" class="form-control form-control-sm" placeholder="Cover" />
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
@@ -177,7 +211,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="post">
+					<form action="" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 						<label for="id">ID event</label>
 						<input type="text" name="id_event" id="id_event" class="form-control form-control-sm" placeholder="Id"  readonly>
@@ -185,11 +219,11 @@ $kode = $huruf.sprintf("%03s", $urut);
 
 					<div class="form-group">
 						<label for="judul">Judul event</label>
-						<input type="text" name="judul_event" id="judul_event" class="form-control form-control-sm" placeholder="Judul event">
+						<input type="text" name="judul_event" id="judul_event" class="form-control form-control-sm" placeholder="gambar">
 					</div>
 					<div class="form-group">
 						<label for="gambar">gambar</label>
-						<input type="text" name="gambar" id="gambar" class="form-control form-control-sm" placeholder="gambar">
+						<input type="file" accept=".jpg,.jpeg,.png" name="gambar" id="gambar_baru" class="form-control form-control-sm" placeholder="Cover" />
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
@@ -250,7 +284,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					$("#id_event").val(idEvent);
 					$("#judul_event").val(result.judul_event);
 					$("#gambar").val(result.gambar);
-					$("#keterangan").val(result.ket);
+					$("#ket").val(result.keterangan);
 					$("#tanggal").val(result.tanggal);
 				}
 			});

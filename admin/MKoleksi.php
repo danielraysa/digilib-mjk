@@ -387,6 +387,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 				},
 				dataType: 'json',
 				success: function (result) {
+					alert(result);
 					console.log(result);
 					$("#id_koleksi").val(id);
 					$("#judul").val(result.judul);
