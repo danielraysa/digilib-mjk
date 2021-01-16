@@ -95,11 +95,47 @@ if(isset($_POST['tambah_usulan'])){
 							</div>
 						</div> -->
 						<div class="row no-gutters">
-						<div class="card card-stats">
-						<div class="card-body table-responsive">
+							<div class="col-lg-6 col-md-12 order-md-first d-flex align-items-stretch">
+									<!-- <div id="map" class="map"></div> -->
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<h3 class="mb-4">Form Usulan</h3>
+									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="label" for="judul">Judul Buku</label>
+													<input type="text" class="form-control" name="judul" id="judul" placeholder="Judul Buku">
+												</div>
+											</div>
+											<div class="col-md-6"> 
+												<div class="form-group">
+													<label class="label" for="pengarang">Pengarang</label>
+													<input type="text" class="form-control" name="pengarang" id="pengarang" placeholder="Pengarang">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="penerbit">Penerbit</label>
+													<input type="text" class="form-control" name="penerbit" id="penerbit" placeholder="Penerbit">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="tahun">Tahun Terbit</label>
+													<input type="text" name="tahun" class="form-control" id="tahun" placeholder="Tahun Terbit"></input>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="submit" name ="tambah_usulan" value="Send" class="btn btn-primary">
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
 							</div>
-						</div>
-							<div class="col-md-7">
+							<div class="col-lg-6 col-md-12">
 								<div class="contact-wrap w-100 p-md-5 p-4">
 									<h3 class="mb-4">Form Usulan</h3>
 									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
@@ -139,9 +175,6 @@ if(isset($_POST['tambah_usulan'])){
 								</div>
 							</div>
 							
-							<div class="col-md-5 order-md-first d-flex align-items-stretch">
-								<div id="map" class="map"></div>
-							</div>
 						</div>
 					</div>
 				</div>

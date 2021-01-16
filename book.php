@@ -53,17 +53,17 @@
 				<div class="col-md-6 col-lg-4 d-flex">
 					<div class="book-wrap d-lg-flex">
 						<div class="img d-flex justify-content-end"
-							style="background-image: <?php echo $row['cover']?>">
+							style="background-image: url('<?php echo substr($row['cover'],3)?>');">
 							<div class="in-text">
 								<!-- <a href="#" class="icon d-flex align-items-center justify-content-center"
 									data-toggle="tooltip" data-placement="left" title="Add to cart">
 									<span class="flaticon-shopping-cart"></span>
 								</a> -->
-								<a href="<?echo $row['file']?>" class="icon d-flex align-items-center justify-content-center"
+								<!-- <a href="<?echo $row['file']?>" class="icon d-flex align-items-center justify-content-center"
 									data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
 									<span class="flaticon-heart-1"></span>
-								</a>
-								<a href="#" class="icon d-flex align-items-center justify-content-center"
+								</a> -->
+								<a href="<?php echo 'user/baca.php?koleksi='.$row['id_koleksi']; ?>" class="icon d-flex align-items-center justify-content-center"
 									data-toggle="tooltip" data-placement="left" title="Quick View">
 									<span class="flaticon-search"></span>
 								</a>
