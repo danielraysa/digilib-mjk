@@ -107,7 +107,7 @@ $tgl = date('Y-m-d');
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
 											data-id="<?php echo $row['id_donasi'] ?>">Edit</button>
-											<button class="btn btn-success btnHapus" data-toggle="modal"
+											<button class="btn btn-danger btnHapus" data-toggle="modal"
 											data-target="#ModalHapus"
 											data-id="<?php echo $row['id_donasi'] ?>">Hapus</button></td>
 								</tr>

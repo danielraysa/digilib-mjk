@@ -180,7 +180,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="" method="post">
+				<form action="" method="post" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id">ID Lomba</label>
@@ -226,7 +226,7 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="post">
+					<form action="" method="post" enctype="multipart/form-data>
 						<div class="form-group">
 						<label for="id">ID Lomba</label>
 						<input type="text" name="id_lomba" id="id_lomba" class="form-control form-control-sm" placeholder="Id"  readonly>
