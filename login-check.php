@@ -13,7 +13,7 @@
             $_SESSION['user_id'] = $data['id_pengguna'];
             $_SESSION['nama'] = $data['nama_siswa'];
             // $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point) SELECT MAX(id_ppengguna)+1, '".$_SESSION['user_id']."', ".$row_point['point']." FROM point_pengguna") or die(mysqli_error($conn));
-            header('location:user/');
+            header('location:index.php');
             exit;
         }
         else if(mysqli_num_rows($check_kar) == 1){
@@ -21,7 +21,7 @@
             $_SESSION['user_id'] = $data['id_pengguna'];
             $_SESSION['nama'] = $data['nama_karyawan'];
             // $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point) SELECT MAX(id_ppengguna)+1, '".$_SESSION['user_id']."', ".$row_point['point']." FROM point_pengguna") or die(mysqli_error($conn));
-            header('location:user/');
+            header('location:index.php');
             exit;
         }else{
             header('location:login.php?error');

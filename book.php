@@ -1,5 +1,6 @@
 <?php 
 	include "koneksi.php";
+	include "function.php";
 	$filename = basename(__FILE__); 
 ?>
 <!DOCTYPE html>

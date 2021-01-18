@@ -18,19 +18,13 @@
 					</a>
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" href="#">
-						<i class="ni ni-tv-2 text-primary"></i>
-						<span class="nav-link-text">Laporan</span>
-					</a>
-					</li>
-					<li class="nav-item">
-					<a class="nav-link" href="admin.php">
+					<a class="nav-link" href="../book.php">
 						<i class="ni ni-tv-2 text-primary"></i>
 						<span class="nav-link-text">Koleksi</span>
 					</a>
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" href="admin.php">
+					<a class="nav-link" href="../usulan.php">
 						<i class="ni ni-tv-2 text-primary"></i>
 						<span class="nav-link-text">Usulan</span>
 					</a>

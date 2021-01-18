@@ -8,7 +8,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-                    <?php if(!isset($_SESSION['user'])) { ?>
+                    <?php if(!isset($_SESSION['user_id'])) { ?>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
                     </ul>
@@ -22,7 +22,7 @@
                             <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" style="width: 40px; height: 40px;" >
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="user/">Profile</a>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
                     <!-- </div> -->

@@ -295,7 +295,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 					</div>
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="text" name="username" id="username" class="form-control form-control-sm" value = "<?php echo $nama?>"placeholder="Username">
+						<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>

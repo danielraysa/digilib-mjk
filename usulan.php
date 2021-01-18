@@ -1,4 +1,5 @@
-<?php include "koneksi.php"; ?>
+<?php include 'koneksi.php'; ?>
+<?php include 'function.php'; ?>
 <?php $filename = basename(__FILE__); ?>
 <?php
 $query = mysqli_query($conn, "SELECT MAX(id_usulan) as idusulan FROM usulan");
