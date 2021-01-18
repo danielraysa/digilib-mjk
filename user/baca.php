@@ -1,7 +1,8 @@
 <?php 
 	// session_start();
 	include "../koneksi.php";
-    // check_session();
+	include "../function.php";
+    check_session();
     if(!isset($_GET['koleksi'])){
         header('location:../');
         exit;
@@ -37,7 +38,7 @@
             <div class="row justify-content-center mb-3">
                 <!-- <div class="col-lg-12"> -->
                     <div id="pdf-box" class="text-center" style="max-width: 600px;">
-                        <canvas id="the-canvas"></canvas>
+                        <canvas id="the-canvas" style="width:100%"></canvas>
                     </div>
                     <input type="hidden" id="page_number" name="page_number" value="1" />
                 <!-- </div> -->

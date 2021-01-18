@@ -28,11 +28,7 @@
 						</div>
 					</div>
 				</li>
-				<li class="nav-item d-sm-none">
-					<a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
-						<i class="ni ni-zoom-split-in"></i>
-					</a>
-				</li>
+
 				<!-- Notification -->
 				<!-- <li class="nav-item dropdown">
 			<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

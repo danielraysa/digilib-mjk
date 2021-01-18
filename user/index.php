@@ -1,6 +1,7 @@
 <?php 
 	// session_start();
 	include "../koneksi.php";
+	include "../function.php";
 	check_session();
 ?>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
 		<div class="container-fluid mt-3">
 			<!-- Card stats -->
 			<div class="row">
-				<div class="col-lg-4 col-md-12 text-center">
+				<!-- <div class="col-lg-4 col-md-12 text-center">
 					<div class="card mb-1">
 						<div class="card-body p-0">
 							<div id="myChart" style="height: 200px"></div>
@@ -34,9 +35,6 @@
 						</div>
 						<div class="card w-100 bg-warning m-1">
 							<div class="card-body">
-								<!-- <h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick </p>
-								<a href="#" class="btn btn-primary">Go somewhere</a> -->
 								<h3 class="card-title">11</h3>
 							</div>
 						</div>
@@ -53,13 +51,13 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-8 col-md-12">
+				</div> -->
+				<div class="col-lg-9 col-md-12">
 					<div class="row">
-						<div class="col-lg-6 col-md-12">
+						<div class="col-lg-6 col-md-12 mb-3">
 							<div id="lineChart" style="height: 200px"></div>
 						</div>
-						<div class="col-lg-6 col-md-12">
+						<div class="col-lg-6 col-md-12 mb-3">
 							<div class="d-flex h-100 justify-content-around align-items-center">
 								<div class="">
 									<img src="../admin/img/theme/team-4.jpg" class="avatar rounded-circle" />

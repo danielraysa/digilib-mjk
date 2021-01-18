@@ -15,11 +15,11 @@
 						</div>
 					</div>
 				</li>
-				<li class="nav-item d-sm-none">
+				<!-- <li class="nav-item d-sm-none">
 					<a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
 						<i class="ni ni-zoom-split-in"></i>
 					</a>
-				</li>
+				</li> -->
 				<!-- Notification -->
 				
 			</ul>
@@ -32,7 +32,7 @@
 								<img alt="Image placeholder" src="../admin/img/theme/team-4.jpg">
 							</span>
 							<div class="media-body  ml-2  d-none d-lg-block">
-								<span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+								<span class="mb-0 text-sm  font-weight-bold"><?php echo $_SESSION['nama']; ?></span>
 							</div>
 						</div>
 					</a>
@@ -57,7 +57,7 @@
 							<span>Support</span>
 						</a>
 						<div class="dropdown-divider"></div>
-						<a href="#!" class="dropdown-item">
+						<a href="../logout.php" class="dropdown-item">
 							<i class="ni ni-user-run"></i>
 							<span>Logout</span>
 						</a>

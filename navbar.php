@@ -8,9 +8,9 @@
                     </a>
                 </div>
                 <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-                    <?php if(isset($_SESSION['user'])) { ?>
+                    <?php if(!isset($_SESSION['user'])) { ?>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="admin/logout.php" class="nav-link">Logout</a></li>
+                        <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
                     </ul>
                     <?php } else { ?>
                     <!-- <ul class="navbar-nav ml-auto">
@@ -18,12 +18,12 @@
                     </ul> -->
                     <!-- <div class="d-flex justify-content-around align-items-center" style="width: 125px"> -->
                         <a href="#" class="d-flex justify-content-around align-items-center" data-toggle="dropdown" style="width: 125px">
-                            <small>Namaku</small>
+                            <small><?php echo $_SESSION['nama']; ?></small>
                             <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" style="width: 40px; height: 40px;" >
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Profile</a>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
                     <!-- </div> -->
                     <?php } ?>
