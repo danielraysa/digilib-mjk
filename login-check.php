@@ -28,6 +28,8 @@
             exit;
         }
     }else if($user == 'admin' && $pass == 'admin'){
+        $_SESSION['user_id'] = 'admin';
+        $_SESSION['nama'] = 'Admin';
         header('location:admin/');
         exit;
     }else {

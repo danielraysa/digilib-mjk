@@ -125,32 +125,47 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<label for="judul">ID Pertanyaan</label>
-						<input type="text" name="id_pertanyaan" id="id_baru" class="form-control form-control-sm"
-							placeholder="ID Pertanyaan" value="<?php echo $kode ?>" required />
-					</div>
-					<div class="form-group">
-						<label for="kategori">Koleksi</label>
-						<select name="koleksi" id="koleksi_baru" class="form-control form-control-sm">
-							<option value="">Pilih Koleksi</option>
-							<?php 
-								$query_kat = mysqli_query($conn, "SELECT * FROM koleksi");
-								while ($row = mysqli_fetch_array($query_kat)) {
-							?>
-								<option value="<?php echo $row['id_koleksi']; ?>"><?php echo $row['judul'] ?></option>
-							<?php } ?>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="judul">Pertanyaan</label>
-						<input type="text" name="pertanyaan" id="pertanyaan_baru" class="form-control form-control-sm"
-							placeholder="Pertanyaan" />
-					</div>
-					<div class="form-group">
-						<label for="judul">Jawaban</label>
-						<input type="text" name="jawaban" id="jawaban_baru" class="form-control form-control-sm"
-							placeholder="Jawaban" />
+					<div class="row">
+						<div class="col-lg-6 col-md-12">
+							<div class="form-group">
+								<label for="judul">ID Pertanyaan</label>
+								<input type="text" name="id_pertanyaan" id="id_baru" class="form-control form-control-sm"
+									placeholder="ID Pertanyaan" value="<?php echo $kode ?>" required />
+							</div>
+							<div class="form-group">
+								<label for="kategori">Koleksi</label>
+								<select name="koleksi" id="koleksi_baru" class="form-control form-control-sm">
+									<option value="">Pilih Koleksi</option>
+									<?php 
+										$query_kat = mysqli_query($conn, "SELECT * FROM koleksi");
+										while ($row = mysqli_fetch_array($query_kat)) {
+									?>
+										<option value="<?php echo $row['id_koleksi']; ?>"><?php echo $row['judul'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="judul">Pertanyaan</label>
+								<input type="text" name="pertanyaan" id="pertanyaan_baru" class="form-control form-control-sm"
+									placeholder="Pertanyaan" />
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-12">
+							<div class="form-group">
+								<label for="judul">Jawaban</label>
+								<input type="text" name="jawaban" id="jawaban_baru" class="form-control form-control-sm" placeholder="Jawaban A" />
+								<input type="text" name="jawaban" id="jawaban_baru" class="form-control form-control-sm" placeholder="Jawaban B" />
+								<input type="text" name="jawaban" id="jawaban_baru" class="form-control form-control-sm" placeholder="Jawaban C" />
+								<input type="text" name="jawaban" id="jawaban_baru" class="form-control form-control-sm" placeholder="Jawaban D" />
+							</div>
+							<div class="form-group">
+								<label for="judul">Jawaban yang Benar</label>
+								<input type="radio" name="jawaban_benar" class="form-radio-input" value="Jawaban" /> A
+								<input type="radio" name="jawaban_benar" class="form-radio-input" value="Jawaban" /> A
+								<input type="radio" name="jawaban_benar" class="form-radio-input" value="Jawaban" /> A
+								<input type="radio" name="jawaban_benar" class="form-radio-input" value="Jawaban" /> A
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
