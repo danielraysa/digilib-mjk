@@ -1,8 +1,10 @@
 
 <?php
+	$filename = basename(__FILE__);
+	$dir = basename(__DIR__);
 	include "../koneksi.php";
 	include "../function.php";
-	check_session();
+	check_session($dir);
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,6 +30,7 @@
 					<div class="card card-stats">
 						<div class="card-body table-responsive">
 							<h2>Welcome!</h2>
+							<?php echo $dir."/".$filename; ?>
 						</div>
 					</div>
 				</div>

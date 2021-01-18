@@ -1,5 +1,11 @@
-<?php include "../koneksi.php"; ?>
-<?php 
+<?php
+
+$filename = basename(__FILE__);
+$dir = basename(__DIR__);
+include "../koneksi.php";
+include "../function.php";
+check_session($dir."/".$filename);
+
 $query1 = mysqli_query($conn, "SELECT MAX(id_siswa) as idsiswa FROM siswa");
 $data1 = mysqli_fetch_array($query1);
 $kode1 = $data1['idsiswa'];

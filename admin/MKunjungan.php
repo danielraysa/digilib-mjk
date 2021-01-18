@@ -1,6 +1,9 @@
-<?php include "../koneksi.php"; ?>
-
 <?php 
+$filename = basename(__FILE__);
+$dir = basename(__DIR__);
+include "../koneksi.php";
+include "../function.php";
+check_session($dir."/".$filename);
 //tanggal auto
 $tgl = date('Y-m-d');
 // poses tambah

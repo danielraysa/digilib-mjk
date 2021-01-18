@@ -69,6 +69,10 @@
 
 								<div class="card-body">
 									<form action="login-check.php" method="post">
+										<?php if(isset($_GET['redirect'])): ?>
+											<input type="hidden" name="redirect" class="form-control" value="<?php echo $_GET['redirect']; ?>" />
+										<?php endif; ?>
+
 										<div class="form-group">
 											<label for="username">Username</label>
 											<input type="text" name="username" id="username" class="form-control form-control-sm"

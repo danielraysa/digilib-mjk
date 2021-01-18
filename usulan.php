@@ -1,26 +1,25 @@
-<?php include 'koneksi.php'; ?>
-<?php include 'function.php'; ?>
-<?php $filename = basename(__FILE__); ?>
-<?php
-$query = mysqli_query($conn, "SELECT MAX(id_usulan) as idusulan FROM usulan");
-$data = mysqli_fetch_array($query);
-$kode = $data['idusulan'];
-
-$urut = (int) substr($kode,2,3);
-$urut++;
-$huruf = "US";
-$kode = $huruf.sprintf("%03s", $urut);
-?>
-
 <?php 
+	include 'koneksi.php';
+	include 'function.php';
+	$filename = basename(__FILE__);
+	$query = mysqli_query($conn, "SELECT MAX(id_usulan) as idusulan FROM usulan");
+	$data = mysqli_fetch_array($query);
+	$kode = $data['idusulan'];
+
+	$urut = (int) substr($kode,2,3);
+	$urut++;
+	$huruf = "US";
+	$kode = $huruf.sprintf("%03s", $urut);
+
 //proses tambah
 if(isset($_POST['tambah_usulan'])){
 	// $id = $_POST['id_baru'];
+	check_session($filename);
 	$judul = $_POST['judul_buku'];
 	$gambar= $_POST['pengarang'];
 	$keterangan= $_POST['penerbit'];
 	$tanggal = $_POST['tanggal'];
-	$query = mysqli_query($conn, "INSERT INTO usulan VALUES ('$kode','$judul','$gambar','$keterangan','$tanggal')");
+	$query = mysqli_query($conn, "INSERT INTO usulan VALUES ('$kode','".$_SESSION['user_id']."','$judul','$gambar','$keterangan','$tanggal')");
 	if(!$query){
 		echo mysqli_error($conn);
 	}
