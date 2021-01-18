@@ -9,18 +9,9 @@ function generateRandomString($length = 20) {
 	}
 	return $randomString;
 }
-?>
-<?php
+
 $target_dir = "../uploads/lomba/";
 
-$query = mysqli_query($conn, "SELECT MAX(id_lomba) as idlomba FROM lomba");
-$data = mysqli_fetch_array($query);
-$kode = $data['idlomba'];
-
-$urut = (int) substr($kode,2,3);
-$urut++;
-$huruf = "LO";
-$kode = $huruf.sprintf("%03s", $urut);
 ?>
 
 <?php 
@@ -82,6 +73,15 @@ $kode = $huruf.sprintf("%03s", $urut);
 		// $query = mysqli_query($conn, "UPDATE lomba SET status = 'Tidak Aktif' WHERE id_lomba = '".$id."'");
 		$query = mysqli_query($conn, "DELETE from lomba WHERE id_lomba = '".$id."'");
 	}
+
+	$query = mysqli_query($conn, "SELECT MAX(id_lomba) as idlomba FROM lomba");
+	$data = mysqli_fetch_array($query);
+	$kode = $data['idlomba'];
+
+	$urut = (int) substr($kode,2,3);
+	$urut++;
+	$huruf = "LO";
+	$kode = $huruf.sprintf("%03s", $urut);
 ?>
 <!DOCTYPE html>
 <html>

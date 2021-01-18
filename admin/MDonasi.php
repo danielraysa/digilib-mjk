@@ -1,18 +1,12 @@
-<?php include "../koneksi.php"; ?>
-<?php
-$query = mysqli_query($conn, "SELECT MAX(id_donasi) as iddonasi FROM donasi");
-$data = mysqli_fetch_array($query);
-$kode = $data['iddonasi'];
-
-$urut = (int) substr($kode,2,3);
-$urut++;
-$huruf = "DN";
-$kode = $huruf.sprintf("%03s", $urut);
-?>
 <?php 
-//tanggal auto
-$tgl = date('Y-m-d');
-// poses tambah
+	$filename = basename(__FILE__);
+	$dir = basename(__DIR__);
+	include "../koneksi.php";
+	include "../function.php";
+	check_session($dir."/".$filename);
+	//tanggal auto
+	$tgl = date('Y-m-d');
+	// proses tambah
 	if(isset($_POST['tambah'])){
 		$id = $_POST['id_baru'];
         $judul = $_POST['judul_buku_baru'];
@@ -39,6 +33,15 @@ $tgl = date('Y-m-d');
 		//echo "UPDATE donasi SET status = 'Tidak Aktif' WHERE id_donasi = '".$id."'";
 		$query = mysqli_query($conn, "DELETE from donasi WHERE id_donasi = '".$id."'");
 	}
+
+	$query = mysqli_query($conn, "SELECT MAX(id_donasi) as iddonasi FROM donasi");
+	$data = mysqli_fetch_array($query);
+	$kode = $data['iddonasi'];
+
+	$urut = (int) substr($kode,2,3);
+	$urut++;
+	$huruf = "DN";
+	$kode = $huruf.sprintf("%03s", $urut);
 ?>
 <!DOCTYPE html>
 <html>

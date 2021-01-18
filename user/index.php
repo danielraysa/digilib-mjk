@@ -1,8 +1,8 @@
 <?php 
-	// session_start();
+	$dir = basename(__DIR__);
 	include "../koneksi.php";
 	include "../function.php";
-	check_session();
+	check_session($dir);
 ?>
 <!DOCTYPE html>
 <html>

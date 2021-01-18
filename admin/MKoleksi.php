@@ -1,5 +1,9 @@
 <?php 
-	include "../koneksi.php"; 
+	$filename = basename(__FILE__);
+	$dir = basename(__DIR__);
+	include "../koneksi.php";
+	include "../function.php";
+	check_session($dir."/".$filename);
 
 	function generateRandomString($length = 20) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

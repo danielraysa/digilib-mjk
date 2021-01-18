@@ -1,14 +1,5 @@
 <?php include "../koneksi.php"; ?>
-<?php 
-$query = mysqli_query($conn, "SELECT MAX(id_point) as idpoint FROM points");
-$data = mysqli_fetch_array($query);
-$kode = $data['idpoint'];
 
-$urut = (int) substr($kode,2,3);
-$urut++;
-$huruf = "PO";
-$kode = $huruf.sprintf("%03s", $urut);
-?>
 <?php 
 // poses tambah
 	if(isset($_POST['tambah'])){
@@ -31,6 +22,15 @@ $kode = $huruf.sprintf("%03s", $urut);
 		// echo "UPDATE point SET status = 'Tidak Aktif' WHERE id_point = '".$id."'";
 		$query = mysqli_query($conn, "DELETE from points WHERE id_point = '".$id."'");
 	}
+	
+	$query = mysqli_query($conn, "SELECT MAX(id_point) as idpoint FROM points");
+	$data = mysqli_fetch_array($query);
+	$kode = $data['idpoint'];
+	
+	$urut = (int) substr($kode,2,3);
+	$urut++;
+	$huruf = "PO";
+	$kode = $huruf.sprintf("%03s", $urut);
 ?>
 <!DOCTYPE html>
 <html>

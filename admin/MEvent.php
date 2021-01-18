@@ -1,17 +1,10 @@
 
-<?php include "../koneksi.php"; ?>
-<?php
-$query = mysqli_query($conn, "SELECT MAX(id_event) as idevent FROM event");
-$data = mysqli_fetch_array($query);
-$kode = $data['idevent'];
-
-$urut = (int) substr($kode,2,3);
-$urut++;
-$huruf = "EV";
-$kode = $huruf.sprintf("%03s", $urut);
-?>
-
 <?php 
+$filename = basename(__FILE__);
+$dir = basename(__DIR__);
+include "../koneksi.php";
+include "../function.php";
+check_session($dir."/".$filename);
 $target_dir = "../uploads/event/";
 // proses tambah
 	if(isset($_POST['tambah_event'])){
@@ -70,6 +63,15 @@ $target_dir = "../uploads/event/";
 		// $query = mysqli_query($conn, "UPDATE event SET status = 'Tidak Aktif' WHERE id_event = '".$id."'");
 		$query = mysqli_query($conn, "DELETE from event WHERE id_event = '".$id."'")  or die (mysqli_error($conn));
 	}
+
+	$query = mysqli_query($conn, "SELECT MAX(id_event) as idevent FROM event");
+	$data = mysqli_fetch_array($query);
+	$kode = $data['idevent'];
+
+	$urut = (int) substr($kode,2,3);
+	$urut++;
+	$huruf = "EV";
+	$kode = $huruf.sprintf("%03s", $urut);
 ?>
 <!DOCTYPE html>
 <html>

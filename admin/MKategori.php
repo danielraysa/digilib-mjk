@@ -1,16 +1,9 @@
-<?php include "../koneksi.php"; ?>
 <?php
-$query = mysqli_query($conn, "SELECT MAX(id_kategori) as idkategori FROM kategori");
-$data = mysqli_fetch_array($query);
-$kode = $data['idkategori'];
-
-$urut = (int) substr($kode,2,3);
-$urut++;
-$huruf = "T";
-$kode = $huruf.sprintf("%03s", $urut);
-?>
-
-<?php 
+$filename = basename(__FILE__);
+$dir = basename(__DIR__);
+include "../koneksi.php";
+include "../function.php";
+check_session($dir."/".$filename);
 // proses tambah
 	if(isset($_POST['tambah_kategori'])){
 		$id = $_POST['id_baru'];
@@ -32,6 +25,15 @@ $kode = $huruf.sprintf("%03s", $urut);
 		// $query = mysqli_query($conn, "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'");
 		$query = mysqli_query($conn, "DELETE from kategori WHERE id_kategori = '".$id."'");
 	}
+	
+	$query = mysqli_query($conn, "SELECT MAX(id_kategori) as idkategori FROM kategori");
+	$data = mysqli_fetch_array($query);
+	$kode = $data['idkategori'];
+	
+	$urut = (int) substr($kode,2,3);
+	$urut++;
+	$huruf = "T";
+	$kode = $huruf.sprintf("%03s", $urut);
 ?>
 <!DOCTYPE html>
 <html>

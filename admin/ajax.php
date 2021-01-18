@@ -37,8 +37,13 @@
 	if(isset($_POST['editpertanyaan'])){
 		$id = $_POST['id_pertanyaan'];
 		$query = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_pertanyaan = '".$id."'");
-		$row = mysqli_fetch_array($query);
-		echo json_encode($row);
+		$query_jawaban = mysqli_query($conn, "SELECT * FROM jawaban WHERE id_pertanyaan = '".$id."' ORDER BY pilihan");
+		$pertanyaan = mysqli_fetch_assoc($query);
+		$jawaban = array();
+		while($data_jawaban = mysqli_fetch_assoc($query_jawaban)){
+			array_push($jawaban, $data_jawaban);
+		}
+		echo json_encode(['pertanyaan' => $pertanyaan, 'jawaban' => $jawaban]);
 	}
 	if(isset($_POST['editkoleksi'])){
 		$id = $_POST['id_koleksi'];
