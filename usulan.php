@@ -42,7 +42,7 @@ if(isset($_POST['tambah_usulan'])){
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate mb-0 text-center">
-					<h1 class="mb-0 bread">Usulan</h1>
+					<h1 class="mb-0 bread">Donasi</h1>
 				</div>
 			</div>
 		</div>
@@ -99,41 +99,35 @@ if(isset($_POST['tambah_usulan'])){
 							<div class="col-lg-6 col-md-12 order-md-first d-flex align-items-stretch">
 									<!-- <div id="map" class="map"></div> -->
 								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3 class="mb-4">Form Usulan</h3>
-									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label class="label" for="judul">Judul Buku</label>
-													<input type="text" class="form-control" name="judul" id="judul" placeholder="Judul Buku">
-												</div>
-											</div>
-											<div class="col-md-6"> 
-												<div class="form-group">
-													<label class="label" for="pengarang">Pengarang</label>
-													<input type="text" class="form-control" name="pengarang" id="pengarang" placeholder="Pengarang">
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" for="penerbit">Penerbit</label>
-													<input type="text" class="form-control" name="penerbit" id="penerbit" placeholder="Penerbit">
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" for="tahun">Tahun Terbit</label>
-													<input type="text" name="tahun" class="form-control" id="tahun" placeholder="Tahun Terbit"></input>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<input type="submit" name ="tambah_usulan" value="Send" class="btn btn-primary">
-													<div class="submitting"></div>
-												</div>
-											</div>
-										</div>
-									</form>
+									<h3 class="mb-4">Daftar Donasi</h3>
+									<table id="myTable" class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Judul Buku</th>
+									<th>Pengarang</th>
+                                    <th>Penerbit</th>
+									<th>tahun</th>
+									<th>jumlah</th>
+								</tr>
+
+							</thead>
+							<tbody>
+
+								<?php
+                  $query = mysqli_query($conn, "SELECT * from donasi");
+                  //for($row = 0; $row < 10; $row++)) {
+                  while ($row = mysqli_fetch_array($query)) {
+                  ?>
+								<tr>
+									<td><?php echo $row['judul_buku'] ?></td>
+									<td><?php echo $row['pengarang'] ?></td>
+									<td><?php echo $row['penerbit'] ?></td>
+									<td><?php echo $row['tahun'] ?></td>
+									<td><?php echo $row['jumlah'] ?></td>									
+								</tr>
+								<?php } ?>
+							</tbody>
+						</table>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-12">
