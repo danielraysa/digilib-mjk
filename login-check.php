@@ -14,12 +14,10 @@
     if(mysqli_num_rows($check) == 1 || mysqli_num_rows($check_kar) == 1){
         if(mysqli_num_rows($check) == 1){
             $data = mysqli_fetch_assoc($check);
-            $sel_point = mysqli_query($conn, "SELECT * FROM points WHERE jenis_kegiatan = 'Login'");
-            $row_point = mysqli_fetch_assoc($sel_point);
             $_SESSION['user_id'] = $data['id_pengguna'];
             $_SESSION['nama'] = $data['nama_siswa'];
             if($point != 0){
-                $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point) SELECT MAX(id_ppengguna)+1, '".$_SESSION['user_id']."', ".$point." FROM point_pengguna") or die(mysqli_error($conn));
+                $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point) SESELECT COALESCE(MAX(id_ppengguna)+1,1), '".$data['id_pengguna']."', ".$point." FROM point_pengguna") or die(mysqli_error($conn));
             }
             if(isset($_POST['redirect'])){
                 header('location:'.$_POST['redirect']);
@@ -33,7 +31,7 @@
             $_SESSION['user_id'] = $data['id_pengguna'];
             $_SESSION['nama'] = $data['nama_karyawan'];
             if($point != 0){
-                $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point) SELECT MAX(id_ppengguna)+1, '".$_SESSION['user_id']."', ".$point." FROM point_pengguna") or die(mysqli_error($conn));
+                $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point) SELECT COALESCE(MAX(id_ppengguna)+1,1), '".$data['id_pengguna']."', ".$point." FROM point_pengguna") or die(mysqli_error($conn));
             }
             if(isset($_POST['redirect'])){
                 header('location:'.$_POST['redirect']);
