@@ -17,7 +17,7 @@
             $_SESSION['user_id'] = $data['id_pengguna'];
             $_SESSION['nama'] = $data['nama_siswa'];
             if($point != 0){
-                $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point) SESELECT COALESCE(MAX(id_ppengguna)+1,1), '".$data['id_pengguna']."', ".$point." FROM point_pengguna") or die(mysqli_error($conn));
+                $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point) SELECT COALESCE(MAX(id_ppengguna)+1,1), '".$data['id_pengguna']."', ".$point." FROM point_pengguna") or die(mysqli_error($conn));
             }
             if(isset($_POST['redirect'])){
                 header('location:'.$_POST['redirect']);
