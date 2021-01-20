@@ -27,27 +27,24 @@
       <div class="container">
         <div class="row d-flex">
 		<?php 
-					$query_lomba1 = mysqli_query($conn, "SELECT poster, judul_lomba, keterangan, YEAR(tgl) as thn, 
-					DAY(tgl) as d, MONTHNAME(tgl) as m FROM lomba");
-					while ($row = mysqli_fetch_array($query_lomba1)) 
-					
-					{
+					$query_lomba1 = mysqli_query($conn, "SELECT * FROM lomba");
+					while ($row = mysqli_fetch_array($query_lomba1)) {
 				?>
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
 			 
               <div class="text text-center">
-              	<a href="lomba_fact.php" class="block-20 img" style="background-image: url(<?php echo substr($row['poster'],3) ?>);">
+              	<a href="lomba_fact.php" class="block-20 img" style="background-image: url('<?php echo substr($row['poster'],3) ?>');">
 	              </a>
 	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
                 	<div>
-                		<span class="day"><?echo date('d', strtotime($row['tgl']))?></span>
-                		<span class="mos"><?echo date('M', strtotime($row['tgl']))?></span> 
-                		<span class="yr"><?echo date('Y', strtotime($row['tgl']))?></span>
+                		<span class="day"><?php echo date('d', strtotime($row['tgl'])); ?></span>
+                		<span class="mos"><?php echo date('M', strtotime($row['tgl'])); ?></span> 
+                		<span class="yr"><?php echo date('Y', strtotime($row['tgl'])); ?></span>
                 	</div>
                 </div>
                 <h3 class="heading mb-3"><a href="#"><?php echo $row['judul_lomba'] ?></a></h3>
-                <!-- <p><?php echo $row['keterangan']?></p> -->
+                <p><?php echo $row['keterangan']?></p>
               </div>
 			  
             </div>
