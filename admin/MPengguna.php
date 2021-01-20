@@ -62,6 +62,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$status = $_POST['status'];
 		//echo "UPDATE siswa SET nama_siswa='$nama',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_siswa='$id'";
 		$query = mysqli_query($conn, "UPDATE siswa SET nama_siswa='$nama',kelas='$kelas',jenis_kelamin='$jkelamin',alamat_siswa='$alamat',status_siswa='$status' WHERE id_siswa='$id'");
+		//$query1 = mysqli_query($conn, "Insert siswa SET nama_siswa='$nama',kelas='$kelas',jenis_kelamin='$jkelamin',alamat_siswa='$alamat',status_siswa='$status' WHERE id_siswa='$id'");
 	}
 	if(isset($_POST['hapus_siswa'])){
 		$id = $_POST['id_siswa'];

@@ -21,7 +21,7 @@ $tgl = date('Y-m-d');
     $status = $_POST['status_baru'];
     $keterangan = $_POST['keterangan_baru'];
 		$query = mysqli_query($conn, "INSERT INTO kunjungan (`id_kunjungan`, `nama`, `instansi`, `status`, `keterangan`, `tgl`) VALUES ('$kode','$nama','$instansi','$status','$keterangan','$tgl')");
-     echo "string";
+     echo "Welcome";
 
   }
   ?>
@@ -101,6 +101,7 @@ $tgl = date('Y-m-d');
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
+            </br>
                <h1 class="mb-2">Welcome To Library</h1>
     <div class="card" style="position: center">
       <div class="card-header">

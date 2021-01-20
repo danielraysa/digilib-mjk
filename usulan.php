@@ -41,7 +41,7 @@ if(isset($_POST['tambah_usulan'])){
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate mb-0 text-center">
-					<h1 class="mb-0 bread">Donasi</h1>
+					<h1 class="mb-0 bread">Usulan</h1>
 				</div>
 			</div>
 		</div>

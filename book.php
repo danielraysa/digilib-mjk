@@ -76,7 +76,7 @@
 						</div>
 						<div class="text p-4">
 							<!-- <p class="mb-2"><span class="price">$12.00</span></p> -->
-							<h2><a href="#"><?php echo $row['judul'] ?></a></h2>
+							<h2><a href="user/baca.php"><?php echo $row['judul'] ?></a></h2>
 							<span class="position"><?php echo $row['nama_pengarang'] ?></span>
 						</div>
 					</div>
