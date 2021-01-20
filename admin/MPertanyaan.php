@@ -65,45 +65,34 @@
 		$id_pertanyaan = $_POST['id_pertanyaan'];
 		$koleksi = $_POST['koleksi'];
 		$pertanyaan = $_POST['pertanyaan'];
-		// $jawaban = $_POST['jawaban'];
-		$jawaban_a = $_POST['jawaban1'];
-		$jawaban_b = $_POST['jawaban2'];
-		$jawaban_c = $_POST['jawaban3'];
-		$jawaban_d = $_POST['jawaban4'];
-
-		$id_jawaban_1 = $_POST['idjawaban1'];
-		$id_jawaban_2 = $_POST['idjawaban2'];
-		$id_jawaban_3 = $_POST['idjawaban3'];
-		$id_jawaban_4 = $_POST['idjawaban4'];
+		$idjawaban = $_POST['idjawaban'];
+		$jawaban = $_POST['jawaban'];
 
 		$jawaban_benar = $_POST['jawaban_benar'];
 		$id_jawaban_benar = "";
 		switch ($jawaban_benar) {
 			case 'A':
-				$id_jawaban_benar = $id_jawaban_1;
+				$id_jawaban_benar = $idjawaban[0];
 				break;
 			case 'B':
-				$id_jawaban_benar = $id_jawaban_2;
+				$id_jawaban_benar = $idjawaban[1];
 				break;
 			case 'C':
-				$id_jawaban_benar = $id_jawaban_3;
+				$id_jawaban_benar = $idjawaban[2];
 				break;
 			case 'D':
-				$id_jawaban_benar = $id_jawaban_4;
+				$id_jawaban_benar = $idjawaban[3];
 				break;
 			
 			default:
 			$id_jawaban_benar = null;
 				break;
 		}
-		$query = mysqli_query($conn, "UPDATE pertanyaan SET id_koleksi = '$koleksi', pertanyaan = '$pertanyaan', jawaban = '$id_jawaban_benar' WHERE id_pertanyaan = '$id_pertanyaan'");
-
-		$jawaban1 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban_a' WHERE id_jawaban = '$id_jawaban_1'");
-		$jawaban2 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban_b' WHERE id_jawaban = '$id_jawaban_2'");
-		$jawaban3 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban_c' WHERE id_jawaban = '$id_jawaban_3'");
-		$jawaban4 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban_d' WHERE id_jawaban = '$id_jawaban_4'");
+		for($i = 0; $i < count($jawaban); $i++){
+			$jawaban_query = mysqli_query($conn, "UPDATE jawaban SET jawaban = '".$jawaban[$i]."' WHERE id_jawaban = '".$idjawaban[$i]."'");
+		}
 		
-		$update = mysqli_query($conn, "UPDATE pertanyaan SET jawaban = '$id_jawaban_benar' WHERE id_pertanyaan = '$id_pertanyaan'") or die(mysqli_error($conn));
+		$query = mysqli_query($conn, "UPDATE pertanyaan SET id_koleksi = '$koleksi', pertanyaan = '$pertanyaan', jawaban = '$id_jawaban_benar' WHERE id_pertanyaan = '$id_pertanyaan'");
 		if(!$query){
 			echo mysqli_error($conn);
 		}
@@ -301,24 +290,24 @@
 						<div class="col-lg-6 col-md-12">
 							<div class="form-group" id="jawaban_text">
 								<label for="judul">Jawaban</label>
-								<input type="text" name="jawaban1" id="jawaban1" class="form-control form-control-sm" placeholder="Jawaban A" />
+								<!-- <input type="text" name="jawaban1" id="jawaban1" class="form-control form-control-sm" placeholder="Jawaban A" />
 								<input type="text" name="jawaban2" id="jawaban2" class="form-control form-control-sm" placeholder="Jawaban B" />
 								<input type="text" name="jawaban3" id="jawaban3" class="form-control form-control-sm" placeholder="Jawaban C" />
-								<input type="text" name="jawaban4" id="jawaban4" class="form-control form-control-sm" placeholder="Jawaban D" />
+								<input type="text" name="jawaban4" id="jawaban4" class="form-control form-control-sm" placeholder="Jawaban D" /> -->
 							</div>
 							<div class="form-group" id="pilihan_text">
 								<label for="judul">Jawaban yang Benar</label>
 								<div class="form-check">
-									<input type="radio" name="jawaban_benar" id="jawaban_benar" class="form-radio-input" value="A" /> A
+									<input type="radio" name="jawaban_benar" id="jawaban_benar1" class="form-radio-input" value="A" /> A
 								</div>
 								<div class="form-check">
-									<input type="radio" name="jawaban_benar" id="jawaban_benar" class="form-radio-input" value="B" /> B
+									<input type="radio" name="jawaban_benar" id="jawaban_benar2" class="form-radio-input" value="B" /> B
 								</div>
 								<div class="form-check">
-									<input type="radio" name="jawaban_benar" id="jawaban_benar" class="form-radio-input" value="C" /> C
+									<input type="radio" name="jawaban_benar" id="jawaban_benar3" class="form-radio-input" value="C" /> C
 								</div>
 								<div class="form-check">
-									<input type="radio" name="jawaban_benar" id="jawaban_benar" class="form-radio-input" value="D" /> D
+									<input type="radio" name="jawaban_benar" id="jawaban_benar4" class="form-radio-input" value="D" /> D
 								</div>
 							</div>
 						</div>
@@ -348,11 +337,21 @@
 				dataType: 'json',
 				success: function (result) {
 					console.log(result);
-					var pertanyaan = result.pertanyaan;
-					var jawaban = result.jawaban;
+					var data1 = result.pertanyaan;
+					var data2 = result.jawaban;
 					$("#id_pertanyaan").val(id_tanya);
-					$("#koleksi").val(pertanyaan.id_koleksi);
-					$("#pertanyaan").val(result.pertanyaan);
+					$("#koleksi").val(data1.id_koleksi);
+					$("#pertanyaan").val(data1.pertanyaan);
+					$('#jawaban_text').html('<label for="judul">Jawaban</label>');
+					for (let index = 0; index < data2.length; index++) {
+						// const element = array[index];
+						$('#jawaban_text').append('<input type="text" name="jawaban[]" class="form-control form-control-sm" value="'+(data2[index].jawaban)+'"/>')
+						$('#jawaban_text').append('<input type="hidden" name="idjawaban[]" class="form-control form-control-sm" value="'+(data2[index].id_jawaban)+'"/>')
+						if(data2[index].id_jawaban == data1.jawaban){
+							$('#jawaban_benar'+(index+1)).attr('checked', true);
+							// $('#jawaban_benar'+(index+1)).is(":checked");
+						}
+					}
 					// $("#jawaban").val(result.jawaban);
 				}
 			})
