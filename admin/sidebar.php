@@ -27,7 +27,7 @@
 						<li class="nav-item"><a class="nav-link ml-4" href="MPoint.php">Point</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MDonasi.php">Donasi</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MLomba.php">Lomba</a></li>
-						<li class="nav-item"><a class="nav-link ml-4" href="Mevent.php">Event</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="MEvent.php">Event</a></li>
 					</ul>
 					<a class="nav-link" href="#homesubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 					<i class="ni ni-planet text-blue"></i> Data Transaksi </a>

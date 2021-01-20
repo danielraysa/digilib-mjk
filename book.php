@@ -54,7 +54,7 @@
 				<div class="col-md-6 col-lg-4 d-flex">
 					<div class="book-wrap d-lg-flex">
 						<div class="img d-flex justify-content-end"
-							style="background-image: url('<?php echo substr($row['cover'],3)?>');">
+							style="background-image: url('<?php echo substr($row['cover'],3)?>');" onclick="">
 							<div class="in-text">
 								<!-- <a href="#" class="icon d-flex align-items-center justify-content-center"
 									data-toggle="tooltip" data-placement="left" title="Add to cart">
@@ -76,7 +76,7 @@
 						</div>
 						<div class="text p-4">
 							<!-- <p class="mb-2"><span class="price">$12.00</span></p> -->
-							<h2><a href="user/baca.php"><?php echo $row['judul'] ?></a></h2>
+							<h2><a href="<?php echo 'user/baca.php?koleksi='.$row['id_koleksi']; ?>"><?php echo $row['judul'] ?></a></h2>
 							<span class="position"><?php echo $row['nama_pengarang'] ?></span>
 						</div>
 					</div>

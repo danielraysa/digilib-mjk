@@ -127,18 +127,16 @@ $target_dir = "../uploads/event/";
 
 								</thead>
 								<tbody>
-
 									<?php
-					$query = mysqli_query($conn, "SELECT * from event ");
-					//for($row = 0; $row < 10; $row++)) {
-					while ($row = mysqli_fetch_array($query)) {
-					?>
+									$query = mysqli_query($conn, "SELECT * FROM event ");
+									while ($row = mysqli_fetch_array($query)) {
+									?>
 									<tr>
-										<td><?php echo $row['judul_event'] ?></td>
+										<td style="white-space: break-spaces"><?php echo $row['judul_event'] ?></td>
 										<td><?php if($row['gambar']!= "") { ?>
 											<img src="<?php echo $row['gambar'] ?>" width="100" />
 										<?php } ?></td>
-										<td><?php echo $row['keterangan'] ?></td>
+										<td style="white-space: break-spaces"><?php echo $row['keterangan'] ?></td>
 										<td><?php echo $row['tanggal'] ?></td>
 										<td><button class="btn btn-success btnEditKat" data-toggle="modal"
 												data-target="#ModalEditevent"
@@ -181,12 +179,12 @@ $target_dir = "../uploads/event/";
 						<input type="text" name="judul_baru" id="judul_baru" class="form-control form-control-sm" placeholder="Judul event">
 					</div>
 					<div class="form-group">
-						<label for="gambar">gambar</label>
+						<label for="gambar">Gambar</label>
 						<input type="file" accept=".jpg,.jpeg,.png" name="gambar" id="gambar_baru" class="form-control form-control-sm" placeholder="Cover" />
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
-						<textarea type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" placeholder="Keterangan"></textarea>
+						<textarea type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" rows="4" placeholder="Keterangan"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tanggal">Tanggal</label>
@@ -224,12 +222,12 @@ $target_dir = "../uploads/event/";
 						<input type="text" name="judul_event" id="judul_event" class="form-control form-control-sm" placeholder="gambar">
 					</div>
 					<div class="form-group">
-						<label for="gambar">gambar</label>
+						<label for="gambar">Gambar</label>
 						<input type="file" accept=".jpg,.jpeg,.png" name="gambar" id="gambar_baru" class="form-control form-control-sm" placeholder="Cover" />
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
-						<textarea type="text" name="ket" id="ket" class="form-control form-control-sm" placeholder="Keterangan"></textarea>
+						<textarea type="text" name="ket" id="ket" class="form-control form-control-sm" rows="4" placeholder="Keterangan"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tanggal">Tanggal</label>
