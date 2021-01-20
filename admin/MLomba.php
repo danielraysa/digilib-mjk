@@ -109,7 +109,6 @@ $target_dir = "../uploads/lomba/";
 							<h6 class="h2 text-white d-inline-block mb-0">lomba</h6>
 						</div>
 						<div class="col-lg-6 col-5 text-right">
-							<h6 class="h2 text-white d-inline-block mb-0">lomba Koleksi</h6>
 							<a href="#" class="btn btn-sm btn-neutral" data-toggle="modal"
 								data-target="#ModalTambahlomba">Tambah</a>
 						</div>
@@ -128,9 +127,9 @@ $target_dir = "../uploads/lomba/";
 							<table id="Tabel2" class="table table-bordered">
 								<thead>
 									<tr>
-										<th>Judul</th>
+										<th style="width: 20%">Judul</th>
 										<th>Poster</th>					
-										<th>Keterangan</th>
+										<th style="width: 30%">Keterangan</th>
 										<th>Tanggal</th>
 										<th>Action</th>						
 									</tr>
@@ -145,11 +144,11 @@ $target_dir = "../uploads/lomba/";
 						
 					?>
 									<tr>
-										<td><?php echo $row['judul_lomba'] ?></td>
+										<td style="white-space: break-spaces"><?php echo $row['judul_lomba'] ?></td>
 										<td><?php if($row['poster']!= "") { ?>
 											<img src="<?php echo $row['poster'] ?>" width="100" />
 										<?php } ?></td>
-										<td><?php echo $row['keterangan'] ?></td>
+										<td style="white-space: break-spaces"><?php echo $row['keterangan'] ?></td>
 										<td><?php echo $row['tgl'] ?></td>
 										<td><button class="btn btn-success btnEditKat" data-toggle="modal"
 												data-target="#ModalEditlomba"
@@ -197,7 +196,7 @@ $target_dir = "../uploads/lomba/";
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
-						<textarea type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" placeholder="Keterangan"></textarea>
+						<textarea type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" rows="4" placeholder="Keterangan"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tgl">Tanggal</label>
@@ -226,7 +225,7 @@ $target_dir = "../uploads/lomba/";
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="post" enctype="multipart/form-data>
+					<form action="" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 						<label for="id">ID Lomba</label>
 						<input type="text" name="id_lomba" id="id_lomba" class="form-control form-control-sm" placeholder="Id"  readonly>
@@ -242,7 +241,7 @@ $target_dir = "../uploads/lomba/";
 					</div>
 					<div class="form-group">
 						<label for="keterangan">Keterangan</label>
-						<input type="text" name="ket" id="ket" class="form-control form-control-sm" placeholder="Keterangan">
+						<textarea name="ket" id="ket" class="form-control form-control-sm"  rows="4"placeholder="Keterangan"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tgl">Tanggal</label>
@@ -283,7 +282,9 @@ $target_dir = "../uploads/lomba/";
 	<?php include "js-script.php"; ?>
 	<script>
 		
-		$('#Tabel2').DataTable();
+		$('#Tabel2').DataTable({
+
+		});
 		$('#Tabel2 tbody').on('click', '.btnEditKat', function () {
 			var idlomba = $(this).attr('data-id');
 			$.ajax({
