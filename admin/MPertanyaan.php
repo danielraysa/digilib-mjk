@@ -98,10 +98,10 @@
 		}
 		$query = mysqli_query($conn, "UPDATE pertanyaan SET id_koleksi = '$koleksi', pertanyaan = '$pertanyaan', jawaban = '$id_jawaban_benar' WHERE id_pertanyaan = '$id_pertanyaan'");
 
-		$jawaban1 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban1' WHERE id_jawaban = '$id_jawaban_1'");
-		$jawaban2 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban1' WHERE id_jawaban = '$id_jawaban_2'");
-		$jawaban3 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban1' WHERE id_jawaban = '$id_jawaban_3'");
-		$jawaban4 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban1' WHERE id_jawaban = '$id_jawaban_4'");
+		$jawaban1 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban_a' WHERE id_jawaban = '$id_jawaban_1'");
+		$jawaban2 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban_b' WHERE id_jawaban = '$id_jawaban_2'");
+		$jawaban3 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban_c' WHERE id_jawaban = '$id_jawaban_3'");
+		$jawaban4 = mysqli_query($conn, "UPDATE jawaban SET jawaban = '$jawaban_d' WHERE id_jawaban = '$id_jawaban_4'");
 		
 		$update = mysqli_query($conn, "UPDATE pertanyaan SET jawaban = '$id_jawaban_benar' WHERE id_pertanyaan = '$id_pertanyaan'") or die(mysqli_error($conn));
 		if(!$query){

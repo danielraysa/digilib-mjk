@@ -45,6 +45,12 @@
 		}
 		echo json_encode(['pertanyaan' => $pertanyaan, 'jawaban' => $jawaban]);
 	}
+	if(isset($_POST['editpertanyaan'])){
+		$id = $_POST['id_pertanyaan'];
+		$query = mysqli_query($conn, "SELECT * FROM jawaban j JOIN pertanyaan p ON j.id_pertanyaan=p.id_pertanyaan WHERE j.id_pertanyaan = '".$id."'");
+		$pertanyaan = mysqli_fetch_assoc($query);
+		
+	}
 	if(isset($_POST['editkoleksi'])){
 		$id = $_POST['id_koleksi'];
 		$query = mysqli_query($conn, "SELECT * FROM koleksi join kategori ON koleksi.id_kategori = kategori.id_kategori WHERE id_koleksi = '".$id."'");

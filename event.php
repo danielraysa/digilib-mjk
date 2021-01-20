@@ -23,304 +23,45 @@
 		</div>
 	</section>
 
-	<section class="ftco-section ftco-degree-bg">
+	<section class="ftco-section">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-9 ftco-animate">
-						<div class="row">
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-1.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 w-100">
-		    						<p class="mb-2"><span class="price">$12.00</span></p>
-		    						<h2><a href="#">You Are Your Only Limit</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-2.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 w-100">
-		    						<p class="mb-2"><span class="price sale">$12.00</span> <span class="price">$8.00</span></p>
-		    						<h2><a href="#">101 Essays That Will Change The Way Your Thinks</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-3.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 w-100">
-		    						<p class="mb-2"><span class="price">$12.00</span></p>
-		    						<h2><a href="#">Your Soul Is A River</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-4.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 order-md-first w-100">
-		    						<p class="mb-2"><span class="price">$9.00</span></p>
-		    						<h2><a href="#">All The Letters I Should Have Sent</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-5.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 order-md-first w-100">
-		    						<p class="mb-2"><span class="price">$20.00</span></p>
-		    						<h2><a href="#">Happy</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-6.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 order-md-first w-100">
-		    						<p class="mb-2"><span class="price">$12.00</span></p>
-		    						<h2><a href="#">Milk &amp; Honey</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-7.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 w-100">
-		    						<p class="mb-2"><span class="price">$9.00</span></p>
-		    						<h2><a href="#">Take The Risk</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-8.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 w-100">
-		    						<p class="mb-2"><span class="price">$20.00</span></p>
-		    						<h2><a href="#">Happy</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 d-flex">
-		    				<div class="book-wrap">
-		    					<div class="img d-flex justify-content-end w-100" style="background-image: url(images/book-9.jpg);">
-		    						<div class="in-text">
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-		    								<span class="flaticon-shopping-cart"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-		    								<span class="flaticon-heart-1"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-		    								<span class="flaticon-search"></span>
-		    							</a>
-		    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-		    								<span class="flaticon-visibility"></span>
-		    							</a>
-		    						</div>
-		    					</div>
-		    					<div class="text px-4 py-3 w-100">
-		    						<p class="mb-2"><span class="price">$12.00</span></p>
-		    						<h2><a href="#">Jerusalem A CookBook</a></h2>
-		    						<span class="position">By John Nathan Muller</span>
-		    					</div>
-		    				</div>
-		    			</div>
-		    		</div>
-		    		<div class="row mt-5">
-		          <div class="col">
-		            <div class="block-27">
-		              <ul>
-		                <li><a href="#">&lt;</a></li>
-		                <li class="active"><span>1</span></li>
-		                <li><a href="#">2</a></li>
-		                <li><a href="#">3</a></li>
-		                <li><a href="#">4</a></li>
-		                <li><a href="#">5</a></li>
-		                <li><a href="#">&gt;</a></li>
-		              </ul>
-		            </div>
-		          </div>
-		        </div>
-          </div> <!-- .col-md-8 -->
-
-          <div class="col-lg-3 sidebar pl-lg-3 ftco-animate">
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="fa fa-search"></span>
-                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+        <div class="row d-flex">
+		<?php 
+					$query_event1 = mysqli_query($conn, "SELECT * FROM event");
+					while ($row = mysqli_fetch_array($query_event1)) 
+					
+					{
+				?>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+			 
+              <div class="text text-center">
+              	<a href="event_fact.php" class="block-20 img" style="background-image: url(<?php echo substr($row['gambar'],3) ?>);">
+	              </a>
+	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
+                	<div>
+                		<span class="day"><?echo date('d', strtotime($row['tanggal']))?></span>
+                		<span class="mos"><?echo date('M', strtotime($row['tanggal']))?></span> 
+                		<span class="yr"><?echo date('Y', strtotime($row['tanggal']))?></span>
+                	</div>
                 </div>
-              </form>
-            </div>
-            <div class="sidebar-box ftco-animate">
-              <div class="categories">
-                <h3>Genres</h3>
-                <ul>
-	                <li><a href="#">Fantasy <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Adventure <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Romance <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Contemporary <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Dystopian <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Mystery <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Horror <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Thriller <span class="fa fa-chevron-right"></span></a></li>
-	              </ul>
+                <h3 class="heading mb-3"><a href="#"><?php echo $row['judul_event'] ?></a></h3>
+                <!-- <p><?php echo $row['keterangan']?></p> -->
               </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Top Authors</h3>
-              <ul class="top">
-              	<li><a href="#">John Nathan Muller</a></li>
-              	<li><a href="#">Sandra Park</a></li>
-              	<li><a href="#">Laura Preston</a></li>
-              	<li><a href="#">John Doe</a></li>
-              	<li><a href="#">Mc Gregor Douglas</a></li>
-              	<li><a href="#">Atom Night</a></li>
-              	<li><a href="#">Danny Green</a></li>
-              	<li><a href="#">Sonya Lopez</a></li>
-              	<li><a href="#">Archie Bochs</a></li>
-              	<li><a href="#">Jelian Coward</a></li>
-              	<li><a href="#">Mark Hatton</a></li>
-              	<li><a href="#">Madison Mc Collen</a></li>
-              </ul>
+			  
             </div>
           </div>
-
+		  <?php } ?>
+        </div>
+        <div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+			
+            </div>
+          </div>
         </div>
       </div>
-    </section> <!-- .section -->
-
+    </section>
 	<!-- <footer class="ftco-footer"> -->
 		
 		<?php include "footer.php"; ?>
