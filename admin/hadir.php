@@ -125,7 +125,7 @@ $tgl = date('Y-m-d');
           <select id="status_baru" name="status_baru" class="form-control form-control-sm">
             <option value="">-- Pilih Status --</option>
             <option value="">Siswa</option>
-            <option value="">Karyawan</option>
+            <option value="">Guru/Staff</option>
             <option value="">Alumni</option>
             <option value="">Pengunjung Luar</option>
           </select>
@@ -143,7 +143,8 @@ $tgl = date('Y-m-d');
           </select>
         </div>
        
-        <button type="submit" name="tambah" class="btn btn-primary">Submit</button>
+        <button type="submit" name="tambah" data-toggle="modal"
+												data-target="#ModalTambah" class="btn btn-primary">Submit</button>
       </form>
       </div>
     </div>
@@ -152,7 +153,21 @@ $tgl = date('Y-m-d');
         </div>
       </div>
     </div>
-    
+    <div class="modal fade" id="ModalTambah" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				
+				<div class="modal-body">
+					<form action="" method="post">
+					<h1>WELCOME</h1>
+					<!-- <input type="hidden" name="id_point" id="id_point_hapus" class="form-control form-control-sm" readonly> -->
+						
+				</div>
+				
+				</form>
+			</div>
+		</div>
+	</div>
     
         <div class="row pt-5 mt-5 text-center">
           <div class="col-md-12">
@@ -186,6 +201,12 @@ $tgl = date('Y-m-d');
     <script src="js/aos.js"></script>
 
     <script src="js/main.js"></script>
+    <script>
+    $('.btnHapusKat').on('click', function () {
+			var idKategori = $(this).attr('data-id');
+			$("#id_kategori_hapus").val(idKategori);
+		});
+    </script>
 
   </body>
 

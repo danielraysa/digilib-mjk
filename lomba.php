@@ -29,17 +29,20 @@
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
 			  <?php 
-					$query_lomba1 = mysqli_query($conn, "SELECT * FROM lomba");
-					while ($row = mysqli_fetch_array($query_lomba1)) {
+					$query_lomba1 = mysqli_query($conn, "SELECT poster, judul_lomba, keterangan, YEAR(tgl) as thn, 
+					DAY(tgl) as d, MONTHNAME(tgl) as m FROM lomba");
+					while ($row = mysqli_fetch_array($query_lomba1)) 
+					
+					{
 				?>
               <div class="text text-center">
               	<a href="lomba_fact.php" class="block-20 img" style="background-image: url(<?php echo substr($row['poster'],3) ?>);">
 	              </a>
 	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
                 	<div>
-                		<span class="day">03</span>
-                		<span class="mos">May</span>
-                		<span class="yr">2020</span>
+                		<span class="day"><?echo substr($row['d'],3)?></span>
+                		<span class="mos"><?echo substr($row['m'],3)?></span> 
+                		<span class="yr"><?echo substr($row['thn'],3)?></span>
                 	</div>
                 </div>
                 <h3 class="heading mb-3"><a href="#"><?php echo $row['judul_lomba'] ?></a></h3>
@@ -52,15 +55,7 @@
         <div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
+			
             </div>
           </div>
         </div>
