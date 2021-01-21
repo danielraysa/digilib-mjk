@@ -23,11 +23,15 @@
     }else if($fet['tanggal_baca'] != $tgl){
         $query = mysqli_query($conn, "INSERT INTO log_baca SELECT IFNULL(MAX(id_logbaca)+1,1), '$id', '".$user_id."', ".$fet['halaman_bacatg'].", '$tgl' FROM log_baca") or die(mysqli_error($conn));
     }
-    if(!$fet){
+    $data_baca = mysqli_query($conn, "SELECT * FROM log_baca WHERE id_koleksi = '$id' AND id_pengguna = '$user_id' ORDER BY tanggal_baca DESC LIMIT 1");
+    $row_baca = mysqli_fetch_assoc($data_baca);
+    $id_log = $row_baca['id_logbaca'];
+    $halaman = $row_baca['halaman_bacatg'];
+    /* if(!$fet){
         $halaman = 1;
     }else{
         $halaman = $fet['halaman_bacatg'];
-    }
+    } */
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,23 +72,48 @@
     
     <script src="js/pdf.js"></script>
 	<script>
+    function updateBacaan(page){
+        var id_log = '<?php echo $id_log; ?>';
+        var page_count = $('#page_count').text();
+        $.ajax({
+            url: "ajax.php",
+            type: "post",
+            data: {update_bacaan: true, id_log: id_log, halaman: page},
+            success: function(result){
+                console.log(result);
+                
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
+
+    function redirectQuiz(){
+        window.location.href = "quiz.php?id=<?php echo $id; ?>";
+    }
+
 	$(document).keydown(function(e) {
-        console.log(e.keyCode);
+        // var hal = $('#page_num').text();
+        // console.log(e.keyCode);
         // left
         if(e.keyCode == 37 || e.keyCode == 38){
             $('#prev').click();
+            // updateBacaan(hal);
             e.preventDefault();
         }
         // right
         if(e.keyCode == 39 || e.keyCode == 40){
             $('#next').click();
+            // updateBacaan(hal);
             e.preventDefault();
         }
     });
+    
     var url = "<?php echo $row['file'] ?>";
     var halaman = <?php echo $halaman ?>;
     var pdfDoc = null,
-        pageNum = 1,
+        pageNum = halaman,
         pageRendering = false,
         pageNumPending = null,
         scale = 1,
@@ -128,6 +157,9 @@
         // Update page counters
         document.getElementById('page_num').textContent = num;
         document.getElementById('page_number').value = num;
+        if(num == pdfDoc.numPages){
+            alert('Bacaan selesai. Klik next/tombol kanan untuk melanjutkan ke pertanyaan/quiz');
+        }
     }
 
     /**
@@ -139,6 +171,7 @@
             pageNumPending = num;
         } else {
             renderPage(num);
+            updateBacaan(num);
         }
     }
 
@@ -159,6 +192,7 @@
     */
     function onNextPage() {
         if (pageNum >= pdfDoc.numPages) {
+            redirectQuiz();
             return;
         }
         pageNum++;

@@ -4,6 +4,23 @@
 	include "../koneksi.php";
 	include "../function.php";
     check_session($dir."/".$filename);
+    /* if(isset($_GET['koleksi'])){
+        header('location:../');
+        exit;
+    }else{
+        $id = $_GET['koleksi'];
+    } */
+    $id = $_GET['koleksi'] ? $_GET['koleksi'] : '';
+    if($id != ''){
+        $user_id = $_SESSION['user_id'];
+        $get_quiz = mysqli_query($conn, "SELECT * from log_quiz lq WHERE id_pengguna = '".$user_id."' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan p WHERE id_koleksi = '".$id."')");
+        if(mysqli_num_rows($get_quiz) == 0){
+            $_quiz = mysqli_query($conn, "SELECT * from pertanyaan WHERE id_koleksi = '".$id."'");
+            while($_row = mysqli_fetch_assoc($_quiz)){
+                $insert = mysqli_query($conn, "INSERT INTO log_quiz (id_logquiz, id_pertanyaan, id_pengguna) SELECT IFNULL(MAX(id_logquiz)+1,1), '".$_row['id_pertanyaan']."', '".$user_id."'");
+            }
+        }
+    }
     $get_point = mysqli_query($conn, "SELECT * FROM point_pengguna pp JOIN points p ON p.id_point = pp.id_point WHERE pp.id_pengguna = '".$_SESSION['user_id']."'");
     
 ?>
@@ -31,7 +48,7 @@
                                 <thead>
                                     <tr class="bg-primary text-white">
                                         <th style="width:10%">No.</th>
-                                        <th>Kegiatan</th>
+                                        <th>Buku</th>
                                         <th>Point</th>
                                         <th>Tanggal Peroleh</th>
                                     </tr>
