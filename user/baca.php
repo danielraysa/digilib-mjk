@@ -27,11 +27,8 @@
     $row_baca = mysqli_fetch_assoc($data_baca);
     $id_log = $row_baca['id_logbaca'];
     $halaman = $row_baca['halaman_bacatg'];
-    /* if(!$fet){
-        $halaman = 1;
-    }else{
-        $halaman = $fet['halaman_bacatg'];
-    } */
+    
+    $cek_pertanyaan = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_koleksi = '$id'");
 ?>
 <!DOCTYPE html>
 <html>
@@ -90,27 +87,28 @@
     }
 
     function redirectQuiz(){
+        if(adaQuiz){
+            window.location.href = "../book.php";
+        }
         window.location.href = "quiz.php?id=<?php echo $id; ?>";
     }
 
 	$(document).keydown(function(e) {
-        // var hal = $('#page_num').text();
         // console.log(e.keyCode);
         // left
         if(e.keyCode == 37 || e.keyCode == 38){
             $('#prev').click();
-            // updateBacaan(hal);
             e.preventDefault();
         }
         // right
         if(e.keyCode == 39 || e.keyCode == 40){
             $('#next').click();
-            // updateBacaan(hal);
             e.preventDefault();
         }
     });
     
     var url = "<?php echo $row['file'] ?>";
+    var adaQuiz = <?php if (mysqli_num_rows($cek_pertanyaan) != 0) echo true; else echo false; ?>;
     var halaman = <?php echo $halaman ?>;
     var pdfDoc = null,
         pageNum = halaman,
@@ -157,7 +155,7 @@
         // Update page counters
         document.getElementById('page_num').textContent = num;
         document.getElementById('page_number').value = num;
-        if(num == pdfDoc.numPages){
+        if(num == pdfDoc.numPages && adaQuiz){
             alert('Bacaan selesai. Klik next/tombol kanan untuk melanjutkan ke pertanyaan/quiz');
         }
     }
