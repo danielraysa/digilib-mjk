@@ -13,13 +13,15 @@
     $get_koleksi = mysqli_query($conn, "SELECT * FROM koleksi WHERE id_koleksi = '$id'");
     $row = mysqli_fetch_assoc($get_koleksi);
     $tgl = date('Y-m-d');
-    $cek_histori = mysqli_query($conn, "SELECT * FROM log_baca WHERE id_koleksi = '$id' AND id_pengguna = '".$_SESSION['user_id']."' ORDER BY tanggal_baca DESC");
+    $user_id = $_SESSION['user_id'];
+    $cek_histori = mysqli_query($conn, "SELECT * FROM log_baca WHERE id_koleksi = '$id' AND id_pengguna = '".$user_id."' ORDER BY tanggal_baca DESC");
     $fet = mysqli_fetch_assoc($cek_histori);
+    $kode_point = 'PO001';
     if(mysqli_num_rows($cek_histori) == 0){
-        $query = mysqli_query($conn, "INSERT INTO log_baca SELECT IFNULL(MAX(id_logbaca)+1,1), '$id', '".$_SESSION['user_id'].", 1, '$tgl'");
-        $query = mysqli_query($conn, "INSERT INTO point_pengguna(id_ppengguna, id_pengguna, id_point, tgl_perolehan) SELECT IFNULL(MAX(id_ppengguna)+1,1),'".$_SESSION['user_id'].", '".$kode_point."', '".date('Y-m-d H:i:s')."'");
+        $query = mysqli_query($conn, "INSERT INTO log_baca SELECT IFNULL(MAX(id_logbaca)+1,1), '$id', '".$user_id."', 1, '$tgl' FROM log_baca") or die(mysqli_error($conn));
+        $query = mysqli_query($conn, "INSERT INTO point_pengguna(id_ppengguna, id_pengguna, id_point, tgl_perolehan) SELECT IFNULL(MAX(id_ppengguna)+1,1),'".$user_id."', '".$kode_point."', '".date('Y-m-d H:i:s')."' FROM point_pengguna") or die(mysqli_error($conn));
     }else if($fet['tanggal_baca'] != $tgl){
-        $query = mysqli_query($conn, "INSERT INTO log_baca SELECT IFNULL(MAX(id_logbaca)+1,1), '$id', '".$_SESSION['user_id'].", ".$fet['halaman_bacatg'].", '$tgl'");
+        $query = mysqli_query($conn, "INSERT INTO log_baca SELECT IFNULL(MAX(id_logbaca)+1,1), '$id', '".$user_id."', ".$fet['halaman_bacatg'].", '$tgl' FROM log_baca") or die(mysqli_error($conn));
     }
     if(!$fet){
         $halaman = 1;
