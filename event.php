@@ -40,9 +40,9 @@
 	              </a>
 	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
                 	<div>
-                		<span class="day"><?echo date('d', strtotime($row['tanggal']))?></span>
-                		<span class="mos"><?echo date('M', strtotime($row['tanggal']))?></span> 
-                		<span class="yr"><?echo date('Y', strtotime($row['tanggal']))?></span>
+                		<span class="day"><?echo date('d', strtotime($row['tanggal']));?></span>
+                		<span class="mos"><?echo date('M', strtotime($row['tanggal']));?></span> 
+                		<span class="yr"><?echo date('Y', strtotime($row['tanggal']));?></span>
                 	</div>
                 </div>
                 <h3 class="heading mb-3"><a href="#"><?php echo $row['judul_event'] ?></a></h3>
