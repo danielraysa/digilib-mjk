@@ -12,7 +12,7 @@
 				<!-- Nav items -->
 				<ul class="navbar-nav">
 					<li class="nav-item">
-					<a class="nav-link" href="admin.php">
+					<a class="nav-link" href="home.php">
 						<i class="ni ni-tv-2 text-primary"></i>
 						<span class="nav-link-text">Dashboard</span>
 					</a>
