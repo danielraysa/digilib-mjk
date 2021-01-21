@@ -14,7 +14,7 @@
 //proses tambah
 if(isset($_POST['tambah_usulan'])){
 	// $id = $_POST['id_baru'];
-	check_session($filename);
+	check_session($filename, $root_folder);
 	$judul = $_POST['judul_buku'];
 	$gambar= $_POST['pengarang'];
 	$keterangan= $_POST['penerbit'];
