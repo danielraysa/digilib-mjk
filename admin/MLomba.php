@@ -1,20 +1,12 @@
 
-<?php include "../koneksi.php"; 
-function generateRandomString($length = 20) {
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$charactersLength = strlen($characters);
-	$randomString = '';
-	for ($i = 0; $i < $length; $i++) {
-		$randomString .= $characters[rand(0, $charactersLength - 1)];
-	}
-	return $randomString;
-}
+<?php
+	$filename = basename(__FILE__);
+	$dir = basename(__DIR__);
+	include "../koneksi.php";
+	include "../function.php";
+	check_session($dir."/".$filename);
+	$target_dir = "../uploads/lomba/";
 
-$target_dir = "../uploads/lomba/";
-
-?>
-
-<?php 
 // proses tambah
 	if(isset($_POST['tambah_lomba'])){
 		$id = $_POST['id_baru'];

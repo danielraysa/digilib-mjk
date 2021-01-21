@@ -5,15 +5,6 @@
 	include "../function.php";
 	check_session($dir."/".$filename);
 
-	function generateRandomString($length = 20) {
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$charactersLength = strlen($characters);
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++) {
-			$randomString .= $characters[rand(0, $charactersLength - 1)];
-		}
-		return $randomString;
-	}
 	// proses tambah
 	$target_dir = "../uploads/koleksi/";
 	$target_dir_file = "../uploads/file/";
