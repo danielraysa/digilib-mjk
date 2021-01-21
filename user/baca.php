@@ -12,6 +12,19 @@
     check_session($dir."/".$filename."?koleksi=".$_GET['koleksi']);
     $get_koleksi = mysqli_query($conn, "SELECT * FROM koleksi WHERE id_koleksi = '$id'");
     $row = mysqli_fetch_assoc($get_koleksi);
+    $tgl = date('Y-m-d');
+    $cek_histori = mysqli_query($conn, "SELECT * FROM log_baca WHERE id_koleksi = '$id' AND id_pengguna = '".$_SESSION['user_id']."' ORDER BY tanggal_baca DESC");
+    $fet = mysqli_fetch_assoc($cek_histori);
+    if(mysqli_num_rows($cek_histori) == 0){
+        $query = mysqli_query($conn, "INSERT INTO log_baca SELECT IFNULL(MAX(id_logbaca)+1,1), '$id', '".$_SESSION['user_id'].", 1, '$tgl'");
+    }else if($fet['tanggal_baca'] != $tgl){
+        $query = mysqli_query($conn, "INSERT INTO log_baca SELECT IFNULL(MAX(id_logbaca)+1,1), '$id', '".$_SESSION['user_id'].", ".$fet['halaman_bacatg'].", '$tgl'");
+    }
+    if(!$fet){
+        $halaman = 1;
+    }else{
+        $halaman = $fet['halaman_bacatg'];
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,7 +79,7 @@
         }
     });
     var url = "<?php echo $row['file'] ?>";
-
+    var halaman = <?php echo $halaman ?>;
     var pdfDoc = null,
         pageNum = 1,
         pageRendering = false,

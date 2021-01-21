@@ -12,22 +12,34 @@
 				<!-- Nav items -->
 				<ul class="navbar-nav">
 					<li class="nav-item">
-					<a class="nav-link" href="admin.php">
-						<i class="ni ni-tv-2 text-primary"></i>
-						<span class="nav-link-text">Dashboard</span>
-					</a>
+						<a class="nav-link" href="admin.php">
+							<i class="ni ni-tv-2 text-primary"></i>
+							<span class="nav-link-text">Dashboard</span>
+						</a>
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" href="../book.php">
-						<i class="ni ni-tv-2 text-primary"></i>
-						<span class="nav-link-text">Koleksi</span>
-					</a>
+						<a class="nav-link" href="point.php">
+							<i class="ni ni-tv-2 text-primary"></i>
+							<span class="nav-link-text">Point</span>
+						</a>
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" href="../usulan.php">
-						<i class="ni ni-tv-2 text-primary"></i>
-						<span class="nav-link-text">Usulan</span>
-					</a>
+						<a class="nav-link" href="quiz.php">
+							<i class="ni ni-tv-2 text-primary"></i>
+							<span class="nav-link-text">Quiz</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../book.php">
+							<i class="ni ni-tv-2 text-primary"></i>
+							<span class="nav-link-text">Koleksi</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../usulan.php">
+							<i class="ni ni-tv-2 text-primary"></i>
+							<span class="nav-link-text">Usulan</span>
+						</a>
 					</li>
 				</ul>
 				<!-- Divider -->
