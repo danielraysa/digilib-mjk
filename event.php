@@ -28,25 +28,23 @@
         <div class="row d-flex">
 		<?php 
 					$query_event1 = mysqli_query($conn, "SELECT * FROM event");
-					while ($row = mysqli_fetch_array($query_event1)) 
-					
-					{
+					while ($row = mysqli_fetch_array($query_event1)) {
 				?>
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
 			 
               <div class="text text-center">
-              	<a href="event_fact.php" class="block-20 img" style="background-image: url(<?php echo substr($row['gambar'],3) ?>);">
+              	<a href="event_fact.php" class="block-20 img" style="background-image: url('<?php echo substr($row['gambar'],3) ?>');">
 	              </a>
 	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
                 	<div>
-                		<span class="day"><?echo date('d', strtotime($row['tanggal']));?></span>
-                		<span class="mos"><?echo date('M', strtotime($row['tanggal']));?></span> 
-                		<span class="yr"><?echo date('Y', strtotime($row['tanggal']));?></span>
+                		<span class="day"><?php echo date('d', strtotime($row['tanggal'])); ?></span>
+                		<span class="mos"><?php echo date('M', strtotime($row['tanggal'])); ?></span> 
+                		<span class="yr"><?php echo date('Y', strtotime($row['tanggal'])); ?></span>
                 	</div>
                 </div>
                 <h3 class="heading mb-3"><a href="#"><?php echo $row['judul_event'] ?></a></h3>
-                <!-- <p><?php echo $row['keterangan']?></p> -->
+                
               </div>
 			  
             </div>

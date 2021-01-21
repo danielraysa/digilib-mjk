@@ -44,7 +44,7 @@
                 	</div>
                 </div>
                 <h3 class="heading mb-3"><a href="#"><?php echo $row['judul_lomba'] ?></a></h3>
-                <p><?php echo $row['keterangan']?></p>
+                
               </div>
 			  
             </div>

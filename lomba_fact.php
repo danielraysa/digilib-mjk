@@ -23,19 +23,23 @@
 		</div>
 	</section>
 		
-		<section class="ftco-section ftco-degree-bg">
+		<section class="ftco-section ">
+    <?php 
+					$query_lomba = mysqli_query($conn, "SELECT * FROM lomba");
+					while ($row = mysqli_fetch_array($query_lomba)) {
+				?>
       <div class="container">
         <div class="row">
-        <?php 
-					$query_lomba = mysqli_query($conn, "SELECT * FROM lomba");
-					while ($row = mysqli_fetch_array($query_koleksi)) {
-				?>
+        
           <div class="col-lg-8 ftco-animate">
           	<p>
               <img src="<?php echo substr($row['poster'],3) ?>" alt="" class="img-fluid">
             </p>
             <h2 class="mb-3"><?php echo $row['judul_lomba'] ?></h2>
             <p><?php echo $row['keterangan']?></p>
+            </div>
+            </div>
+            </div>
       <?php }?>
       
       </section>
@@ -50,9 +54,9 @@
 		<?php include "footer.php"; ?>
 	</footer>
 
-	<?php include "js-script.php"; ?>
 
-  <!-- <script src="js/jquery.min.js"></script>
+
+  <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -66,7 +70,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-  <script src="js/main.js"></script> -->
+  <script src="js/main.js"></script>
     
   </body>
 </html>
