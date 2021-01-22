@@ -18,6 +18,12 @@
 					</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link" href="histori_baca.php">
+							<i class="ni ni-tv-2 text-primary"></i>
+							<span class="nav-link-text">Arsip/Histori</span>
+						</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" href="point.php">
 							<i class="ni ni-tv-2 text-primary"></i>
 							<span class="nav-link-text">Point</span>

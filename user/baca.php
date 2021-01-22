@@ -3,14 +3,18 @@
 	$dir = basename(__DIR__);
 	include "../koneksi.php";
 	include "../function.php";
-    if(!isset($_GET['koleksi'])){
+    if(!isset($_GET['id'])){
         header('location:../');
         exit;
     }else{
-        $id = $_GET['koleksi'];
+        $id = $_GET['id'];
     }
-    check_session($dir."/".$filename."?koleksi=".$_GET['koleksi']);
+    check_session($dir."/".$filename."?id=".$id);
     $get_koleksi = mysqli_query($conn, "SELECT * FROM koleksi WHERE id_koleksi = '$id'");
+    if(mysqli_num_rows($get_koleksi) == 0){
+        header('location:../');
+        exit;
+    }
     $row = mysqli_fetch_assoc($get_koleksi);
     $tgl = date('Y-m-d');
     $user_id = $_SESSION['user_id'];
