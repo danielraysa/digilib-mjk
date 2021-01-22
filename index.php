@@ -20,8 +20,7 @@
 						<h1 class="mb-4">Good books don't give up all their secrets at once</h1>
 						<p class="mb-4">A small river named Duden flows by their place and supplies it with the
 							necessary regelialia.</p>
-						<p><a href="#" class="btn btn-primary py-3 px-4">View All Books</a> <a href="#"
-								class="btn btn-white py-3 px-4">Explore Now</a></p>
+						<p><a href="book.php" class="btn btn-primary py-3 px-4">View All Books</a> 
 					</div>
 				</div>
 			</div>
@@ -84,39 +83,86 @@
 			<div class="row">
 				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 py-4 mb-4">
-						<div class="text align-items-center">
-							<strong class="number" data-number="75678">0</strong>
-							<span></span>
+						<div class="text align-items-center" data-toggle="modal"
+							data-target="#LeaderBoard">
+							<div id="lineChart1" style="height: 200px"></div>
+							<br>
+							<h3>Point Pengguna</h3>
 						</div>
 					</div>
 				</div>
+
 				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 py-4 mb-4">
 						<div class="text align-items-center">
-							<strong class="number" data-number="3040">0</strong>
-							<span>Total Pages</span>
+							<div id="lineChart2" style="height: 200px"></div>
 						</div>
 					</div>
 				</div>
+
 				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 py-4 mb-4">
 						<div class="text align-items-center">
-							<strong class="number" data-number="283">0</strong>
-							<span>Cup Of Coffee</span>
+							<div id="lineChart3" style="height: 200px"></div>
+							
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-					<div class="block-18 py-4 mb-4">
-						<div class="text align-items-center">
-							<strong class="number" data-number="14500">0</strong>
-							<span>Facebook Fans</span>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</section>
+	<div class="modal fade" id="LeaderBoard" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">LeaderBoard</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				<div class="row">
+				<div class="col-xl-12 col-md-12">
+				<h1><center>Top 10</center></h1>
+					<div class="card card-stats">
+					<div class="card-body table-responsive">
+						<!-- Card body -->
+						<table id="myTable" class="table table-bordered">
+							<thead>
+								<tr>
+									
+									<th>Username</th>
+									<th>Point</th>
+								</tr>
+
+							</thead>
+							<tbody>
+
+								<?php
+								//querynya belum okeh
+                  $query = mysqli_query($conn, "SELECT pengguna.username name, SUM(points.point) AS jumlah FROM pengguna JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna JOIN points ON point_pengguna.id_point = points.id_point
+				   WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC Limit 0,10");
+                  //for($row = 0; $row < 10; $row++)) {
+                  while ($row = mysqli_fetch_array($query)) {
+                  ?>
+								<tr>
+									<td><?php echo $row['name'] ?></td>
+									<td><?php echo $row['jumlah'] ?></td>
+								</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+			</div>
+		</div>
+	</div>
+	</div>
 	<!-- Informasi About -->
 	<section class="ftco-section">
 		<div class="container">
@@ -578,11 +624,57 @@
             </div>
           </div>
         </div>
+		
       </div> -->
+	 
 	<?php include "footer.php"; ?>
 	<!-- </footer> -->
 	
 	<?php include "js-script.php"; ?>
+
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+	<script>
+	$(document).ready(function() {
+		var myConfig = {
+			type: "bar",
+			"scale-r": {
+				aperture: 200,
+			},
+			"plotarea":{
+				"margin":"0"
+			},
+			series: [{
+				values: [40,40,10]
+				}
+			]
+		};
+			
+		zingchart.render({
+			id: 'lineChart1',
+			data: myConfig,
+			height: "280px",
+			width: "100%"
+		});
+
+		zingchart.render({
+			id: 'lineChart2',
+			data: myConfig,
+			height: "280px",
+			width: "100%"
+		});
+
+		zingchart.render({
+			id: 'lineChart3',
+			data: myConfig,
+			height: "280px",
+			width: "100%"
+		});
+
+
+		})
+	</script>
+
 </body>
 
 </html>

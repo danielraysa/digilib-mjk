@@ -86,6 +86,7 @@
 						<div class="card-body p-1">
 						<table class="table table-bordered table-striped">
 							<thead>
+
 								<tr class="bg-primary text-white">
 									<th style="width:10%">No.</th>
 									<th>User</th>
@@ -93,26 +94,20 @@
 								</tr>
 							</thead>
 							<tbody>
+							<?php
+								//querynya belum okeh
+								$query = mysqli_query($conn, "SELECT pengguna.username as nama, SUM(points.point) AS jumlah FROM `pengguna` JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna 
+								JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC 
+								");
+								//for($row = 0; $row < 10; $row++)) {
+								while ($row = mysqli_fetch_array($query)) {
+								?>
 								<tr>
-									<td>1.</td>
-									<td>User A</td>
-									<td>100</td>
+									<td>--</td>
+									<td><?php echo $row['nama']?></td>
+									<td><?php echo $row['jumlah']?></td>
 								</tr>
-								<tr>
-									<td>1.</td>
-									<td>User A</td>
-									<td>100</td>
-								</tr>
-								<tr>
-									<td>1.</td>
-									<td>User A</td>
-									<td>100</td>
-								</tr>
-								<tr>
-									<td>1.</td>
-									<td>User A</td>
-									<td>100</td>
-								</tr>
+								<?php }?>
 							</tbody>
 						</table>
 					</div>

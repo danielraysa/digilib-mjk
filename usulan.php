@@ -18,13 +18,8 @@ if(isset($_POST['tambah_usulan'])){
 	$judul = $_POST['judul'];
 	$pengarang = $_POST['pengarang'];
 	$keterangan= $_POST['penerbit'];
-<<<<<<< Updated upstream
 	$tahun = $_POST['tahun'];
 	$query = mysqli_query($conn, "INSERT INTO usulan VALUES ('$kode','".$_SESSION['user_id']."','$judul','$pengarang','$keterangan','$tahun')");
-=======
-	$tanggal = $_POST['tahun'];
-	$query = mysqli_query($conn, "INSERT INTO usulan VALUES ('$kode','".$_SESSION['user_id']."','$judul','$gambar','$keterangan','$tanggal')");
->>>>>>> Stashed changes
 	if(!$query){
 		echo mysqli_error($conn);
 	}
