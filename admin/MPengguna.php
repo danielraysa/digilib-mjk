@@ -277,7 +277,15 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 						</div>
 						<div class="form-group">
 							<label for="kelas">Kelas</label>
-							<input type="text" name="kelas_baru" id="kelas_baru" class="form-control form-control-sm" placeholder="Kelas">
+							<select name="kategori" id="kategori_baru" class="form-control form-control-sm">
+							<option value="">Pilih Kelas</option>
+							<?php 
+								$query_kat = mysqli_query($conn, "SELECT * FROM kelas");
+								while ($row = mysqli_fetch_array($query_kat)) {
+							?>
+								<option value="<?php echo $row['id_kelas']; ?>"><?php echo $row['nama_kelas'] ?></option>
+							<?php } ?>
+						</select>
 						</div>
 					
 					<div class="form-group">
@@ -342,7 +350,15 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 
 						<div class="form-group">
 							<label for="kelas">Kelas</label>
-							<input type="text" name="kelas" id="kelas" class="form-control form-control-sm" placeholder="Kelas">
+							<select name="kategori" id="kategori_baru" class="form-control form-control-sm">
+							<option value="">Pilih Kelas</option>
+							<?php 
+								$query_kat = mysqli_query($conn, "SELECT * FROM kelas");
+								while ($row = mysqli_fetch_array($query_kat)) {
+							?>
+								<option value="<?php echo $row['id_kelas']; ?>"><?php echo $row['nama_kelas'] ?></option>
+							<?php } ?>
+						</select>
 						</div>
 					<div class="form-group">
 						<label for="alamat">Alamat</label>

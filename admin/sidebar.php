@@ -20,7 +20,9 @@
 					<a class="nav-link" href="#homesubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 					<i class="ni ni-planet text-blue"></i> Data Master </a>
 					<ul class="collapse list-unstyled" id="homesubmenu" >
+						
 						<li class="nav-item"><a class="nav-link ml-4" href="MPengguna.php">Pengguna</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="MKelas.php">Kelas</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MKoleksi.php">Koleksi</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MKategori.php">Kategori</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MPertanyaan.php">Pertanyaan</a></li>
@@ -28,6 +30,7 @@
 						<li class="nav-item"><a class="nav-link ml-4" href="MDonasi.php">Donasi</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MLomba.php">Lomba</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MEvent.php">Event</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="MUser.php">User</a></li>
 					</ul>
 					<a class="nav-link" href="#homesubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 					<i class="ni ni-planet text-blue"></i> Data Transaksi </a>

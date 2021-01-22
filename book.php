@@ -45,7 +45,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid px-md-5">
+		<div class="col-lg-9 ftco-animate fadeInUp ftco-animated">
 			<div class="row">
 				<?php 
 					$query_koleksi = mysqli_query($conn, "SELECT * FROM koleksi");
@@ -83,21 +83,26 @@
 				</div>
 				<?php } ?>
 			</div>
-			<div class="row mt-5">
-				<div class="col text-center">
-					<div class="block-27">
-						<ul>
-							<li><a href="#">&lt;</a></li>
-							<li class="active"><span>1</span></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&gt;</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			
+		</div>
+		
+		<div class="col-lg-3 sidebar pl-lg-3 ftco-animate fadeInUp ftco-animated">
+		<?php
+		$user_id = $_SESSION['user_id'];
+		$query = mysqli_query($conn, "SELECT k.id_koleksi, k.judul from log_baca lb JOIN koleksi k ON k.id_koleksi = p.id_koleksi WHERE lb.id_pengguna = '$user_id' GROUP BY k.id_koleksi");
+        while($row = mysqli_fetch_assoc($query)) { 
+		?>
+		<div class="sidebar-box ftco-animate">
+
+              <div class="categories">
+                <h3>Histori</h3>
+                <ul>
+	                <li><a href="baca.php"><span class="fa fa-chevron-right"><?echo $row['k.judul']?></span></a></li>
+	              </ul>
+              </div>
+            </div>
+		</div>
+		<?php } ?>
 		</div>
 	</section>
 
