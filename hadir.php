@@ -1,13 +1,18 @@
 <?php
 include "koneksi.php"; 
-$query = mysqli_query($conn, "SELECT MAX(id_kunjungan) as idkunjungan FROM kunjungan");
-$data = mysqli_fetch_array($query);
-$kode = $data['idkunjungan'];
-
-$urut = (int) substr($kode,2,3);
-$urut++;
-$huruf = "KUN";
-$kode = $huruf.sprintf("%03s", $urut);
+function getId() {
+	global $conn;
+	$query = mysqli_query($conn, "SELECT MAX(id_kunjungan) as idkunjungan FROM kunjungan");
+	$data = mysqli_fetch_array($query);
+	$kode = $data['idkunjungan'];
+	
+	$urut = (int) substr($kode,3,3);
+	// var_dump($urut);
+	$urut += 1;
+	$huruf = "KUN";
+	$kode = $huruf.sprintf("%03s", $urut);
+	return $kode;
+}
 ?>
 <?php 
 //tanggal auto
@@ -15,11 +20,16 @@ $tgl = date('Y-m-d');
 // poses tambah
 if(isset($_POST['tambah'])){
 	// $id = $_POST['id_baru'];
+	$id = getId();
+	// var_dump($id);
+	// exit;
 	$nama = $_POST['nama'];
 	$instansi = $_POST['instansi'];
 	$status = $_POST['status'];
 	$keterangan = $_POST['keterangan'];
-	$query = mysqli_query($conn, "INSERT INTO kunjungan VALUES ('$kode','$nama','$instansi','$status','$keterangan','$tgl')") or die (mysqli_error($conn));
+	$query = mysqli_query($conn, "INSERT INTO kunjungan VALUES ('$id','$nama','$instansi','$status','$keterangan','$tgl')") or die (mysqli_error($conn));
+	unset($_POST);
+	$sukses = "Data tersimpan";
 }
 ?>
 <!DOCTYPE html>
@@ -92,7 +102,10 @@ if(isset($_POST['tambah'])){
 									<center>DAFTAR HADIR TAMU</center>
 								</div>
 								<div class="card-body">
-									<form>
+									<?php if(isset($sukses)){ ?>
+									<h4 style="color: red"><?php echo $sukses; ?></h4>
+									<?php } ?>
+									<form action="" method="POST">
 										<div class="form-group">
 											<label for="nama">Nama</label>
 											<input type="text" name="nama" id="nama" class="form-control form-control-sm" placeholder="Nama Anda">

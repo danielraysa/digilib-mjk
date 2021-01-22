@@ -60,7 +60,6 @@
 									<th>Pengguna</th>
                                     <!-- <th>Jenis Kegiatan</th> -->
 									<th>Point</th>
-									<th>Jumlah Point</th>
 									<th>Action</th>
 								</tr>
 
@@ -69,21 +68,19 @@
 
 								<?php
 								//querynya belum okeh
-                  $query = mysqli_query($conn, "SELECT p.username, pp.id_point, pp.tgl_peroleh from pengguna p join point_pengguna pp on p.id_pengguna=pp.id_pengguna join points pt on pp.id_point=pt.id_point");
+                  $query = mysqli_query($conn, "SELECT id_ppengguna, username, jenis_kegiatan, point from pengguna p join point_pengguna pp on p.id_pengguna=pp.id_pengguna join points pt on pp.id_point=pt.id_point");
                   //for($row = 0; $row < 10; $row++)) {
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
 								<tr>
 									<td><?php echo $row['username'] ?></td>
-									<!-- <td><?php //echo $row['jenis_kegiatan'] ?></td> -->
-									<td><?php echo $row['id_point'] ?></td>
-									<td><?php echo $row['tgl_peroleh'] ?></td>
-									<td><!-- <button class="btn btn-success btnEdit" data-toggle="modal"
-											data-target="#ModalEdit"
-											data-id="<?php echo $row['Point Pengguna'] ?>">Edit</button> -->
-											<button class="btn btn-danger btnEdit" data-toggle="modal"
-											data-target="#ModalHapus"
-											data-id="<?php echo $row['Point Pengguna'] ?>">Hapus</button></td>
+									<td><?php echo $row['jenis_kegiatan'] ?></td>
+									<td><?php echo $row['point'] ?></td>
+									<td>
+										<button class="btn btn-success btnEdit" data-toggle="modal"
+										data-target="#ModalHapus"
+										data-id="<?php echo $row['id_ppengguna'] ?>">Hapus</button>
+									</td>
 								</tr>
 								<?php } ?>
 							</tbody>
