@@ -34,7 +34,7 @@
           	<div class="blog-entry justify-content-end">
 			 
               <div class="text text-center">
-              	<a href="lomba_fact.php" class="block-20 img" style="background-image: url('<?php echo substr($row['poster'],3) ?>');">
+              	<a href="lomba_fact.php?id=<?php echo $row['id_lomba'] ?>" class="block-20 img" style="background-image: url('<?php echo substr($row['poster'],3) ?>');">
 	              </a>
 	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
                 	<div>
@@ -43,7 +43,7 @@
                 		<span class="yr"><?php echo date('Y', strtotime($row['tgl'])); ?></span>
                 	</div>
                 </div>
-                <h3 class="heading mb-3"><a href="#"><?php echo $row['judul_lomba'] ?></a></h3>
+                <h3 class="heading mb-3"><a href="lomba_fact.php?id=<?php echo $row['id_lomba'] ?>"><?php echo $row['judul_lomba'] ?></a></h3>
                 
               </div>
 			  
