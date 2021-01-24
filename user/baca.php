@@ -112,7 +112,7 @@
     });
     
     var url = "<?php echo $row['file'] ?>";
-    var adaQuiz = <?php if (mysqli_num_rows($cek_pertanyaan) != 0) echo true; else echo false; ?>;
+    var adaQuiz = <?php if (mysqli_num_rows($cek_pertanyaan) != 0) echo "1"; else echo "0"; ?>;
     var halaman = <?php echo $halaman ?>;
     var pdfDoc = null,
         pageNum = halaman,

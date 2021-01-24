@@ -11,21 +11,32 @@
 <body>
 	<?php include "navbar.php"; ?>
 
-	<section class="hero-wrap" style="background-image: url('pengguna/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row no-gutters slider-text align-items-center">
-				<div class="col-md-8 ftco-animate d-flex align-items-end">
-					<div class="text w-100">
-						<h1 class="mb-4">Good books don't give up all their secrets at once</h1>
-						<p class="mb-4">A small river named Duden flows by their place and supplies it with the
-							necessary regelialia.</p>
-						<p><a href="book.php" class="btn btn-primary py-3 px-4">View All Books</a> 
-					</div>
-				</div>
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner" style="max-height: 500px">
+			<div class="carousel-item active">
+			<img class="d-block w-100" src="pengguna/images/bg_1.jpg" alt="First slide">
+			</div>
+			<div class="carousel-item">
+			<img class="d-block w-100" src="pengguna/images/bg_4.jpg" alt="Second slide">
+			</div>
+			<div class="carousel-item">
+			<img class="d-block w-100" src="pengguna/images/bg_5.jpg" alt="Third slide">
 			</div>
 		</div>
-	</section>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
 
 	<!-- 		<section class="ftco-section ftco-no-pt mt-5 mt-md-0">
     	<div class="container">
@@ -353,39 +364,32 @@
     	</div>
     </section> -->
   
-    <section class="ftco-section testimony-section ftco-no-pb">
-    	<div class="img img-bg border" style="background-image: url(pengguna/images/bg_4.jpg);"></div>
-    	<div class="overlay"></div>
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-          	<span class="subheading">Testimonial</span>
-            <h2 class="mb-3">Kinds Words From Clients</h2>
-          </div>
-        </div>
-        <div class="row ftco-animate fadeInUp ftco-animated">
-          <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(pengguna/images/person_1.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div id="carouselLomba" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselLomba" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselLomba" data-slide-to="1"></li>
+			<li data-target="#carouselLomba" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner" style="max-height: 500px">
+			<div class="carousel-item active">
+			<img class="d-block w-100" src="pengguna/images/image_1.jpg" alt="First slide">
+			</div>
+			<div class="carousel-item">
+			<img class="d-block w-100" src="pengguna/images/image_4.jpg" alt="Second slide">
+			</div>
+			<div class="carousel-item">
+			<img class="d-block w-100" src="pengguna/images/image_5.jpg" alt="Third slide">
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselLomba" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselLomba" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
 
 <!-- 
 
@@ -562,7 +566,7 @@
           </div>
         </div>
       </div>
-    </section>	
+    </section>	-->
 
     <footer class="ftco-footer">
       <div class="container">
@@ -625,7 +629,7 @@
           </div>
         </div>
 		
-      </div> -->
+      </div>
 	 
 	<?php include "footer.php"; ?>
 	<!-- </footer> -->

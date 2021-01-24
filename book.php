@@ -45,38 +45,25 @@
 				</div>
 			</div>
 		</div>
+		<div class="container">
+			<div class="row">
 		<div class="col-lg-9 ftco-animate fadeInUp ftco-animated">
 			<div class="row">
 				<?php 
 					$query_koleksi = mysqli_query($conn, "SELECT * FROM koleksi");
 					while ($row = mysqli_fetch_array($query_koleksi)) {
 				?>
-				<div class="col-md-6 col-lg-4 d-flex">
-					<div class="book-wrap d-lg-flex">
-						<div class="img d-flex justify-content-end"
-							style="background-image: url('<?php echo substr($row['cover'],3)?>');" onclick="">
+				<div class="col-md-4 d-flex">
+					<div class="book-wrap">
+						<div class="img d-flex justify-content-end w-100" style="background-image: url('<?php echo substr($row['cover'],3)?>');">
 							<div class="in-text">
-								<!-- <a href="#" class="icon d-flex align-items-center justify-content-center"
-									data-toggle="tooltip" data-placement="left" title="Add to cart">
-									<span class="flaticon-shopping-cart"></span>
-								</a> -->
-								<!-- <a href="<?echo $row['file']?>" class="icon d-flex align-items-center justify-content-center"
-									data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-									<span class="flaticon-heart-1"></span>
-								</a> -->
-								<a href="<?php echo 'user/baca.php?koleksi='.$row['id_koleksi']; ?>" class="icon d-flex align-items-center justify-content-center"
-									data-toggle="tooltip" data-placement="left" title="Quick View">
+								<a href="<?php echo 'user/baca.php?id='.$row['id_koleksi']; ?>" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
 									<span class="flaticon-search"></span>
 								</a>
-								<!-- <a href="#" class="icon d-flex align-items-center justify-content-center"
-									data-toggle="tooltip" data-placement="left" title="Compare">
-									<span class="flaticon-visibility"></span>
-								</a> -->
 							</div>
 						</div>
-						<div class="text p-4">
-							<!-- <p class="mb-2"><span class="price">$12.00</span></p> -->
-							<h2><a href="<?php echo 'user/baca.php?koleksi='.$row['id_koleksi']; ?>"><?php echo $row['judul'] ?></a></h2>
+						<div class="text px-4 py-3 order-md-first w-100">
+							<h2><a href="<?php echo 'user/baca.php?id='.$row['id_koleksi']; ?>"><?php echo $row['judul'] ?></a></h2>
 							<span class="position"><?php echo $row['nama_pengarang'] ?></span>
 						</div>
 					</div>
@@ -85,25 +72,25 @@
 			</div>
 			
 		</div>
-		
+		<?php if(isset($_SESSION['user_id'])){ ?>
 		<div class="col-lg-3 sidebar pl-lg-3 ftco-animate fadeInUp ftco-animated">
-		<?php
-		$user_id = $_SESSION['user_id'];
-		$query = mysqli_query($conn, "SELECT k.id_koleksi, k.judul from log_baca lb JOIN koleksi k ON k.id_koleksi = p.id_koleksi WHERE lb.id_pengguna = '$user_id' GROUP BY k.id_koleksi");
-        while($row = mysqli_fetch_assoc($query)) { 
-		?>
-		<div class="sidebar-box ftco-animate">
-
+			<div class="sidebar-box ftco-animate">
               <div class="categories">
-                <h3>Histori</h3>
-                <ul>
-	                <li><a href="baca.php"><span class="fa fa-chevron-right"><?echo $row['k.judul']?></span></a></li>
-	              </ul>
+			  <h3>Histori</h3>
+			  <ul>
+				<?php
+				$user_id = $_SESSION['user_id'];
+				$query = mysqli_query($conn, "SELECT k.id_koleksi, k.judul from log_baca lb JOIN koleksi k ON k.id_koleksi = lb.id_koleksi WHERE lb.id_pengguna = '$user_id' GROUP BY k.id_koleksi");
+				while($row = mysqli_fetch_assoc($query)) { ?>
+				<li><a href="user/baca.php?id=<?php echo $row['id_koleksi'] ?>"><span class="fa fa-chevron-right"></span><?php echo $row['judul']?></a></li>
+				<?php } ?>
+				</ul>
               </div>
             </div>
-		</div>
+		</div> 
 		<?php } ?>
 		</div>
+	</div> 
 	</section>
 
 	<footer class="ftco-footer">
