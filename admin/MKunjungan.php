@@ -77,6 +77,7 @@ $tgl = date('Y-m-d');
 									<th>instansi</th>
 									<th>status</th>
 									<th>keterangan</th>
+									<th>action</th>
 								</tr>
 
 							</thead>
@@ -96,7 +97,7 @@ $tgl = date('Y-m-d');
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
 											data-id="<?php echo $row['id_kunjungan'] ?>">Edit</button>
-											<button class="btn btn-success btnEdit" data-toggle="modal"
+											<button class="btn btn-danger btnEdit" data-toggle="modal"
 											data-target="#ModalHapus"
 											data-id="<?php echo $row['id_kunjungan'] ?>">Hapus</button></td>
 								</tr>
@@ -156,10 +157,10 @@ $tgl = date('Y-m-d');
 								<option value="">Lain-lain</option>
 							</select>
 						</div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
 							<label for="tanggal">Tanggal</label>
 							<input type="date" name="tanggal" id="tanggal" class="form-control form-control-sm" placeholder="kunjungan Kegiatan" readonly>
-						</div>
+						</div> -->
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -213,7 +214,7 @@ $tgl = date('Y-m-d');
                     $("#instansi").val(result.instansi);
 					$("#status").val(result.status);
 					$("#keterangan").val(result.keterangan);
-					$("#tanggal").val(result.tanggal);
+					// $("#tgl").val(result.);
 				}
 			});
 		});
