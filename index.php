@@ -1,6 +1,18 @@
 <?php include 'koneksi.php'; ?>
 <?php include 'function.php'; ?>
 <?php $filename = basename(__FILE__); ?>
+<?php 
+$jumlah = mysqli_query($conn, "SELECT pengguna.username, SUM(points.point) AS jumlah FROM pengguna JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC");
+while($row = mysqli_fetch_array($jumlah)){
+	$jumlah_rangking[] = $row['jumlah'];
+}	
+
+$koleksi = mysqli_query($conn, "SELECT k.judul, count(lb.id_koleksi) as jumlah FROM log_baca lb join koleksi k ON lb.id_koleksi = k.id_koleksi GROUP BY k.judul ORDER BY jumlah DESC");
+while($row = mysqli_fetch_array($koleksi)){
+	$jumlahRangkingKoleksi[] = $row['jumlah'];
+	$judulKoleksi[] = $row['judul'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,16 +23,16 @@
 <body>
 	<?php include "navbar.php"; ?>
 
-	<section class="hero-wrap" style="background-image: url('pengguna/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+	<section class="hero-wrap" style="background-image: url('https://man2mojokerto.sch.id/wp-content/uploads/2020/02/20200103_065117-scaled.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center">
 				<div class="col-md-8 ftco-animate d-flex align-items-end">
 					<div class="text w-100">
-						<h1 class="mb-4">Good books don't give up all their secrets at once</h1>
+						<!-- <h1 class="mb-4" colour="white">Good books don't give up all their secrets at once</h1>
 						<p class="mb-4">A small river named Duden flows by their place and supplies it with the
 							necessary regelialia.</p>
-						<p><a href="book.php" class="btn btn-primary py-3 px-4">View All Books</a> 
+						<p><a href="book.php" class="btn btn-primary py-3 px-4">View All Books</a>  -->
 					</div>
 				</div>
 			</div>
@@ -85,7 +97,7 @@
 					<div class="block-18 py-4 mb-4">
 						<div class="text align-items-center" data-toggle="modal"
 							data-target="#LeaderBoard">
-							<div id="lineChart1" style="height: 200px"></div>
+							<div id="lineChart1"></div>
 							<br>
 							<h3>Point Pengguna</h3>
 						</div>
@@ -94,8 +106,11 @@
 
 				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 py-4 mb-4">
-						<div class="text align-items-center">
-							<div id="lineChart2" style="height: 200px"></div>
+						<div class="text align-items-center" data-toggle="modal"
+							data-target="#LeaderBoard">
+							<div id="lineChart2"></div>
+							<br>
+							<h3>Koleksi</h3>
 						</div>
 					</div>
 				</div>
@@ -112,6 +127,7 @@
 			</div>
 		</div>
 	</section>
+	
 	<div class="modal fade" id="LeaderBoard" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -142,13 +158,12 @@
 
 								<?php
 								//querynya belum okeh
-                  $query = mysqli_query($conn, "SELECT pengguna.username name, SUM(points.point) AS jumlah FROM pengguna JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna JOIN points ON point_pengguna.id_point = points.id_point
-				   WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC Limit 0,10");
+                  $query = mysqli_query($conn, "SELECT pengguna.username, SUM(points.point) AS jumlah FROM pengguna JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC");
                   //for($row = 0; $row < 10; $row++)) {
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
 								<tr>
-									<td><?php echo $row['name'] ?></td>
+									<td><?php echo $row['username'] ?></td>
 									<td><?php echo $row['jumlah'] ?></td>
 								</tr>
 								<?php } ?>
@@ -162,6 +177,7 @@
 			</div>
 		</div>
 	</div>
+	
 	</div>
 	<!-- Informasi About -->
 	<section class="ftco-section">
@@ -176,12 +192,9 @@
 						<h2 class="mb-4"></h2>
 
 						<p>Man 2 Mojokerto me</p>
-						<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
-							would have been rewritten a thousand times and everything that was left from its origin
-							would be the word "and" and the Little Blind Text should turn around and return to its own,
-							safe country.</p>
+						<p></p>
 
-						<a href="#" class="btn btn-primary">View All Our Authors</a>
+						
 					</div>
 
 				</div>
@@ -354,13 +367,21 @@
     </section> -->
   
     <section class="ftco-section testimony-section ftco-no-pb">
-    	<div class="img img-bg border" style="background-image: url(pengguna/images/bg_4.jpg);"></div>
+		<?php $poster = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba");
+		while($row = mysqli_fetch_array($poster)){ ?>
+		<div class="img img-bg border" style="background-image: url(<?php $row['poster'] ?>);"></div>
+		<?php } ?>
     	<div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-          	<span class="subheading">Testimonial</span>
-            <h2 class="mb-3">Kinds Words From Clients</h2>
+			  <?php 
+		$lomba = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba");
+		while($row = mysqli_fetch_array($lomba)){
+			?>
+          	<span class="subheading">LOMBA</span>
+			<h3 class="mb-3"><?php echo $row['judul_lomba'] ?></h3>
+		<?php	}	?>
           </div>
         </div>
         <div class="row ftco-animate fadeInUp ftco-animated">
