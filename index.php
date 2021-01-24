@@ -1,6 +1,18 @@
 <?php include 'koneksi.php'; ?>
 <?php include 'function.php'; ?>
 <?php $filename = basename(__FILE__); ?>
+<?php 
+$jumlah = mysqli_query($conn, "SELECT pengguna.username, SUM(points.point) AS jumlah FROM pengguna JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC");
+while($row = mysqli_fetch_array($jumlah)){
+	$jumlah_rangking[] = $row['jumlah'];
+}	
+
+$koleksi = mysqli_query($conn, "SELECT k.judul, count(lb.id_koleksi) as jumlah FROM log_baca lb join koleksi k ON lb.id_koleksi = k.id_koleksi GROUP BY k.judul ORDER BY jumlah DESC");
+while($row = mysqli_fetch_array($koleksi)){
+	$jumlahRangkingKoleksi[] = $row['jumlah'];
+	$judulKoleksi[] = $row['judul'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,34 +23,23 @@
 <body>
 	<?php include "navbar.php"; ?>
 
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-		<ol class="carousel-indicators">
-			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner" style="max-height: 500px">
-			<div class="carousel-item active">
-			<img class="d-block w-100" src="pengguna/images/bg_1.jpg" alt="First slide">
-			</div>
-			<div class="carousel-item">
-			<img class="d-block w-100" src="pengguna/images/bg_4.jpg" alt="Second slide">
-			</div>
-			<div class="carousel-item">
-			<img class="d-block w-100" src="pengguna/images/bg_5.jpg" alt="Third slide">
+	<section class="hero-wrap" style="background-image: url('https://man2mojokerto.sch.id/wp-content/uploads/2020/02/20200103_065117-scaled.jpg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center">
+				<div class="col-md-8 ftco-animate d-flex align-items-end">
+					<div class="text w-100">
+						<!-- <h1 class="mb-4" colour="white">Good books don't give up all their secrets at once</h1>
+						<p class="mb-4">A small river named Duden flows by their place and supplies it with the
+							necessary regelialia.</p>
+						<p><a href="book.php" class="btn btn-primary py-3 px-4">View All Books</a>  -->
+					</div>
+				</div>
 			</div>
 		</div>
-		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div>
+	</section>
 
-	<!-- 		<section class="ftco-section ftco-no-pt mt-5 mt-md-0">
+	<!-- <section class="ftco-section ftco-no-pt mt-5 mt-md-0">
     	<div class="container">
     		<div class="row">
     			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
@@ -96,7 +97,7 @@
 					<div class="block-18 py-4 mb-4">
 						<div class="text align-items-center" data-toggle="modal"
 							data-target="#LeaderBoard">
-							<div id="lineChart1" style="height: 200px"></div>
+							<div id="lineChart1"></div>
 							<br>
 							<h3>Point Pengguna</h3>
 						</div>
@@ -105,8 +106,11 @@
 
 				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 py-4 mb-4">
-						<div class="text align-items-center">
-							<div id="lineChart2" style="height: 200px"></div>
+						<div class="text align-items-center" data-toggle="modal"
+							data-target="#LeaderBoard">
+							<div id="lineChart2"></div>
+							<br>
+							<h3>Koleksi</h3>
 						</div>
 					</div>
 				</div>
@@ -123,6 +127,7 @@
 			</div>
 		</div>
 	</section>
+	
 	<div class="modal fade" id="LeaderBoard" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -153,13 +158,12 @@
 
 								<?php
 								//querynya belum okeh
-                  $query = mysqli_query($conn, "SELECT pengguna.username name, SUM(points.point) AS jumlah FROM pengguna JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna JOIN points ON point_pengguna.id_point = points.id_point
-				   WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC Limit 0,10");
+                  $query = mysqli_query($conn, "SELECT pengguna.username, SUM(points.point) AS jumlah FROM pengguna JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC");
                   //for($row = 0; $row < 10; $row++)) {
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
 								<tr>
-									<td><?php echo $row['name'] ?></td>
+									<td><?php echo $row['username'] ?></td>
 									<td><?php echo $row['jumlah'] ?></td>
 								</tr>
 								<?php } ?>
@@ -173,6 +177,7 @@
 			</div>
 		</div>
 	</div>
+	
 	</div>
 	<!-- Informasi About -->
 	<section class="ftco-section">
@@ -187,199 +192,44 @@
 						<h2 class="mb-4"></h2>
 
 						<p>Man 2 Mojokerto me</p>
-						<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
-							would have been rewritten a thousand times and everything that was left from its origin
-							would be the word "and" and the Little Blind Text should turn around and return to its own,
-							safe country.</p>
+						<p></p>
 
-						<a href="#" class="btn btn-primary">View All Our Authors</a>
+						
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- 	
-		<section class="ftco-section ftco-no-pt">
-    	<div class="container-fluid px-md-4">
-    		<div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Books</span>
-            <h2>New Release</h2>
-          </div>
-        </div>
-    		<div class="row">
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-1.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4">
-    						<p class="mb-2"><span class="price">$12.00</span></p>
-    						<h2><a href="#">You Are Your Only Limit</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-2.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4">
-    						<p class="mb-2"><span class="price sale">$12.00</span> <span class="price">$8.00</span></p>
-    						<h2><a href="#">101 Essays That Will Change The Way Your Thinks</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-3.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4">
-    						<p class="mb-2"><span class="price">$12.00</span></p>
-    						<h2><a href="#">Your Soul Is A River</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-4.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4 order-md-first">
-    						<p class="mb-2"><span class="price">$9.00</span></p>
-    						<h2><a href="#">All The Letters I Should Have Sent</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-5.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4 order-md-first">
-    						<p class="mb-2"><span class="price">$20.00</span></p>
-    						<h2><a href="#">Happy</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-6.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4 order-md-first">
-    						<p class="mb-2"><span class="price">$12.00</span></p>
-    						<h2><a href="#">Milk &amp; Honey</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </section> -->
+	
   
     <div id="carouselLomba" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
-			<li data-target="#carouselLomba" data-slide-to="0" class="active"></li>
-			<li data-target="#carouselLomba" data-slide-to="1"></li>
-			<li data-target="#carouselLomba" data-slide-to="2"></li>
+		<?php 
+		$poster = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba ");
+		$i = 0;
+		while($row = mysqli_fetch_array($poster)){ ?>
+			<li data-target="#carouselLomba" data-slide-to="<?php echo $i; ?>" class="<?php if($i == 0) echo 'active'; ?>"></li>
+		<?php 
+		$i++;
+		} ?>
 		</ol>
-		<div class="carousel-inner" style="max-height: 500px">
-			<div class="carousel-item active">
-			<img class="d-block w-100" src="pengguna/images/image_1.jpg" alt="First slide">
-			</div>
-			<div class="carousel-item">
-			<img class="d-block w-100" src="pengguna/images/image_4.jpg" alt="Second slide">
-			</div>
-			<div class="carousel-item">
-			<img class="d-block w-100" src="pengguna/images/image_5.jpg" alt="Third slide">
-			</div>
+		<div class="carousel-inner" style="max-height: 580px">
+			<?php 
+			$poster = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba ");
+			$i = 1;
+			while($row = mysqli_fetch_array($poster)){ ?>
+				<div class="carousel-item <?php if($i == 1) echo 'active'; ?>">
+					<div class="carousel-caption">
+						<h5><?php echo substr($row['judul_lomba'],0,20) ?></h5>
+						<p><?php echo substr($row['keterangan'],0,20) ?></p>
+					</div>
+					<img class="d-block w-100" src="<?php echo substr($row['poster'],3) ?>" alt="First slide">
+				</div>
+			<?php 
+			$i++;
+			} ?>
+			
 		</div>
 		<a class="carousel-control-prev" href="#carouselLomba" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -390,6 +240,7 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+    
 
 <!-- 
 
