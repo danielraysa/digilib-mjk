@@ -30,7 +30,7 @@
 	}
 	if(isset($_POST['editPengguna'])){
 		$id = $_POST['id_pengguna'];
-		$query = mysqli_query($conn, "SELECT * FROM pengguna WHERE id_kategori = '".$id."'");
+		$query = mysqli_query($conn, "SELECT * FROM pengguna WHERE id_pengguna = '".$id."'");
 		$row = mysqli_fetch_array($query);
 		echo json_encode($row);
 	}
@@ -91,6 +91,12 @@
 	if(isset($_POST['edit'])){
 		$id = $_POST['id_usulan'];
 		$query = mysqli_query($conn, "SELECT * FROM usulan WHERE id_usulan = '".$id."'");
+		$row = mysqli_fetch_array($query);
+		echo json_encode($row);
+	}
+	if(isset($_POST['editkunjungan'])){
+		$id = $_POST['id_kunjungan'];
+		$query = mysqli_query($conn, "SELECT * FROM kunjungan WHERE id_kunjungan = '".$id."'");
 		$row = mysqli_fetch_array($query);
 		echo json_encode($row);
 	}
