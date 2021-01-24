@@ -1,14 +1,34 @@
-<?php $filename = basename(__FILE__); ?>
-<?php include 'koneksi.php'; ?>
-<?php include 'function.php'; ?>
-<?php
-if(isset($_POST['tambah_lomba'])){
-		$id = $_POST['id_baru'];
-		$judul = $_POST['judul_baru'];
-		$poster= '';
+<?php 
+	$filename = basename(__FILE__);
+	include 'koneksi.php'; 
+	include 'function.php'; 
+	$target_dir = "uploads/daftar/";
+	function generateIdDaftar(){
+		global $conn;
+		$query = mysqli_query($conn, "SELECT MAX(id_daftar) as iddaftar FROM daftar");
+		$data = mysqli_fetch_array($query);
+		$kode = $data['iddaftar'];
+
+		$urut = (int) substr($kode,2,3);
+		$urut++;
+		$huruf = "LD";
+		$kode = $huruf.sprintf("%03s", $urut);
+		return $kode;
+	}
+	if(!isset($_GET['id'])){
+		header('location:index.php');
+		exit;
+	}else{
+		$id_lomba = $_GET['id'];
+	}
+	$file_url = $filename."?id=".$id_lomba;
+	if(isset($_POST['tambah_lomba'])){
+		check_session($filename."?id=".$id_lomba, $root_folder);
+		$id_daftar = generateIdDaftar();
+		$id_user = $_SESSION['user_id'];
+		$judul = $_POST['judul_karya'];
+		$poster = '';
 		
-		$keterangan= $_POST['ket_baru'];
-		$tgl = $_POST['tgl_baru'];
 		if(file_exists($_FILES['poster']['tmp_name'])){
 			$target_poster = $target_dir . basename($_FILES['poster']['name']);
 			$imageCoverType = strtolower(pathinfo($target_poster,PATHINFO_EXTENSION));
@@ -24,32 +44,18 @@ if(isset($_POST['tambah_lomba'])){
 			}
 			$poster = $target_poster;
 		}
-		$query = mysqli_query($conn, "INSERT INTO lomba VALUES ('$id','$judul','$poster','$keterangan','$tgl')");
+		$query = mysqli_query($conn, "INSERT INTO daftar(id_daftar, id_lomba, id_pengguna, judul_karya, file) VALUES ('$id_daftar','$id_lomba','$id_user','$judul','$poster')");
 		if(!$query){
 			echo mysqli_error($conn);
 		}
   }?>
-  <?php 
-$query = mysqli_query($conn, "SELECT MAX(id_daftar) as iddaftar FROM daftar");
-$data = mysqli_fetch_array($query);
-$kode = $data['iddaftar'];
-
-$urut = (int) substr($kode,2,3);
-$urut++;
-$huruf = "LD";
-$kode = $huruf.sprintf("%03s", $urut);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<?php include "css-script.php"; ?>
 </head>
-
 <body>
-
-  <?php include "navbar.php"; ?>
-  
-
+	<?php include "navbar.php"; ?>
 	<section class="hero-wrap hero-wrap-2" style="background-image: url('pengguna/images/bg_5.jpg');"
 		data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
@@ -62,40 +68,32 @@ $kode = $huruf.sprintf("%03s", $urut);
 		</div>
 	</section>
 
-
-    <section class="ftco-section ftco-degree-bg">
-    <?php 
+	<section class="ftco-section ftco-degree-bg">
+		<?php 
     //  $lomba_id = $_SESSION['lomba_id'];
-					$query_lomba1 = mysqli_query($conn, "SELECT * FROM lomba ");
-					while ($row = mysqli_fetch_array($query_lomba1)) {
-				?>
-      <div class="container">
-
-        <div class="row">
-          <div class="ftco-animate">
-          	<p><center>
-              <img src="<?php echo substr($row['poster'],3) ?>" alt="" class="img-fluid"></center>
-            </p>
-            <h2 class="mb-3"><center><?php echo $row['judul_lomba'] ?></center></h2>
-            <p><?php echo $row['keterangan'] ?></p>
-            </div>
-            <div class="col-lg-6 col-5 text-right">
-							<a href="#" class="btn btn-sm btn-neutral" data-toggle="modal"
-								data-target="#ModalTambahlomba">Daftar</a>
-						</div>
-            
-
-
-
-
-          </div> <!-- .col-md-8 -->
-          
-
-           
-          </div>
-          <?php }?>
-    </section>
-    <!-- Modal Tambah lomba-->
+			$query_lomba1 = mysqli_query($conn, "SELECT * FROM lomba where id_lomba = '$id_lomba'");
+			while ($row = mysqli_fetch_array($query_lomba1)) {
+		?>
+		<div class="container">
+			<div class="row">
+				<div class="ftco-animate">
+					<p>
+						<center>
+							<img src="<?php echo substr($row['poster'],3) ?>" alt="" class="img-fluid"></center>
+					</p>
+					<h2 class="mb-3">
+						<center><?php echo $row['judul_lomba'] ?></center>
+					</h2>
+					<p><?php echo $row['keterangan'] ?></p>
+				</div>
+				<div class="col-lg-6 col-5 text-right">
+					<a href="#" class="btn btn-primary" id="daftarLomba" data-toggle="modal" data-target="#ModalTambahlomba">Daftar</a>
+				</div>
+			</div> <!-- .col-md-8 -->
+		</div>
+		<?php }?>
+	</section>
+	<!-- Modal Tambah lomba-->
 	<div class="modal fade" id="ModalTambahlomba" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -107,72 +105,84 @@ $kode = $huruf.sprintf("%03s", $urut);
 					</button>
 				</div>
 				<form action="" method="post" enctype="multipart/form-data">
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="id">ID Lomba</label>
-						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Id" value ="<?php echo $kode?>" readonly>
-					</div>
+					<div class="modal-body">
+						<!-- <div class="form-group">
+							<label for="id">ID Lomba</label>
+							<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm"
+								placeholder="Id" value="<?php //echo $kode?>" readonly>
+						</div> -->
 
-					<div class="form-group">
-						<label for="judul">Nama</label>
-						<input type="text" name="judul_baru" id="judul_baru" class="form-control form-control-sm" placeholder="Nama Lengkap">
-					</div>
-					<div class="form-group">
+						<div class="form-group">
+							<label for="judul">Nama</label>
+							<input type="text" name="nama" id="nama" class="form-control form-control-sm" placeholder="Nama Lengkap" readonly>
+						</div>
+						<!-- <div class="form-group">
 							<label for="kelas">Kelas</label>
 							<select name="kategori" id="kategori_baru" class="form-control form-control-sm">
-							<option value="">Pilih Kelas</option>
-							<?php 
-								$query_kat = mysqli_query($conn, "SELECT * FROM kelas");
+								<option value="">Pilih Kelas</option>
+								<?php 
+								/* $query_kat = mysqli_query($conn, "SELECT * FROM kelas");
 								while ($row = mysqli_fetch_array($query_kat)) {
 							?>
-								<option value="<?php echo $row['id_kelas']; ?>"><?php echo $row['nama_kelas'] ?></option>
-							<?php } ?>
-						</select>
+								<option value="<?php echo $row['id_kelas']; ?>"><?php echo $row['nama_kelas'] ?>
+								</option>
+								<?php } */ ?>
+							</select>
+						</div> -->
+						<div class="form-group">
+							<label for="keterangan">Judul Karya</label>
+							<input type="text" name="judul_karya" id="judul_karya" class="form-control form-control-sm"
+								rows="4" placeholder="Keterangan"></textarea>
 						</div>
-					<div class="form-group">
-						<label for="keterangan">Judul Karya</label>
-						<input type="text" name="ket_baru" id="ket_baru" class="form-control form-control-sm" rows="4" placeholder="Keterangan"></textarea>
-					</div>
-					<div class="form-group">
-						<label for="file">File</label>
-						<input type="file" accept=".pdf" name="file" id="file_baru" class="form-control form-control-sm" placeholder="File Koleksi" />
-					</div>
+						<div class="form-group">
+							<label for="file">File</label>
+							<input type="file" accept=".pdf" name="poster" id="file_baru"
+								class="form-control form-control-sm" placeholder="File Koleksi" />
+						</div>
 
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" name="tambah_lomba" class="btn btn-primary">Save</button>
-				</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" name="tambah_lomba" class="btn btn-primary">Save</button>
+					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 
 	<footer class="ftco-footer">
-		
 		<?php include "footer.php"; ?>
 	</footer>
 
-  <?php include "js-script.php"; ?>
-  div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+	<?php include "js-script.php"; ?>
+	<!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+				stroke="#F96D00" /></svg></div> -->
 
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-  <script src="js/main.js"></script>
-
+	<script src="pengguna/js/jquery.min.js"></script>
+	<script src="pengguna/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="pengguna/js/popper.min.js"></script>
+	<script src="pengguna/js/bootstrap.min.js"></script>
+	<script src="pengguna/js/jquery.easing.1.3.js"></script>
+	<script src="pengguna/js/jquery.waypoints.min.js"></script>
+	<script src="pengguna/js/jquery.stellar.min.js"></script>
+	<script src="pengguna/js/owl.carousel.min.js"></script>
+	<script src="pengguna/js/jquery.magnific-popup.min.js"></script>
+	<script src="pengguna/js/jquery.animateNumber.min.js"></script>
+	<script src="pengguna/js/scrollax.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+	<script src="pengguna/js/main.js"></script>
+	<script>
+	var sessionId = <?php if(isset($_SESSION['user_id'])) echo "1"; else echo "0"; ?>;
+	var nama = "<?php if(isset($_SESSION['nama'])) echo $_SESSION['nama']; else echo "0"; ?>";
+	$("#daftarLomba").click(function(e){
+		// alert('test');
+		if(!sessionId){
+			location.href = "login.php?redirect=<?php echo $file_url; ?>";
+		}
+		$('#nama').val(nama);
+	});
+	</script>
 </body>
 </html>
