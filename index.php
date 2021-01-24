@@ -39,7 +39,7 @@ while($row = mysqli_fetch_array($koleksi)){
 		</div>
 	</section>
 
-			<!-- <section class="ftco-section ftco-no-pt mt-5 mt-md-0">
+	<!-- 		<section class="ftco-section ftco-no-pt mt-5 mt-md-0">
     	<div class="container">
     		<div class="row">
     			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
@@ -88,7 +88,35 @@ while($row = mysqli_fetch_array($koleksi)){
     			</div>
     		</div>
     	</div>
-    </section> -->
+	</section> -->
+	<!-- Informasi About -->
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center"
+					style="background-image: url(pengguna/images/about-1.jpg);">
+				</div>
+				<div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
+					<div class="heading-section">
+						<span class="subheading">Welcome To MAN 2 Mojokerto Library</span>
+						<h2 class="mb-4">Man 2 Mojokerto</h2>
+
+						<p></p>
+						<p>Perpustakaan MAN 2 Mojokerto merupakan perpustakaan yang berlokasi di 
+						gedung baru sebelah kanan gedung Pusat Sumber Belajar dilantai dua. 
+						Fasilitas pendukung yang tersedia di perpustakaan disesuaikan dengan kondisi dan kebutuhan layanan informasi, seperti meja dan kursi baca. Tersedia rak koleksi buku paket dan koleksi umum juga almari untuk koleksi referensi. 
+						Disediakan juga satu perangkat komputer sebagai sarana menelusur informasi bagi para pemustaka.  
+						Jam buka layanan perpustakaan dimulai sejak masuk sekolah yaitu pukul 06.45 WIB 
+						sampai pukul 15.30 WIB, kecuali untuk hari Jumat sampai pukul 16.00 WIB.</p>
+						<p></p>
+
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
 	<!--LeaderBoard -->
 	<section class="ftco-counter ftco-section ftco-no-pt ftco-no-pb img bg-light" id="section-counter">
 		<div class="container">
@@ -148,7 +176,7 @@ while($row = mysqli_fetch_array($koleksi)){
 						<table id="myTable" class="table table-bordered">
 							<thead>
 								<tr>
-									<th></th>
+									
 									<th>Username</th>
 									<th>Point</th>
 								</tr>
@@ -179,240 +207,43 @@ while($row = mysqli_fetch_array($koleksi)){
 	</div>
 	
 	</div>
-	<!-- Informasi About -->
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center"
-					style="background-image: url(pengguna/images/about-1.jpg);">
-				</div>
-				<div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
-					<div class="heading-section">
-						<span class="subheading">Welcome To MAN 2 Mojokerto Library</span>
-						<h2 class="mb-4">Man 2 Mojokerto</h2>
-
-						<p></p>
-						<p>Perpustakaan MAN 2 Mojokerto merupakan perpustakaan yang berlokasi di 
-						gedung baru sebelah kanan gedung Pusat Sumber Belajar dilantai dua. 
-						Fasilitas pendukung yang tersedia di perpustakaan disesuaikan dengan kondisi dan kebutuhan layanan informasi, seperti meja dan kursi baca. Tersedia rak koleksi buku paket dan koleksi umum juga almari untuk koleksi referensi. 
-						Disediakan juga satu perangkat komputer sebagai sarana menelusur informasi bagi para pemustaka.  
-						Jam buka layanan perpustakaan dimulai sejak masuk sekolah yaitu pukul 06.45 WIB 
-						sampai pukul 15.30 WIB, kecuali untuk hari Jumat sampai pukul 16.00 WIB.</p>
-						<p></p>
-
-						
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- 	
-		<section class="ftco-section ftco-no-pt">
-    	<div class="container-fluid px-md-4">
-    		<div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Books</span>
-            <h2>New Release</h2>
-          </div>
-        </div>
-    		<div class="row">
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-1.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4">
-    						<p class="mb-2"><span class="price">$12.00</span></p>
-    						<h2><a href="#">You Are Your Only Limit</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-2.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4">
-    						<p class="mb-2"><span class="price sale">$12.00</span> <span class="price">$8.00</span></p>
-    						<h2><a href="#">101 Essays That Will Change The Way Your Thinks</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-3.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4">
-    						<p class="mb-2"><span class="price">$12.00</span></p>
-    						<h2><a href="#">Your Soul Is A River</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-4.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4 order-md-first">
-    						<p class="mb-2"><span class="price">$9.00</span></p>
-    						<h2><a href="#">All The Letters I Should Have Sent</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-5.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4 order-md-first">
-    						<p class="mb-2"><span class="price">$20.00</span></p>
-    						<h2><a href="#">Happy</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-4 d-flex">
-    				<div class="book-wrap d-lg-flex">
-    					<div class="img d-flex justify-content-end" style="background-image: url(pengguna/images/book-6.jpg);">
-    						<div class="in-text">
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to cart">
-    								<span class="flaticon-shopping-cart"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
-    								<span class="flaticon-heart-1"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Quick View">
-    								<span class="flaticon-search"></span>
-    							</a>
-    							<a href="#" class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="left" title="Compare">
-    								<span class="flaticon-visibility"></span>
-    							</a>
-    						</div>
-    					</div>
-    					<div class="text p-4 order-md-first">
-    						<p class="mb-2"><span class="price">$12.00</span></p>
-    						<h2><a href="#">Milk &amp; Honey</a></h2>
-    						<span class="position">By John Nathan Muller</span>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </section> -->
   
-    <section class="ftco-section testimony-section ftco-no-pb">
-		<?php $poster = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba");
+    <div id="carouselLomba" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+		<?php 
+		$poster = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba ");
+		$i = 0;
 		while($row = mysqli_fetch_array($poster)){ ?>
-		<div class="img img-bg border" style="background-image: url(<?php $row['poster'] ?>);"></div>
-		<?php } ?>
-    	<div class="overlay"></div>
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-			  <?php 
-		$lomba = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba");
-		while($row = mysqli_fetch_array($lomba)){
-			?>
-          	<span class="subheading">LOMBA</span>
-			<h3 class="mb-3"><?php echo $row['judul_lomba'] ?></h3>
-		<?php	}	?>
-          </div>
-        </div>
-        <div class="row ftco-animate fadeInUp ftco-animated">
-          <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(pengguna/images/person_1.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+			<li data-target="#carouselLomba" data-slide-to="<?php echo $i; ?>" class="<?php if($i == 0) echo 'active'; ?>"></li>
+		<?php 
+		$i++;
+		} ?>
+		</ol>
+		<div class="carousel-inner" style="max-height: 580px">
+			<?php 
+			$poster = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba ");
+			$i = 1;
+			while($row = mysqli_fetch_array($poster)){ ?>
+				<div class="carousel-item <?php if($i == 1) echo 'active'; ?>">
+					<div class="carousel-caption">
+						<h5><?php echo substr($row['judul_lomba'],0,20) ?></h5>
+						<p><?php echo substr($row['keterangan'],0,20) ?></p>
+					</div>
+					<img class="d-block w-100" src="<?php echo substr($row['poster'],3) ?>" alt="First slide">
+				</div>
+			<?php 
+			$i++;
+			} ?>
+			</div>
+		<a class="carousel-control-prev" href="#carouselLomba" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselLomba" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
 
 <!-- 
 
@@ -589,7 +420,7 @@ while($row = mysqli_fetch_array($koleksi)){
           </div>
         </div>
       </div>
-    </section>	
+    </section>	-->
 
     <footer class="ftco-footer">
       <div class="container">
@@ -652,7 +483,7 @@ while($row = mysqli_fetch_array($koleksi)){
           </div>
         </div>
 		
-      </div> -->
+      </div>
 	 
 	<?php include "footer.php"; ?>
 	<!-- </footer> -->
