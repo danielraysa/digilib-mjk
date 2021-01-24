@@ -88,9 +88,9 @@
 		echo json_encode($row);
 	}
 	
-	if(isset($_POST['edit'])){
+	if(isset($_POST['editusulan'])){
 		$id = $_POST['id_usulan'];
-		$query = mysqli_query($conn, "SELECT * FROM usulan WHERE id_usulan = '".$id."'");
+		$query = mysqli_query($conn, "SELECT u.id_usulan, p.username, u.judul_buku, u.pengarang, u.penerbit, u.tahun, u.status_usulan from usulan u join pengguna p on u.id_pengguna = p.id_pengguna WHERE id_usulan = '".$id."'");
 		$row = mysqli_fetch_array($query);
 		echo json_encode($row);
 	}
@@ -100,4 +100,5 @@
 		$row = mysqli_fetch_array($query);
 		echo json_encode($row);
 	}
+
 ?>

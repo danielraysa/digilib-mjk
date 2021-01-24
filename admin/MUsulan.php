@@ -13,8 +13,9 @@
 		$pengarang = $_POST['pengarang'];
 		$penerbit = $_POST['penerbit'];
 		$tahun = $_POST['tahun'];
+		$status = $_POST['status_usulan'];
 		//echo "UPDATE usulan SET kegiatan_usulan='$kegiatan',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_usulan='$id'";
-		$query = mysqli_query($conn, "UPDATE usulan SET judul_buku='$judul', pengarang = '$pengarang', penerbit='$penerbit', tahun '$tahun' WHERE id_usulan='$id'");
+		$query = mysqli_query($conn, "UPDATE usulan SET judul_buku='$judul', pengarang = '$pengarang', penerbit='$penerbit', tahun = '$tahun', status_usulan = '$status' WHERE id_usulan='$id'");
 	}
 	if(isset($_POST['hapus'])){
 		$id = $_POST['id_usulan'];
@@ -64,6 +65,8 @@
 									<th>Pengarang</th>
 									<th>Penerbit</th>
 									<th>Tahun</th>
+									<th>Status</th>
+									<th>Action</th>
 								</tr>
 
 							</thead>
@@ -71,7 +74,7 @@
 
 								<?php
 								//querynya belum okeh
-                  $query = mysqli_query($conn, "SELECT u.id_usulan, p.username, u.judul_buku, u.pengarang, u.penerbit, u.tahun from usulan u join pengguna p on u.id_pengguna = p.id_pengguna");
+                  $query = mysqli_query($conn, "SELECT u.id_usulan, p.username, u.judul_buku, u.pengarang, u.penerbit, u.tahun, u.status_usulan from usulan u join pengguna p on u.id_pengguna = p.id_pengguna");
                   //for($row = 0; $row < 10; $row++)) {
                   while ($row = mysqli_fetch_array($query)) {
                   ?>
@@ -82,6 +85,7 @@
 									<td><?php echo $row['pengarang'] ?></td>
 									<td><?php echo $row['penerbit'] ?></td>
 									<td><?php echo $row['tahun'] ?></td>
+									<td><?php echo $row['status_usulan'] ?></td>
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
 											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
@@ -122,7 +126,7 @@
 						</div>
                         <div class="form-group">
 							<label for="judul">Judul Buku</label>
-							<input type="text" name="judul" id="judul" class="form-control form-control-sm" placeholder="Judul Buku">
+							<input type="text" name="judul_buku" id="judul_buku" class="form-control form-control-sm" placeholder="Judul Buku">
 						</div>
 						<div class="form-group">
 							<label for="pengarang">Pengarang</label>
@@ -135,6 +139,13 @@
 						<div class="form-group">
 							<label for="tahun">Tahun</label>
 							<input type="text" name="tahun" id="tahun" class="form-control form-control-sm" placeholder="Tahun">
+						</div>
+						<div class="form-group">
+							<label for="status">Status</label>
+							<select name="status_usulan" id="status_usulan" class="form-control form-control-sm">
+								<option value="Perempuan">Proses</option>
+								<option value="Laki-laki">Selesai</option>
+							</select>
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -185,11 +196,12 @@
 				success: function (result) {
 					console.log(result);
 					$("#id_usulan").val(idusulan);
-					$("#").val(result.kegiatan);
-					$("#judul").val(result.judul_buku);
+					$("#nama_pengguna").val(result.username);
+					$("#judul_buku").val(result.judul_buku);
                     $("#pengarang").val(result.pengarang);
 					$("#penerbit").val(result.penerbit);
 					$("#tahun").val(result.tahun);
+					$("#status").val(result.status_usulan);
 				}
 			});
 		});

@@ -140,21 +140,21 @@ $tgl = date('Y-m-d');
 							<label for="status">Status</label>
 							<select id="status" name="status" class="form-control form-control-sm">
 								<option value="">-- Pilih Status --</option>
-								<option value="">Siswa</option>
-								<option value="">Karyawan</option>
-								<option value="">Alumni</option>
-								<option value="">Pengunjung Luar</option>
+								<option value="Siswa">Siswa</option>
+								<option value="Guru/Staff">Guru/Staff</option>
+								<option value="Alumni">Alumni</option>
+								<option value="Pengunjung Luar">Pengunjung Luar</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="keterangan">Keterangan</label>
 							<select class="form-control form-control-sm" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan Kunjungan">
 								<option value="">-- Pilih Keterangan --</option>
-								<option value="">Kunjungan</option>
-								<option value="">Membaca Buku</option>
-								<option value="">Peminjaman Buku</option>
-								<option value="">Belajar Bersama</option>
-								<option value="">Lain-lain</option>
+								<option value="Kunjungan">Kunjungan</option>
+								<option value="Membaca Buku">Membaca Buku</option>
+								<option value="Peminjaman Buku">Peminjaman Buku</option>
+								<option value="Belajar Bersama">Belajar Bersama</option>
+								<option value="Lain-lain">Lain-lain</option>
 							</select>
 						</div>
                         <!-- <div class="form-group">

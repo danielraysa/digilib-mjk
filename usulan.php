@@ -19,7 +19,7 @@ if(isset($_POST['tambah_usulan'])){
 	$pengarang = $_POST['pengarang'];
 	$keterangan= $_POST['penerbit'];
 	$tahun = $_POST['tahun'];
-	$query = mysqli_query($conn, "INSERT INTO usulan VALUES ('$kode','".$_SESSION['user_id']."','$judul','$pengarang','$keterangan','$tahun')");
+	$query = mysqli_query($conn, "INSERT INTO usulan VALUES ('$kode','".$_SESSION['user_id']."','$judul','$pengarang','$keterangan','$tahun','proses')");
 	if(!$query){
 		echo mysqli_error($conn);
 	}
