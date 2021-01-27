@@ -30,7 +30,7 @@
                         <!-- <?php
                         // $point = mysqli_query($conn, "SELECT  FROM point_pengguna pp JOIN points p ON p.id_point = pp.id_point WHERE pp.id_pengguna = '".$_SESSION['user_id']."'");
                         // while($row = mysqli_fetch_assoc($point)) { ?> -->
-                        <!-- <h2><center><?php echo $point?></center></h2> -->
+                        <!-- <h2><center><?php //echo $point?></center></h2> -->
                         <table class="table table-bordered table-striped">
 
                                 <thead>

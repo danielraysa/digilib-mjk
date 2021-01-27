@@ -361,7 +361,7 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 
 						<div class="form-group">
 							<label for="kelas">Kelas</label>
-							<select name="kategori" id="kategori_baru" class="form-control form-control-sm">
+							<select name="kelas" id="kelas" class="form-control form-control-sm">
 							<?php 
 								$query_kat = mysqli_query($conn, "SELECT * FROM kelas");
 								while ($row = mysqli_fetch_array($query_kat)) {
