@@ -33,6 +33,15 @@ $urut3++;
 $huruf3 = "PA";
 $kode3 = $huruf3.sprintf("%03s", $urut3);
 
+$query4 = mysqli_query($conn, "SELECT MAX(id_pengguna) as idpengguna FROM pengguna");
+$data4 = mysqli_fetch_array($query4);
+$kode4 = $data4['idpengguna'];
+
+$urut4 = (int) substr($kode4,2,3);
+$urut4++;
+$huruf4 = "AL";
+$kode4 = $huruf3.sprintf("%03s", $urut4);
+
 ?>
 <?php 
 // proses tambah
@@ -61,6 +70,9 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$status = $_POST['status'];
 		//echo "UPDATE siswa SET nama_siswa='$nama',kelas='$kelas',alamat='$alamat',status='$status' WHERE id_siswa='$id'";
 		$query = mysqli_query($conn, "UPDATE siswa SET nama_siswa='$nama',kelas='$kelas',jenis_kelamin='$jkelamin',alamat_siswa='$alamat',status_siswa='$status' WHERE id_siswa='$id'");
+		if($status == 'Tidak Aktif'){
+			$alumni = mysqli_query($conn, "INSERT INTO alumni (id_alumni,nama_alumni,jenis_kelamin,alamat_alumni,status_alumni) SELECT IFNULL(MAX(id_alumni)+1,1), '$nama', '$jkelamin','$alamat','Aktif' FROM alumni") or die(mysqli_error($conn));
+		}
 		//$query1 = mysqli_query($conn, "Insert siswa SET nama_siswa='$nama',kelas='$kelas',jenis_kelamin='$jkelamin',alamat_siswa='$alamat',status_siswa='$status' WHERE id_siswa='$id'");
 	}
 	if(isset($_POST['hapus_siswa'])){
