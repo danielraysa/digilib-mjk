@@ -4,36 +4,8 @@ $dir = basename(__DIR__);
 include "../koneksi.php";
 include "../function.php";
 check_session($dir."/".$filename);
-// proses tambah
-	if(isset($_POST['tambah_kelas'])){
-		$id = $_POST['id_baru'];
-		$nama = $_POST['nama_baru'];
-		$query = mysqli_query($conn, "INSERT INTO kelas VALUES ('$id','$nama')");
-		if(!$query){
-			echo mysqli_error($conn);
-		}
-	}
-	// proses edit
-	if(isset($_POST['edit_kelas'])){
-		$id = $_POST['id_kelas'];
-		$nama = $_POST['nama_kelas'];
-		$query = mysqli_query($conn, "UPDATE kelas SET nama_kelas='$nama' WHERE id_kelas='$id'");
-	}
-	if(isset($_POST['hapus_kelas'])){
-		$id = $_POST['id_kelas'];
-		// echo "UPDATE Kelas SET status = 'Tidak Aktif' WHERE id_Kelas = '".$id."'";
-		// $query = mysqli_query($conn, "UPDATE Kelas SET status = 'Tidak Aktif' WHERE id_Kelas = '".$id."'");
-		$query = mysqli_query($conn, "DELETE from kelas WHERE id_kelas = '".$id."'");
-	}
-	
-	$query = mysqli_query($conn, "SELECT MAX(id_kelas) as idkelas FROM kelas");
-	$data = mysqli_fetch_array($query);
-	$kode = $data['idkelas'];
-	
-	$urut = (int) substr($kode,2,3);
-	$urut++;
-	$huruf = "KS";
-	$kode = $huruf.sprintf("%03s", $urut);
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,13 +30,13 @@ check_session($dir."/".$filename);
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">Kelas</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">Daftar Lomba</h6>
 						</div>
-						<div class="col-lg-6 col-5 text-right">
+						<!-- <div class="col-lg-6 col-5 text-right">
 							<h6 class="h2 text-white d-inline-block mb-0">Kelas</h6>
 							<a href="#" class="btn btn-sm btn-neutral" data-toggle="modal"
 								data-target="#ModalTambahKelas">Tambah</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -80,28 +52,33 @@ check_session($dir."/".$filename);
 							<table id="Tabel2" class="table table-bordered">
 								<thead>
 									<tr>
-										<th>ID Kelas</th>
-										<th>Nama</th>					
-										<th></th>					
+										<th>ID Daftar</th>
+										<th>Judul Lomba</th>					
+										<th>Nama</th>
+										<th>Judul Karya</th>					
+										<th>File</th>					
 									</tr>
 
 								</thead>
 								<tbody>
 
 									<?php
-					$query = mysqli_query($conn, "SELECT * from kelas ");
+					$query = mysqli_query($conn, "SELECT * from daftar d join pengguna p on d.id_pengguna=p.id_pengguna 
+					join lomba l on d.id_lomba=l.id_lomba ");
 					//for($row = 0; $row < 10; $row++)) {
 					while ($row = mysqli_fetch_array($query)) {
 					?>
 									<tr>
-										<td><?php echo $row['id_kelas'] ?></td>
-										<td><?php echo $row['nama_kelas'] ?></td>
-										<td><button class="btn btn-success btnEditKat" data-toggle="modal"
-												data-target="#ModalEditKelas"
-												data-id="<?php echo $row['id_kelas'] ?>">Edit</button>
-												<button class="btn btn-danger btnHapusKat" data-toggle="modal"
-												data-target="#ModalHapusKelas"
-												data-id="<?php echo $row['id_kelas'] ?>">Hapus</button></td>
+										<td><?php echo $row['id_daftar'] ?></td>
+										<td><?php echo $row['judul_lomba'] ?></td>
+										<td><?php echo $row['username'] ?></td>
+										<td><?php echo $row['judul_lomba'] ?></td>
+										<td>
+										<?php if($row['file']!= "") { ?>
+											<a href="<?php echo $row['file'] ?>" target="_blank">File</a>
+										<?php } ?>
+										</td>
+										
 									</tr>
 									<?php } ?>
 								</tbody>

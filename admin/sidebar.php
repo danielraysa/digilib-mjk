@@ -22,7 +22,7 @@
 					<ul class="collapse list-unstyled" id="homesubmenu" >
 						
 						<li class="nav-item"><a class="nav-link ml-4" href="MPengguna.php">Pengguna</a></li>
-						<li class="nav-item"><a class="nav-link ml-4" href="MKelas.php">Kelas</a></li>
+						<!-- <li class="nav-item"><a class="nav-link ml-4" href="MKelas.php">Kelas</a></li> -->
 						<li class="nav-item"><a class="nav-link ml-4" href="MKoleksi.php">Koleksi</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MKategori.php">Kategori</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MPertanyaan.php">Pertanyaan</a></li>
@@ -38,6 +38,7 @@
 						<li class="nav-item"><a class="nav-link ml-4" href="point_pengguna.php">Point Pengguna</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MKunjungan.php">Kunjungan</a></li>
 						<li class="nav-item"><a class="nav-link ml-4" href="MUsulan.php">Usulan</a></li>
+						<li class="nav-item"><a class="nav-link ml-4" href="Daftar.php">Daftar</a></li>
 					</ul>
 					<li class="nav-item">
 					<a class="nav-link" href="laporan.php">
