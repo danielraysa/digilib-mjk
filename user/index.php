@@ -191,28 +191,7 @@
 		});
 		
 		$('#myTable').DataTable();
-		$('#myTable tbody').on('click', '.btnEdit', function () {
-			var idpoint = $(this).attr('data-id');
-			$.ajax({
-				url: 'ajax.php',
-				type: 'post',
-				data: {
-					editpoint: true,
-					id_point: idpoint
-				},
-				dataType: 'json',
-				success: function (result) {
-					console.log(result);
-					$("#id_point").val(idpoint);
-					$("#kegiatan").val(result.jenis_kegiatan);
-                    $("#point").val(result.point);
-				}
-			});
-		});
-		$('#myTable tbody').on('click', '.btnHapus', function () {
-			var idpoint = $(this).attr('data-id');
-			$("#id_point_hapus").val(idpoint);
-		});
+		
 	})
 	</script>
 </body>

@@ -143,6 +143,8 @@
 								$skor_json = [];
 								$nama_json = [];
 								$i = 1;
+								$query_leader = mysqli_query($conn, "SELECT pengguna.username as nama, SUM(points.point) AS jumlah FROM `pengguna` JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna 
+								JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC LIMIT 5");
 								while($_row = mysqli_fetch_assoc($query_leader)){
 									array_push($skor_json, (int) $_row['jumlah']);
 									array_push($nama_json,  $_row['nama']);
@@ -152,22 +154,6 @@
 									<p><?= $_row['nama'] ?></p>
 								</div>
 							<?php } ?>
-								<!-- <div class="">
-									<img src="../admin/img/theme/team-1.jpg" class="avatar rounded-circle" />
-									<p>User 5</p>
-								</div>
-								<div class="">
-									<img src="../admin/img/theme/team-2.jpg" class="avatar rounded-circle" />
-									<p>User 4</p>
-								</div>
-								<div class="">
-									<img src="../admin/img/theme/team-3.jpg" class="avatar rounded-circle" />
-									<p>User 3</p>
-								</div>
-								<div class="">
-									<img src="../admin/img/theme/team-5.jpg" class="avatar rounded-circle" />
-									<p>User 2</p>
-								</div> -->
 							</div>
 						</div>
 					</div>
@@ -219,6 +205,34 @@
 	<script src="admin/vendor/chart.js/dist/Chart.extension.js"></script>
 	<!-- Argon JS -->
 	<script src="admin/js/argon.js?v=1.2.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script>
+	$(document).ready(function() {
+		
+		var ctx = $('#lineChart');
+		var chart = new Chart(ctx, {
+			// The type of chart we want to create
+			type: 'bar',
+
+			// The data for our dataset
+			data: {
+				labels: <?php echo json_encode($nama_json) ?>,
+				datasets: [{
+					label: 'Skor',
+					backgroundColor: 'rgb(255, 99, 132)',
+					borderColor: 'rgb(255, 99, 132)',
+					data: <?php echo json_encode($skor_json) ?>
+				}]
+			},
+
+			// Configuration options go here
+			options: {}
+		});
+		
+		$('#myTable').DataTable();
+		
+	})
+	</script>
 </body>
 
 </html>

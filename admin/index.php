@@ -38,6 +38,8 @@
 								$skor_json = [];
 								$nama_json = [];
 								$i = 1;
+								$query_leader = mysqli_query($conn, "SELECT pengguna.username as nama, SUM(points.point) AS jumlah FROM `pengguna` JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna 
+								JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC LIMIT 5");
 								while($_row = mysqli_fetch_assoc($query_leader)){
 									array_push($skor_json, (int) $_row['jumlah']);
 									array_push($nama_json,  $_row['nama']);
@@ -98,7 +100,7 @@
 					</div>
 				</div>
 			</div>
-			<?php include "layout/user-footer.php"; ?>
+			<?php include "footer.php"; ?>
 		</div>
 	</div>
     
@@ -106,13 +108,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script>
 	$(document).ready(function() {
-		var myConfig = {
-			type: "bar",
-			series: [{
-				values: <?php echo json_encode($skor_json) ?>
-				}
-			]
-		};
 			
 		var ctx = $('#lineChart');
 		var chart = new Chart(ctx, {
@@ -135,28 +130,7 @@
 		});
 		
 		$('#myTable').DataTable();
-		$('#myTable tbody').on('click', '.btnEdit', function () {
-			var idpoint = $(this).attr('data-id');
-			$.ajax({
-				url: 'ajax.php',
-				type: 'post',
-				data: {
-					editpoint: true,
-					id_point: idpoint
-				},
-				dataType: 'json',
-				success: function (result) {
-					console.log(result);
-					$("#id_point").val(idpoint);
-					$("#kegiatan").val(result.jenis_kegiatan);
-                    $("#point").val(result.point);
-				}
-			});
-		});
-		$('#myTable tbody').on('click', '.btnHapus', function () {
-			var idpoint = $(this).attr('data-id');
-			$("#id_point_hapus").val(idpoint);
-		});
+		
 	})
 	</script>
 </body>

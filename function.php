@@ -4,7 +4,7 @@ require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+use PHPMailer\PHPMailer\SMTP;
 
 function check_session($url = null, $dir = null){
     global $root_folder;
