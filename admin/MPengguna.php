@@ -14,8 +14,7 @@ $urut1 = (int) substr($kode1,2,3);
 $urut1++;
 $huruf1 = "SI";
 $kode1 = $huruf1.sprintf("%03s", $urut1);
-?>
-<?php 
+
 $query2 = mysqli_query($conn, "SELECT MAX(id_karyawan) as idkaryawan FROM karyawan");
 $data2 = mysqli_fetch_array($query2);
 $kode2 = $data2['idkaryawan'];
@@ -24,8 +23,7 @@ $urut2 = (int) substr($kode2,2,3);
 $urut2++;
 $huruf2 = "KA";
 $kode2 = $huruf2.sprintf("%03s", $urut2);
-?>
-<?php 
+
 $query3 = mysqli_query($conn, "SELECT MAX(id_pengguna) as idpengguna FROM pengguna");
 $data3 = mysqli_fetch_array($query3);
 $kode3 = $data3['idpengguna'];
@@ -34,6 +32,7 @@ $urut3 = (int) substr($kode3,2,3);
 $urut3++;
 $huruf3 = "PA";
 $kode3 = $huruf3.sprintf("%03s", $urut3);
+
 ?>
 <?php 
 // proses tambah
@@ -80,8 +79,8 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 		$status = $_POST['status'];
 		$user = $_POST['username'];
 		$pass = $_POST['password'];
-		$query = mysqli_query($conn, "INSERT INTO karyawan VALUES ('$id','$kode3','$nama','$jabatan','$alamat','$jkelamin','$status')");
-		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass','-')");
+		$query = mysqli_query($conn, "INSERT INTO karyawan VALUES ('$id','$kode3','$nama','$jabatan','$alamat','$jkelamin','$status')") or die(mysqli_error($conn));
+		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass','-')") or die(mysqli_error($conn));
 		if(!$query || !$query1){
 			echo mysqli_error($conn);
 		}
@@ -277,7 +276,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 						</div>
 						<div class="form-group">
 							<label for="kelas">Kelas</label>
-							<select name="kategori" id="kategori_baru" class="form-control form-control-sm">
+							<select name="kelas_baru" id="kelas_baru" class="form-control form-control-sm">
 							<option value="">Pilih Kelas</option>
 							<?php 
 								$query_kat = mysqli_query($conn, "SELECT * FROM kelas");
@@ -310,7 +309,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 					</div>
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
+						<input type="email" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
@@ -463,7 +462,7 @@ $kode3 = $huruf3.sprintf("%03s", $urut3);
 					</div>
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
+						<input type="email" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>

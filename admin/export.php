@@ -1,7 +1,12 @@
 <?php
 include "../koneksi.php";
 ob_start();
-require 'hello-world.php'; // tampilan laporan 
+if($_GET['cetak']){
+    $halaman = $_GET['cetak'];
+    require "layout-pdf/".$halaman.".php";
+}else{
+    require 'hello-world.php'; // tampilan laporan 
+}
 $html = ob_get_clean();
 require_once '../dompdf/autoload.inc.php';
 

@@ -4,9 +4,17 @@
 	include "../koneksi.php";
 	include "../function.php";
     check_session($dir."/".$filename);
-    
+    /* if($_SESSION['testcomplete'] == 'yes'){
+        header('location:score.php?id='.$id);
+        exit;
+    } */
     $user_id = $_SESSION['user_id'];
     $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $count_query = mysqli_query($conn, "SELECT * FROM log_quiz WHERE id_pengguna = '$user_id' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan WHERE id_koleksi = '$id')");
+    if(mysqli_num_rows($count_query) != 0){
+        header('location:score.php?id='.$id);
+        exit;
+    }
     if($id != ''){
         $get_quiz = mysqli_query($conn, "SELECT * from log_quiz lq WHERE id_pengguna = '".$user_id."' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan p WHERE id_koleksi = '".$id."')") or die(mysqli_error($conn));
         if(mysqli_num_rows($get_quiz) == 0){
@@ -26,11 +34,14 @@
             $hasil = 'salah';
             if($jawab == $row['jawaban']){
                 $hasil = 'benar';
+                $kode_point = 'PO002';
+                $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point, tgl_perolehan) SELECT IFNULL(MAX(id_ppengguna)+1,1), '".$user_id."', '".$kode_point."','".date('Y-m-d H:i:s')."' FROM point_pengguna") or die(mysqli_error($conn));
             }
             $upd = mysqli_query($conn, "UPDATE log_quiz SET jawaban = '$jawab', tanggal_jawab = '$tgl', benar_salah = '$hasil' WHERE id_pengguna = '$user_id' AND id_pertanyaan = '".$row['id_pertanyaan']."'") or die(mysqli_error($conn));
         }
         unset($_POST);
-        header('location:index.php');
+        // $_SESSION['testcomplete'] = 'yes';
+        header('location:score.php?id='.$id);
         exit;
     }
 ?>

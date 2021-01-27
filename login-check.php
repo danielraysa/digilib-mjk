@@ -8,6 +8,7 @@
     $kode_point = 'PO003';
     
     if(mysqli_num_rows($check) == 1 || mysqli_num_rows($check_kar) == 1){
+        $insert_sess = mysqli_query($conn, "INSERT INTO session_kunjungan (id_ses_kunjungan, id_pengguna, tanggal_kunjungan) SELECT IFNULL(MAX(id_ses_kunjungan)+1,1), '".$data['id_pengguna']."', '".date('Y-m-d H:i:s')."' FROM session_kunjungan") or die(mysqli_error($conn));
         if(mysqli_num_rows($check) == 1){
             $data = mysqli_fetch_assoc($check);
             $_SESSION['user_id'] = $data['id_pengguna'];
@@ -48,7 +49,7 @@
             header('location:'.$_POST['redirect']);
             exit;
         }
-        header('location:admin/');
+        header('location:admin/admin.php');
         exit;
     }else {
         header('location:login.php?not-found');

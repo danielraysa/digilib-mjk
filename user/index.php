@@ -54,26 +54,54 @@
 						</div>
 					</div>
 				</div> -->
+				<div class="col-lg-3 col-md-12 text-center">
+					<div class="card">
+						<div class="card-body">
+							<?php
+							$query_skor = mysqli_query($conn, "SELECT
+							pengguna.username as nama,
+							SUM(points.point) AS jumlah
+						FROM
+							pengguna
+						JOIN point_pengguna ON
+							pengguna.id_pengguna = point_pengguna.id_pengguna
+						JOIN points ON
+							point_pengguna.id_point = points.id_point
+						WHERE
+							point_pengguna.id_point = points.id_point
+							and pengguna.id_pengguna = 'PA043'
+						GROUP BY
+							pengguna.username
+						ORDER BY
+							jumlah DESC");
+							$data_skor = mysqli_fetch_assoc($query_skor);
+							?>
+							<p>Skor/Point</p>
+							<h2><?php echo $data_skor['jumlah']; ?></h2>
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-9 col-md-12">
 					<div class="row">
 						<div class="col-lg-6 col-md-12 mb-3">
-							<div id="lineChart" style="height: 200px"></div>
+							<!-- <div id="lineChart" style="height: 200px"></div> -->
+							<canvas id="lineChart"></canvas>
 						</div>
 						<div class="col-lg-6 col-md-12 mb-3">
 							<div class="d-flex h-100 justify-content-around align-items-center">
 							<?php 
-								$data_json = [];
+								$skor_json = [];
+								$nama_json = [];
 								$i = 1;
 								while($_row = mysqli_fetch_assoc($query_leader)){
-									array_push($data_json, (int) $_row['jumlah']);
+									array_push($skor_json, (int) $_row['jumlah']);
+									array_push($nama_json,  $_row['nama']);
 								?>
 								<div class="">
 									<img src="../admin/img/theme/team-<?= $i++ ?>.jpg" class="avatar rounded-circle" />
 									<p><?= $_row['nama'] ?></p>
 								</div>
-							<?php } 
-								rsort($data_json);
-							?>
+							<?php } ?>
 								<!-- <div class="">
 									<img src="../admin/img/theme/team-1.jpg" class="avatar rounded-circle" />
 									<p>User 5</p>
@@ -130,86 +158,36 @@
 	</div>
 	
 	<?php include "layout/user-js-script.php"; ?>
-	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+	<!-- <script src="https://cdn.zingchart.com/zingchart.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script>
 	$(document).ready(function() {
 		var myConfig = {
 			type: "bar",
-			"scale-r": {
-				aperture: 200,
-			},
-			"plotarea":{
-				"margin":"0"
-			},
 			series: [{
-				values: <?php echo json_encode($data_json) ?>
+				values: <?php echo json_encode($skor_json) ?>
 				}
 			]
 		};
 			
-		zingchart.render({
-			id: 'lineChart',
-			data: myConfig,
-			height: "280px",
-			width: "100%"
-		});
-		var myConfig6 = {
-			"type": "gauge",
-			// "style": { "padding": "-1px" },
-			"scale-r": {
-				"aperture": 200,
-				"values": "0:100:20",
-				"center": {
-					"size": 5,
-					"background-color": "#66CCFF #FFCCFF",
-					"border-color": "none"
-				},
-				"ring": { //Ring with Rules
-					"size": 10,
-					"rules": [{
-							"rule": "%v >= 0 && %v <= 20",
-							"background-color": "red"
-						},
-						{
-							"rule": "%v >= 20 && %v <= 40",
-							"background-color": "orange"
-						},
-						{
-							"rule": "%v >= 40 && %v <= 60",
-							"background-color": "yellow"
-						},
-						{
-							"rule": "%v >= 60 && %v <= 80",
-							"background-color": "green"
-						},
-						{
-							"rule": "%v >= 80 && %v <=100",
-							"background-color": "blue"
-						}
-					]
-				}
+		var ctx = $('#lineChart');
+		var chart = new Chart(ctx, {
+			// The type of chart we want to create
+			type: 'bar',
+
+			// The data for our dataset
+			data: {
+				labels: <?php echo json_encode($nama_json) ?>,
+				datasets: [{
+					label: 'Skor',
+					backgroundColor: 'rgb(255, 99, 132)',
+					borderColor: 'rgb(255, 99, 132)',
+					data: <?php echo json_encode($skor_json) ?>
+				}]
 			},
-			/* "plotarea": {
-				// "margin": "40px 0px 0px 0px",
-				// "backgroundColor": '#fff'
-			}, */
-			"plot": {
-				"csize": "5%",
-				"size": "100%",
-				"background-color": "#000000",
-			},
-			"series": [{
-				"values": [87]
-			}]
-		};
-		// ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-		zingchart.render({
-		// $('#myChart').zingchart({
-			id: 'myChart',
-			data: myConfig6,
-			// height: "100%",
-			height: "280px",
-			width: "100%"
+
+			// Configuration options go here
+			options: {}
 		});
 		
 		$('#myTable').DataTable();
