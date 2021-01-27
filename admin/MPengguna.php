@@ -294,7 +294,7 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 								$query_kat = mysqli_query($conn, "SELECT * FROM kelas");
 								while ($row = mysqli_fetch_array($query_kat)) {
 							?>
-								<option value="<?php echo $row['id_kelas']; ?>"><?php echo $row['nama_kelas'] ?></option>
+								<option value="<?php echo $row['nama_kelas']; ?>"><?php echo $row['nama_kelas'] ?></option>
 							<?php } ?>
 						</select>
 						</div>
@@ -366,7 +366,7 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 								$query_kat = mysqli_query($conn, "SELECT * FROM kelas");
 								while ($row = mysqli_fetch_array($query_kat)) {
 							?>
-								<option value="<?php echo $row['id_kelas']; ?>"><?php echo $row['nama_kelas'] ?></option>
+								<option value="<?php echo $row['nama_kelas']; ?>"><?php echo $row['nama_kelas'] ?></option>
 							<?php } ?>
 						</select>
 						</div>
@@ -584,8 +584,8 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 					$("#nama").val(result.nama_siswa);
 					$("#kelas").val(result.kelas);
 					$("#jkelamin").val(result.jenis_kelamin);
-					$("#alamat").val(result.alamat);
-					$("#status").val(result.status);
+					$("#alamat").val(result.alamat_siswa);
+					$("#status").val(result.status_siswa);
 				}
 			});
 		});
