@@ -33,6 +33,7 @@
     $halaman = $row_baca['halaman_bacatg'];
     
     $cek_pertanyaan = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_koleksi = '$id'");
+    $cek_log_quiz = mysqli_query($conn, "SELECT * FROM log_quiz WHERE id_pengguna = '$user_id' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan WHERE id_koleksi = '$id')")
 ?>
 <!DOCTYPE html>
 <html>
@@ -112,7 +113,7 @@
     });
     
     var url = "<?php echo $row['file'] ?>";
-    var adaQuiz = <?php if (mysqli_num_rows($cek_pertanyaan) != 0) echo "1"; else echo "0"; ?>;
+    var adaQuiz = <?php if (mysqli_num_rows($cek_pertanyaan) != 0 && mysqli_num_rows($cek_log_quiz) == 0) echo "1"; else echo "0"; ?>;
     var halaman = <?php echo $halaman ?>;
     var pdfDoc = null,
         pageNum = halaman,

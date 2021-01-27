@@ -31,20 +31,21 @@ function generateRandomString($length = 20) {
 function kirimEmail($tujuan, $subjek, $konten){
     // Instantiation and passing `true` enables exceptions
     $mail = new PHPMailer(true);
-
+    global $user_mail;
+    global $pass_mail;
     try {
         //Server settings
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'anelzraysa@gmail.com';                     // SMTP username
-        $mail->Password   = 'buxkqhvgvkxajvxf';                               // SMTP password
+        $mail->Username   = $user_mail;                     // SMTP username
+        $mail->Password   = $pass_mail;                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
         //Recipients
-        $mail->setFrom('from@example.com', 'Mailer');
+        $mail->setFrom('info@digilib.app', 'Digilib');
         $mail->addAddress($tujuan); // Name is optional
 
         // Content

@@ -7,4 +7,6 @@
 	error_reporting(E_ALL);
 	date_default_timezone_set("Asia/Jakarta");
 	$conn = mysqli_connect("localhost","root","","digilib");
+	$user_mail = 'email@gmail.com';
+	$pass_mail = 'password';
 ?>

@@ -23,7 +23,11 @@
         while($row = mysqli_fetch_assoc($data_pertanyaan)) {
             $id_arr = 'jawaban_'.$row['id_pertanyaan'];
             $jawab = $_POST[$id_arr];
-            $upd = mysqli_query($conn, "UPDATE log_quiz SET jawaban = '$jawab', tanggal_jawab = '$tgl' WHERE id_pengguna = '$user_id' AND id_pertanyaan = '".$row['id_pertanyaan']."'") or die(mysqli_error($conn));
+            $hasil = 'salah';
+            if($jawab == $row['jawaban']){
+                $hasil = 'benar';
+            }
+            $upd = mysqli_query($conn, "UPDATE log_quiz SET jawaban = '$jawab', tanggal_jawab = '$tgl', benar_salah = '$hasil' WHERE id_pengguna = '$user_id' AND id_pertanyaan = '".$row['id_pertanyaan']."'") or die(mysqli_error($conn));
         }
         unset($_POST);
         header('location:index.php');

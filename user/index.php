@@ -3,6 +3,8 @@
 	include "../koneksi.php";
 	include "../function.php";
 	check_session($dir);
+	$query_leader = mysqli_query($conn, "SELECT pengguna.username as nama, SUM(points.point) AS jumlah FROM `pengguna` JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna 
+								JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC LIMIT 5");
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,11 +61,20 @@
 						</div>
 						<div class="col-lg-6 col-md-12 mb-3">
 							<div class="d-flex h-100 justify-content-around align-items-center">
+							<?php 
+								$data_json = [];
+								$i = 1;
+								while($_row = mysqli_fetch_assoc($query_leader)){
+									array_push($data_json, (int) $_row['jumlah']);
+								?>
 								<div class="">
-									<img src="../admin/img/theme/team-4.jpg" class="avatar rounded-circle" />
-									<p>User 1</p>
+									<img src="../admin/img/theme/team-<?= $i++ ?>.jpg" class="avatar rounded-circle" />
+									<p><?= $_row['nama'] ?></p>
 								</div>
-								<div class="">
+							<?php } 
+								rsort($data_json);
+							?>
+								<!-- <div class="">
 									<img src="../admin/img/theme/team-1.jpg" class="avatar rounded-circle" />
 									<p>User 5</p>
 								</div>
@@ -78,7 +89,7 @@
 								<div class="">
 									<img src="../admin/img/theme/team-5.jpg" class="avatar rounded-circle" />
 									<p>User 2</p>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -131,7 +142,7 @@
 				"margin":"0"
 			},
 			series: [{
-				values: [33, 30, 25, 20, 15]
+				values: <?php echo json_encode($data_json) ?>
 				}
 			]
 		};
