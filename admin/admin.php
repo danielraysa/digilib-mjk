@@ -128,6 +128,81 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="row">
+				
+				<div class="col-lg-9 col-md-12">
+					<div class="row">
+						<div class="col-lg-6 col-md-12 mb-3">
+							<!-- <div id="lineChart" style="height: 200px"></div> -->
+							<canvas id="lineChart"></canvas>
+						</div>
+						<div class="col-lg-6 col-md-12 mb-3">
+							<div class="d-flex h-100 justify-content-around align-items-center">
+							<?php 
+								$skor_json = [];
+								$nama_json = [];
+								$i = 1;
+								while($_row = mysqli_fetch_assoc($query_leader)){
+									array_push($skor_json, (int) $_row['jumlah']);
+									array_push($nama_json,  $_row['nama']);
+								?>
+								<div class="">
+									<img src="../admin/img/theme/team-<?= $i++ ?>.jpg" class="avatar rounded-circle" />
+									<p><?= $_row['nama'] ?></p>
+								</div>
+							<?php } ?>
+								<!-- <div class="">
+									<img src="../admin/img/theme/team-1.jpg" class="avatar rounded-circle" />
+									<p>User 5</p>
+								</div>
+								<div class="">
+									<img src="../admin/img/theme/team-2.jpg" class="avatar rounded-circle" />
+									<p>User 4</p>
+								</div>
+								<div class="">
+									<img src="../admin/img/theme/team-3.jpg" class="avatar rounded-circle" />
+									<p>User 3</p>
+								</div>
+								<div class="">
+									<img src="../admin/img/theme/team-5.jpg" class="avatar rounded-circle" />
+									<p>User 2</p>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="card table-responsive">
+						<div class="card-body p-1">
+						<table class="table table-bordered table-striped">
+							<thead>
+
+								<tr class="bg-primary text-white">
+									<th style="width:10%">No.</th>
+									<th>User</th>
+									<th>Point</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php
+								//querynya belum okeh
+								$query = mysqli_query($conn, "SELECT pengguna.username as nama, SUM(points.point) AS jumlah FROM `pengguna` JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna 
+								JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC 
+								");
+								//for($row = 0; $row < 10; $row++)) {
+								while ($row = mysqli_fetch_array($query)) {
+								?>
+								<tr>
+									<td>--</td>
+									<td><?php echo $row['nama']?></td>
+									<td><?php echo $row['jumlah']?></td>
+								</tr>
+								<?php }?>
+							</tbody>
+						</table>
+					</div>
+					</div>
+				</div>
+			</div>
 			<?php include "footer.php"; ?>
 		</div>
 	</div>

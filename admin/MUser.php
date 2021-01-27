@@ -119,7 +119,7 @@ check_session($dir."/".$filename);
 						</div>
 						<div class="form-group">
 							<label for="user">Username</label>
-							<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username Anda">
+							<input type="email" name="username" id="username" class="form-control form-control-sm" placeholder="Username Anda">
 						</div>
                         <div class="form-group">
 							<label for="pass">Password</label>

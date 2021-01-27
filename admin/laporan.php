@@ -40,7 +40,7 @@ $karya2 = $data5['idKaryawan'];
 	<?php include "sidebar.php"; ?>
 	<!-- Main content -->
 	<!--lomba-->
-	<div class="main-content" id="panel" style = >
+	<div class="main-content" id="panel">
 		<!-- Topnav -->
 		<?php include "navbar.php"; ?>
 		<!-- Header -->
@@ -112,13 +112,12 @@ $karya2 = $data5['idKaryawan'];
 							<h3>Kunjungan</h3>
 							<table id="Tabel3" class="table table-bordered">
 								<thead>
-								<th>Jenis Anggota</th>
-										<th>Jumlah Kunjungan</th>						
+									<tr>
+										<th>Jenis Anggota</th>
+										<th>Jumlah Kunjungan</th>
 									</tr>
-
 								</thead>
 								<tbody>
-
 									<tr>
 										<td>Siswa</td>
 										<td><?php echo $siswa1?></td>
@@ -129,8 +128,8 @@ $karya2 = $data5['idKaryawan'];
 									</tr>
 								</tbody>
 							</table>
-							<button class="btn btn-secondary btnprint" data-toggle="modal"
-												data-target="#cetak">Cetak</button>
+							<!-- <button class="btn btn-secondary btnprint" data-toggle="modal" data-target="#cetak">Cetak</button> -->
+							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 						</div>
 					</div>
 				</div>
