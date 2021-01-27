@@ -94,7 +94,7 @@ while($row = mysqli_fetch_array($koleksi)){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center"
-					style="background-image: url(pengguna/images/about-1.jpg);">
+					style="background-image: url(pengguna/images/gambar.jpg);">
 				</div>
 				<div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
 					<div class="heading-section">
@@ -422,7 +422,7 @@ while($row = mysqli_fetch_array($koleksi)){
       </div>
     </section>	-->
 
-    <footer class="ftco-footer">
+    <!-- <footer class="ftco-footer">
       <div class="container">
         <div class="row mb-5">
           <div class="col-sm-12 col-md">
@@ -483,7 +483,7 @@ while($row = mysqli_fetch_array($koleksi)){
           </div>
         </div>
 		
-      </div>
+      </div> -->
 	 
 	<?php include "footer.php"; ?>
 	<!-- </footer> -->

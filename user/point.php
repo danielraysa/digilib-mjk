@@ -27,7 +27,12 @@
 			    <div class="col-lg-12">
                     <div class="card table-responsive">
 						<div class="card-body p-1">
-                            <table class="table table-bordered table-striped">
+                        <!-- <?php
+                        // $point = mysqli_query($conn, "SELECT  FROM point_pengguna pp JOIN points p ON p.id_point = pp.id_point WHERE pp.id_pengguna = '".$_SESSION['user_id']."'");
+                        // while($row = mysqli_fetch_assoc($point)) { ?> -->
+                        <!-- <h2><center><?php echo $point?></center></h2> -->
+                        <table class="table table-bordered table-striped">
+
                                 <thead>
                                     <tr class="bg-primary text-white">
                                         <th style="width:10%">No.</th>

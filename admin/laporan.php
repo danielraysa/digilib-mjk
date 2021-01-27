@@ -84,7 +84,7 @@ $karya2 = $data5['idKaryawan'];
 										<td><?php echo $siswa?></td>
 									</tr>
 									<tr>
-										<td>Karyawan</td>
+										<td>Staff/Guru</td>
 										<td><?php echo $karya?></td>
 									</tr>
 								</tbody>
