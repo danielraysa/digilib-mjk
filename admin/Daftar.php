@@ -106,7 +106,7 @@ check_session($dir."/".$filename);
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="id">ID Kelas</label>
-						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Id" value ="<?php echo $kode?>" readonly>
+						<input type="text" name="id_baru" id="id_baru" class="form-control form-control-sm" placeholder="Id" value ="<?php //echo $kode?>" readonly>
 					</div>
 
 					<div class="form-group">
