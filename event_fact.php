@@ -10,6 +10,7 @@
 	}else{
 		$id_event = $_GET['id'];
 	}
+	$file_url = $filename."?id=".$id_event;
 ?>
 <!DOCTYPE html>
 <html lang="en">

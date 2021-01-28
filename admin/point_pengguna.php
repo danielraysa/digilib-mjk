@@ -187,7 +187,7 @@
 		// 	});
 		// });
 		$('#myTable tbody').on('click', '.btnHapus', function () {
-			var idppengguna = $(this).attr('data-id');
+			var id_ppengguna = $(this).attr('data-id');
 			$("#id_ppengguna_hapus").val(id_ppengguna);
 		});
 	</script>
