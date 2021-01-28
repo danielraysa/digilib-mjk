@@ -143,8 +143,8 @@
 						<div class="form-group">
 							<label for="status">Status</label>
 							<select name="status_usulan" id="status_usulan" class="form-control form-control-sm">
-								<option value="Perempuan">Proses</option>
-								<option value="Laki-laki">Selesai</option>
+								<option value="Proses">Proses</option>
+								<option value="Selesai">Selesai</option>
 							</select>
 						</div>
 				</div>

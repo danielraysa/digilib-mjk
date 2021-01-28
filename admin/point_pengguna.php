@@ -14,9 +14,9 @@
 	// 	$query = mysqli_query($conn, "UPDATE Point Pengguna SET judul_buku='$judul', pengarang = '$pengarang', penerbit='$penerbit', tahun '$tahun' WHERE Point Pengguna='$id'");
 	// }
 	if(isset($_POST['hapus'])){
-		$id = $_POST['Point Pengguna'];
+		$id = $_POST['id_ppengguna'];
 		//echo "UPDATE Point Pengguna SET status = 'Tidak Aktif' WHERE Point Pengguna = '".$id."'";
-		$query = mysqli_query($conn, "DELETE from Point Pengguna WHERE Point Pengguna = '".$id."'");
+		$query = mysqli_query($conn, "DELETE from point_pengguna WHERE id_ppengguna = '".$id."'");
 	}
 ?>
 <!DOCTYPE html>
@@ -58,7 +58,7 @@
 								<tr>
 									
 									<th>Pengguna</th>
-                                    <!-- <th>Jenis Kegiatan</th> -->
+                                    <th>Jenis Kegiatan</th>
 									<th>Point</th>
 									<th>Action</th>
 								</tr>
@@ -77,7 +77,7 @@
 									<td><?php echo $row['jenis_kegiatan'] ?></td>
 									<td><?php echo $row['point'] ?></td>
 									<td>
-										<button class="btn btn-success btnEdit" data-toggle="modal"
+										<button class="btn btn-danger btnHapus" data-toggle="modal"
 										data-target="#ModalHapus"
 										data-id="<?php echo $row['id_ppengguna'] ?>">Hapus</button>
 									</td>
@@ -151,7 +151,7 @@
 				<div class="modal-body">
 					<form action="" method="post">
 					Apakah anda akan menghapus data Point Pengguna ini?
-					<input type="hidden" name="Point Pengguna" id="Point Pengguna_hapus" class="form-control form-control-sm" readonly>
+					<input type="hidden" name="id_ppengguna" id="id_ppengguna_hapus" class="form-control form-control-sm" readonly>
 						
 				</div>
 				<div class="modal-footer">
@@ -187,8 +187,8 @@
 		// 	});
 		// });
 		$('#myTable tbody').on('click', '.btnHapus', function () {
-			var Point_Pengguna = $(this).attr('data-id');
-			$("#Point Pengguna_hapus").val(Point_Pengguna);
+			var idppengguna = $(this).attr('data-id');
+			$("#id_ppengguna_hapus").val(id_ppengguna);
 		});
 	</script>
 </body>
