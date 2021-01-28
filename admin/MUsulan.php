@@ -8,7 +8,6 @@
 	// proses edit
 	if(isset($_POST['edit'])){
 		$id = $_POST['id_usulan'];
-        $id_pengguna = $_POST['id_pengguna'];
 		$judul = $_POST['judul_buku'];
 		$pengarang = $_POST['pengarang'];
 		$penerbit = $_POST['penerbit'];
@@ -55,6 +54,7 @@
 			<div class="row">
 				<div class="col-xl-12 col-md-12">
 					<div class="card card-stats">
+					<div class="card-body table-responsive">
 						<!-- Card body -->
 						<table id="myTable" class="table table-bordered">
 							<thead>
@@ -96,6 +96,7 @@
 								<?php } ?>
 							</tbody>
 						</table>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -143,8 +144,8 @@
 						<div class="form-group">
 							<label for="status">Status</label>
 							<select name="status_usulan" id="status_usulan" class="form-control form-control-sm">
-								<option value="Perempuan">Proses</option>
-								<option value="Laki-laki">Selesai</option>
+								<option value="Proses">Proses</option>
+								<option value="Selesai">Selesai</option>
 							</select>
 						</div>
 				</div>

@@ -52,10 +52,11 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 		$jkelamin = $_POST['jkelamin_baru'];
 		$alamat = $_POST['alamat_baru'];
 		$status = $_POST['status_baru'];
+		$email = $_POST['email'];
 		$user = $_POST['username'];
 		$pass = $_POST['password'];
 		$query = mysqli_query($conn, "INSERT INTO siswa VALUES ('$id','$kode3','$nama','$kelas','$jkelamin','$alamat','$status')");
-		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass','-')");
+		$query1 = mysqli_query($conn, "INSERT INTO pengguna(id_pengguna, email, username, password, profil) VALUES ('$kode3','$email','$user','$pass','-')");
 		if(!$query || $query1){
 			echo mysqli_error($conn);
 		}
@@ -89,10 +90,11 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 		$alamat = $_POST['alamat_baru'];
 		$jkelamin = $_POST['jkelamin'];
 		$status = $_POST['status'];
+		$email = $_POST['email'];
 		$user = $_POST['username'];
 		$pass = $_POST['password'];
 		$query = mysqli_query($conn, "INSERT INTO karyawan VALUES ('$id','$kode3','$nama','$jabatan','$alamat','$jkelamin','$status')") or die(mysqli_error($conn));
-		$query1 = mysqli_query($conn, "INSERT INTO pengguna VALUES ('$kode3','$user','$pass','-')") or die(mysqli_error($conn));
+		$query1 = mysqli_query($conn, "INSERT INTO pengguna(id_pengguna, email, username, password, profil) VALUES ('$kode3','email','$user','$pass','-')") or die(mysqli_error($conn));
 		if(!$query || !$query1){
 			echo mysqli_error($conn);
 		}
@@ -320,8 +322,12 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 						</select>
 					</div>
 					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Username">
+					</div>
+					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="email" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
+						<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>

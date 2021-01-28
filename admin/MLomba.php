@@ -34,6 +34,15 @@
 		if(!$query){
 			echo mysqli_error($conn);
 		}
+		$select_email = mysqli_query($conn, "SELECT * FROM pengguna");
+		$arr_email = [];
+		while($sel_email = mysqli_fetch_assoc($select_email)){
+			array_push($arr_email, $sel_email['email']);
+		}
+		$html_lomba = "<h2>Lomba Baru</h2>
+			<h4>".$judul."</h2>
+			<p>".$keterangan."</p>";
+		kirimEmail($arr_email,'Lomba Baru', $html_lomba);
 	}
 	// proses edit
 	if(isset($_POST['edit_lomba'])){
