@@ -69,7 +69,7 @@
 							point_pengguna.id_point = points.id_point
 						WHERE
 							point_pengguna.id_point = points.id_point
-							and pengguna.id_pengguna = 'PA043'
+							and pengguna.id_pengguna = '".$_SESSION['user_id']."'
 						GROUP BY
 							pengguna.username
 						ORDER BY

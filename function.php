@@ -46,7 +46,13 @@ function kirimEmail($tujuan, $subjek, $konten){
 
         //Recipients
         $mail->setFrom('info@digilib.app', 'Digilib');
-        $mail->addAddress($tujuan); // Name is optional
+        if(is_array($tujuan)){
+            foreach($tujuan as $tjn){
+                $mail->addAddress($tjn); // Name is optional
+            }
+        }else{
+            $mail->addAddress($tujuan); // Name is optional
+        }
 
         // Content
         $mail->isHTML(true); // Set email format to HTML

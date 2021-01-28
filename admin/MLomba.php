@@ -34,7 +34,8 @@
 		if(!$query){
 			echo mysqli_error($conn);
 		}
-		$select_email = mysqli_query($conn, "SELECT * FROM pengguna");
+		// $select_email = mysqli_query($conn, "SELECT * FROM pengguna");
+		$select_email = mysqli_query($conn, "SELECT * FROM pengguna WHERE id_pengguna IN ('PA052','PA053')");
 		$arr_email = [];
 		while($sel_email = mysqli_fetch_assoc($select_email)){
 			array_push($arr_email, $sel_email['email']);

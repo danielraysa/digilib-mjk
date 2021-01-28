@@ -75,7 +75,7 @@ check_session($dir."/".$filename);
 										<td><?php echo $row['judul_lomba'] ?></td>
 										<td>
 										<?php if($row['file']!= "") { ?>
-											<a href="<?php echo $row['file'] ?>" target="_blank">File</a>
+											<a href="<?php echo "../".$row['file'] ?>" target="_blank">File</a>
 										<?php } ?>
 										</td>
 										
