@@ -79,6 +79,9 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 		$id = $_POST['id_siswa'];
 		// echo "UPDATE siswa SET status = 'Tidak Aktif' WHERE id_siswa = '".$id."'";
 		$query = mysqli_query($conn, "UPDATE siswa SET status_siswa = 'Tidak Aktif' WHERE id_siswa = '".$id."'");
+		if($status == 'Tidak Aktif'){
+			$alumni = mysqli_query($conn, "INSERT INTO alumni (id_alumni,nama_alumni,jenis_kelamin,alamat_alumni,status_alumni) SELECT IFNULL(MAX(id_alumni)+1,1), '$nama', '$jkelamin','$alamat','Aktif' FROM alumni") or die(mysqli_error($conn));
+		}
 	}
  
 // proses tambah
