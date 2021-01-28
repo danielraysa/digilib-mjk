@@ -157,7 +157,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card table-responsive">
+					<!-- <div class="card table-responsive">
 						<div class="card-body p-1">
 						<table class="table table-bordered table-striped">
 							<thead>
@@ -171,22 +171,22 @@
 							<tbody>
 							<?php
 								//querynya belum okeh
-								$query = mysqli_query($conn, "SELECT pengguna.username as nama, SUM(points.point) AS jumlah FROM `pengguna` JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna 
-								JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC 
-								");
+								// $query = mysqli_query($conn, "SELECT pengguna.username as nama, SUM(points.point) AS jumlah FROM `pengguna` JOIN point_pengguna ON pengguna.id_pengguna = point_pengguna.id_pengguna 
+								// JOIN points ON point_pengguna.id_point = points.id_point WHERE point_pengguna.id_point=points.id_point GROUP BY pengguna.username ORDER BY jumlah DESC 
+								// ");
 								//for($row = 0; $row < 10; $row++)) {
-								while ($row = mysqli_fetch_array($query)) {
-								?>
+								// while ($row = mysqli_fetch_array($query)) {
+								// ?>
 								<tr>
 									<td>--</td>
-									<td><?php echo $row['nama']?></td>
-									<td><?php echo $row['jumlah']?></td>
+									<td><?php //echo $row['nama']?></td>
+									<td><?php //echo $row['jumlah']?></td>
 								</tr>
-								<?php }?>
+								<?php// }?>
 							</tbody>
 						</table>
 					</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<?php include "footer.php"; ?>
