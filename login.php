@@ -72,7 +72,12 @@
 										<?php if(isset($_GET['redirect'])): ?>
 											<input type="hidden" name="redirect" class="form-control" value="<?php echo $_GET['redirect']; ?>" />
 										<?php endif; ?>
-
+										<?php if(isset($_GET['error'])){ ?>
+										<label style="color: red">Username/password salah</label>
+										<?php }
+											if(isset($_GET['not-found'])){ ?>
+										<label style="color: red">Username tidak ditemukan</label>
+										<?php } ?>
 										<div class="form-group">
 											<label for="username">Username</label>
 											<input type="text" name="username" id="username" class="form-control form-control-sm"
