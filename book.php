@@ -1,7 +1,12 @@
 <?php 
 	include "koneksi.php";
 	include "function.php";
-	$filename = basename(__FILE__); 
+	$filename = basename(__FILE__);
+	$where_clause = "";
+	if(isset($_GET['kategori'])){
+		$where_clause = "WHERE id_kategori IN ('".implode("','", $_GET['kategori'])."')";
+		// echo $where_clause;
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,14 +37,17 @@
 					<div class="row mb-4">
 						<div class="col-md-12 d-flex justify-content-between align-items-center">
 							<h4 class="product-select">Pilih Kategori</h4>
-							<select class="selectpicker" multiple>
+							<form action="" method="get">
+							<select id="kategori_picker" name="kategori[]" class="selectpicker" multiple>
 							<?php 
 								$query_kat = mysqli_query($conn, "SELECT * FROM kategori");
 								while ($row = mysqli_fetch_array($query_kat)) {
 							?>
-								<option value="<?php echo $row['id_kategori']; ?>"><?php echo $row['nama_kategori'] ?></option>
+								<option <?= !empty($_GET['kategori'] && in_array($row['id_kategori'], $_GET['kategori'])) ? 'selected' : '' ?> value="<?php echo $row['id_kategori']; ?>"><?php echo $row['nama_kategori'] ?></option>
 							<?php } ?>
 							</select>
+							<button type="submit" class="btn btn-success">Filter</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -50,7 +58,7 @@
 		<div class="col-lg-9 ftco-animate fadeInUp ftco-animated">
 			<div class="row">
 				<?php 
-					$query_koleksi = mysqli_query($conn, "SELECT * FROM koleksi");
+					$query_koleksi = mysqli_query($conn, "SELECT * FROM koleksi $where_clause");
 					while ($row = mysqli_fetch_array($query_koleksi)) {
 				?>
 				<div class="col-md-4 d-flex">
@@ -72,23 +80,32 @@
 			</div>
 			
 		</div>
-		<?php if(isset($_SESSION['user_id'])){ ?>
 		<div class="col-lg-3 sidebar pl-lg-3 ftco-animate fadeInUp ftco-animated">
 			<div class="sidebar-box ftco-animate">
-              <div class="categories">
-			  <h3>Histori</h3>
-			  <ul>
-				<?php
-				$user_id = $_SESSION['user_id'];
-				$query = mysqli_query($conn, "SELECT k.id_koleksi, k.judul from log_baca lb JOIN koleksi k ON k.id_koleksi = lb.id_koleksi WHERE lb.id_pengguna = '$user_id' GROUP BY k.id_koleksi");
-				while($row = mysqli_fetch_assoc($query)) { ?>
-				<li><a href="user/baca.php?id=<?php echo $row['id_koleksi'] ?>"><span class="fa fa-chevron-right"></span><?php echo $row['judul']?></a></li>
-				<?php } ?>
+				<div class="categories">
+				<?php if(isset($_SESSION['user_id'])){ ?>
+				<h3>Histori</h3>
+				<ul>
+					<?php
+					$user_id = $_SESSION['user_id'];
+					$query = mysqli_query($conn, "SELECT k.id_koleksi, k.judul from log_baca lb JOIN koleksi k ON k.id_koleksi = lb.id_koleksi WHERE lb.id_pengguna = '$user_id' GROUP BY k.id_koleksi");
+					while($row = mysqli_fetch_assoc($query)) { ?>
+					<li><a href="user/baca.php?id=<?php echo $row['id_koleksi'] ?>"><span class="fa fa-chevron-right"></span><?php echo $row['judul']?></a></li>
+					<?php } ?>
 				</ul>
-              </div>
+				<?php }else{ ?>
+				<h5>Kategori Buku Tersedia</h3>
+				<ul>
+					<?php
+					$query = mysqli_query($conn, "SELECT * FROM kategori");
+					while($row = mysqli_fetch_assoc($query)) { ?>
+					<li><a href="#"><span class="fa fa-chevron-right"></span><?php echo $row['nama_kategori'] ?></a></li>
+					<?php } ?>
+				</ul>
+				<?php } ?>
+				</div>
             </div>
 		</div> 
-		<?php } ?>
 		</div>
 	</div> 
 	</section>
@@ -99,7 +116,13 @@
 	</footer>
 
 	<?php include "js-script.php"; ?>
-
+	<script>
+	$('#kategori_picker').change(function(){
+		var value = $(this).val();
+		console.log(value);
+		// $('form').submit();
+	});
+	</script>
 </body>
 
 </html>
