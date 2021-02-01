@@ -100,7 +100,8 @@ while($row = mysqli_fetch_array($koleksi)){
 							<ol>
 							<?php
 							$query = mysqli_query($conn, "SELECT
-							k.judul ,
+							lb.id_koleksi,
+							k.judul,
 							COUNT(lb.id_koleksi) as jumlah
 							FROM
 								log_baca lb
@@ -110,7 +111,7 @@ while($row = mysqli_fetch_array($koleksi)){
 								lb.id_koleksi 
 							ORDER BY jumlah DESC LIMIT 10");
 							while ($row = mysqli_fetch_assoc($query)){
-								echo "<li>".$row['judul']."</li>";
+								echo "<li><a href='user/baca.php?id=".$row['id_koleksi']."'>".$row['judul']."</a></li>";
 							}
 							?>
 							</ol>
@@ -204,7 +205,7 @@ while($row = mysqli_fetch_array($koleksi)){
 		</ol>
 		<div class="carousel-inner" style="max-height: 580px">
 			<?php 
-			$poster = mysqli_query($conn, "SELECT judul_lomba, keterangan, poster FROM lomba ");
+			$poster = mysqli_query($conn, "SELECT id_lomba,judul_lomba, keterangan, poster FROM lomba ");
 			$i = 1;
 			while($row = mysqli_fetch_array($poster)){ ?>
 				<div class="carousel-item <?php if($i == 1) echo 'active'; ?>">
@@ -212,7 +213,7 @@ while($row = mysqli_fetch_array($koleksi)){
 						<h5><?php echo substr($row['judul_lomba'],0,20) ?></h5>
 						<p><?php echo substr($row['keterangan'],0,20) ?></p>
 					</div>
-					<img class="d-block w-100" src="<?php echo substr($row['poster'],3) ?>" alt="First slide">
+					<img class="d-block w-100" src="<?php echo substr($row['poster'],3) ?>" alt="First slide" style="cursor: pointer" onclick="location.href = 'lomba_fact.php?id=<?php echo $row['id_lomba'] ?>'">
 				</div>
 			<?php 
 			$i++;
