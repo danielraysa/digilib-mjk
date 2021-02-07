@@ -61,23 +61,30 @@ $karya2 = $data5['idKaryawan'];
 		<div class="container-fluid mt-3">
 
 			<!-- Card stats -->
+			<form action="">
 			<div class="row">
-			<div class="form-group">
-						<label for="laporan">Laporan</label>
-						<select name="laporan" id="laporan" class="form-control form-control-sm">
-							<option value="0">Pilih Laporan</option>
-							<option value="1">Pengguna</option>
-							<option value="2">Daftar Donasi</option>
-							<option value="3">Daftar Kunjungan</option>
-							<option value="4">Daftar point Pengguna</option>
-							<option value="5">Daftar Usulan</option>
-							<option value="6">Daftar Pengunjung</option>
-						</select>
+				<div class="col-lg-3">
+				<div class="form-group">
+					<label for="laporan">Laporan</label>
+					<select name="laporan" id="laporan" class="form-control form-control-sm">
+						<option value="0">Pilih Laporan</option>
+						<option value="1">Pengguna</option>
+						<option value="2">Daftar Donasi</option>
+						<option value="3">Daftar Kunjungan</option>
+						<option value="4">Daftar point Pengguna</option>
+						<option value="5">Daftar Usulan</option>
+						<option value="6">Daftar Pengunjung</option>
+					</select>
+				</div>
+				</div>
+				<div class="col-lg-3">
+					<button type="Submit" name="tambah"class="btn btn-primary">Tampilkan</button>
+				</div>
 			</div>
-			<div><button type="Submit" name="tambah"class="btn btn-primary">Tampilkan</button>
-			</div>
+			</form>
+			<div class="row">
 			<?php
-			if(isset($_GET['laporan']) && ! empty($_GET['laporan'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
+			if(isset($_GET['laporan']) && !empty($_GET['laporan'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
 				$laporan = $_GET['laporan']; // Ambil data filder yang dipilih user
 				if($laporan == '1'){
 					?>
@@ -259,7 +266,7 @@ $karya2 = $data5['idKaryawan'];
 						<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 					</table>
 					<?php }?>
-
+				</div>
 			<?php include "footer.php"; ?>
 		</div>
 	</div>
@@ -295,6 +302,8 @@ $karya2 = $data5['idKaryawan'];
 		});
 		
 	</script> -->
-
+<?php
+}
+?>
 </body>
 </html>
