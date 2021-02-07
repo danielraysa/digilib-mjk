@@ -61,6 +61,7 @@ $karya2 = $data5['idKaryawan'];
 		<div class="container-fluid mt-3">
 
 			<!-- Card stats -->
+			<form action="">
 			<div class="row">
 			<div class="form-group">
 						<label for="laporan">Laporan</label>
@@ -76,6 +77,7 @@ $karya2 = $data5['idKaryawan'];
 			</div>
 			<div><button type="Submit" name="tambah"class="btn btn-primary">Tampilkan</button>
 			</div>
+			</form>
 			<?php
 			if(isset($_GET['laporan']) && ! empty($_GET['laporan'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
 				$laporan = $_GET['laporan']; // Ambil data filder yang dipilih user
@@ -162,11 +164,7 @@ $karya2 = $data5['idKaryawan'];
 							</table>
 							<!-- <button class="btn btn-secondary btnprint" data-toggle="modal" data-target="#cetak">Cetak</button> -->
 							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
-						</div>
-						<div>
-					</div>
-				</div>
-			</div>
+						
 			<?php
 				}else if($laporan == '2'){
 					$query = mysqli_query($conn, "SELECT * from donasi");
@@ -258,7 +256,13 @@ $karya2 = $data5['idKaryawan'];
 						</tbody>
 						<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 					</table>
-					<?php }?>
+					
+						
+				
+					<?php }}?>
+					</div>
+				</div>
+			</div>
 
 			<?php include "footer.php"; ?>
 		</div>
