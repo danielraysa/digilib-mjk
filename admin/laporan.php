@@ -63,23 +63,27 @@ $karya2 = $data5['idKaryawan'];
 			<!-- Card stats -->
 			<form action="">
 			<div class="row">
-			<div class="form-group">
-						<label for="laporan">Laporan</label>
-						<select name="laporan" id="laporan" class="form-control form-control-sm">
-							<option value="0">Pilih Laporan</option>
-							<option value="1">Pengguna</option>
-							<option value="2">Daftar Donasi</option>
-							<option value="3">Daftar Kunjungan</option>
-							<option value="4">Daftar point Pengguna</option>
-							<option value="5">Daftar Usulan</option>
-							<option value="6">Daftar Pengunjung</option>
-						</select>
-			</div>
-			<div><button type="Submit" name="tambah"class="btn btn-primary">Tampilkan</button>
+				<div class="col-lg-3">
+				<div class="form-group">
+					<label for="laporan">Laporan</label>
+					<select name="laporan" id="laporan" class="form-control form-control-sm">
+						<option value="0">Pilih Laporan</option>
+						<option value="1">Pengguna</option>
+						<option value="2">Daftar Donasi</option>
+						<option value="3">Daftar Kunjungan</option>
+						<option value="4">Daftar point Pengguna</option>
+						<option value="5">Daftar Usulan</option>
+						<option value="6">Daftar Pengunjung</option>
+					</select>
+				</div>
+				</div>
+				<div class="col-lg-3">
+					<button type="Submit" name="tambah"class="btn btn-primary">Tampilkan</button>
+				</div>
 			</div>
 			</form>
 			<?php
-			if(isset($_GET['laporan']) && ! empty($_GET['laporan'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
+			if(isset($_GET['laporan']) && !empty($_GET['laporan'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
 				$laporan = $_GET['laporan']; // Ambil data filder yang dipilih user
 				if($laporan == '1'){
 					?>
@@ -167,12 +171,10 @@ $karya2 = $data5['idKaryawan'];
 						
 			<?php
 				}else if($laporan == '2'){
-					$query = mysqli_query($conn, "SELECT * from donasi");
-					//for($row = 0; $row < 10; $row++)) {
-					while ($row = mysqli_fetch_array($query)) {
+					
 			?>
 			<h2>Daftar Donasi</h2>
-			<table id="myTable" class="table table-bordered">
+			<table id="myTable1" class="table table-bordered">
 							<thead>
 								<tr>
 									<th>Judul Buku</th>
@@ -183,6 +185,11 @@ $karya2 = $data5['idKaryawan'];
 								</tr>
 
 							</thead>
+							<?php
+							$query = mysqli_query($conn, "SELECT * from donasi");
+							//for($row = 0; $row < 10; $row++)) {
+							while ($row = mysqli_fetch_array($query)) {
+							?>
 							<tbody>
 
 								<tr>
@@ -199,11 +206,10 @@ $karya2 = $data5['idKaryawan'];
 			<?php
 			
 					}else if($laporan == '3'){
-						$query = mysqli_query($conn, "SELECT * from kunjungan");
-						//for($row = 0; $row < 10; $row++)) {
-						while ($row = mysqli_fetch_array($query)) {
+						
 					?>
-			<table id="myTable" class="table table-bordered">
+					<h2>Daftar Kunjungan</h2>
+			<table id="myTable2" class="table table-bordered">
 							<thead>
 								<tr>
 									<!-- <th>Id Kunjungan</th> -->
@@ -216,6 +222,11 @@ $karya2 = $data5['idKaryawan'];
 								</tr>
 
 							</thead>
+							<?php
+							$query = mysqli_query($conn, "SELECT * from kunjungan");
+							//for($row = 0; $row < 10; $row++)) {
+							while ($row = mysqli_fetch_array($query)) {
+							?>
 							<tbody>
 								<tr>
 									<td><?php echo $row['tgl'] ?></td>
@@ -231,11 +242,10 @@ $karya2 = $data5['idKaryawan'];
 						</table>
 				<?php
 				}else if($laporan == '4'){
-					$query = mysqli_query($conn, "SELECT id_ppengguna, username, jenis_kegiatan, point from pengguna p join point_pengguna pp on p.id_pengguna=pp.id_pengguna join points pt on pp.id_point=pt.id_point");
-					//for($row = 0; $row < 10; $row++)) {
-					while ($row = mysqli_fetch_array($query)) {
+					
 				?>
-				<table id="myTable" class="table table-bordered">
+				<h2>Daftar Point Pengguna</h2>
+				<table id="myTable3" class="table table-bordered" >
 						<thead>
 							<tr>
 								
@@ -245,6 +255,11 @@ $karya2 = $data5['idKaryawan'];
 							</tr>
 
 						</thead>
+						<?php
+							$query = mysqli_query($conn, "SELECT id_ppengguna, username, jenis_kegiatan, point from pengguna p join point_pengguna pp on p.id_pengguna=pp.id_pengguna join points pt on pp.id_point=pt.id_point");
+							//for($row = 0; $row < 10; $row++)) {
+							while ($row = mysqli_fetch_array($query)) {
+							?>
 						<tbody>
 							<tr>
 								<td><?php echo $row['username'] ?></td>
@@ -256,14 +271,47 @@ $karya2 = $data5['idKaryawan'];
 						</tbody>
 						<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 					</table>
-					
-						
-				
-					<?php }}?>
-					</div>
-				</div>
-			</div>
+					<?php }else if($laporan == '4'){?>
+						<table id="myTable" class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Id usulan</th>
+									<th>Pengguna</th>
+                                    <th>Judul Buku</th>
+									<th>Pengarang</th>
+									<th>Penerbit</th>
+									<th>Tahun</th>
+									<th>Status</th>
+									<th>Action</th>
+								</tr>
 
+							</thead>
+							<tbody>
+
+								<?php
+								//querynya belum okeh
+                  $query = mysqli_query($conn, "SELECT u.id_usulan, p.username, u.judul_buku, u.pengarang, u.penerbit, u.tahun, u.status_usulan from usulan u join pengguna p on u.id_pengguna = p.id_pengguna");
+                  //for($row = 0; $row < 10; $row++)) {
+                  while ($row = mysqli_fetch_array($query)) {
+                  ?>
+								<tr>
+									<td><?php echo $row['id_usulan'] ?></td>
+									<td><?php echo $row['username'] ?></td>
+									<td><?php echo $row['judul_buku'] ?></td>
+									<td><?php echo $row['pengarang'] ?></td>
+									<td><?php echo $row['penerbit'] ?></td>
+									<td><?php echo $row['tahun'] ?></td>
+									<td><?php echo $row['status_usulan'] ?></td>
+									<td><button class="btn btn-success btnEdit" data-toggle="modal"
+											data-target="#ModalEdit"
+											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
+											</td>
+								</tr>
+								<?php } ?>
+							</tbody>
+							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+						</table>
+				</div>
 			<?php include "footer.php"; ?>
 		</div>
 	</div>
@@ -299,6 +347,8 @@ $karya2 = $data5['idKaryawan'];
 		});
 		
 	</script> -->
-
+<?php
+}
+?>
 </body>
 </html>
