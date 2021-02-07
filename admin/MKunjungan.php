@@ -77,7 +77,7 @@ $tgl = date('Y-m-d');
 									<th>instansi</th>
 									<th>status</th>
 									<th>keterangan</th>
-									<th>action</th>
+
 								</tr>
 
 							</thead>
@@ -94,12 +94,7 @@ $tgl = date('Y-m-d');
 									<td><?php echo $row['instansi'] ?></td>
 									<td><?php echo $row['status'] ?></td>
 									<td><?php echo $row['keterangan'] ?></td>
-									<td><button class="btn btn-success btnEdit" data-toggle="modal"
-											data-target="#ModalEdit"
-											data-id="<?php echo $row['id_kunjungan'] ?>">Edit</button>
-											<button class="btn btn-danger btnEdit" data-toggle="modal"
-											data-target="#ModalHapus"
-											data-id="<?php echo $row['id_kunjungan'] ?>">Hapus</button></td>
+									
 								</tr>
 								<?php } ?>
 							</tbody>

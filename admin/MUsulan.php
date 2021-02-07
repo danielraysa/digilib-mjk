@@ -89,9 +89,7 @@
 									<td><button class="btn btn-success btnEdit" data-toggle="modal"
 											data-target="#ModalEdit"
 											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
-											<button class="btn btn-danger btnEdit" data-toggle="modal"
-											data-target="#ModalHapus"
-											data-id="<?php echo $row['id_usulan'] ?>">Hapus</button></td>
+											</td>
 								</tr>
 								<?php } ?>
 							</tbody>

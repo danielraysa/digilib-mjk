@@ -62,11 +62,43 @@ $karya2 = $data5['idKaryawan'];
 
 			<!-- Card stats -->
 			<div class="row">
+			<div class="form-group">
+						<label for="laporan">Laporan</label>
+						<select name="laporan" id="laporan" class="form-control form-control-sm">
+							<option value="0">Pilih Laporan</option>
+							<option value="1">Pengguna</option>
+							<option value="2">Daftar Donasi</option>
+							<option value="3">Daftar Kunjungan</option>
+							<option value="4">Daftar point Pengguna</option>
+							<option value="5">Daftar Usulan</option>
+							<option value="6">Daftar Pengunjung</option>
+						</select>
+			</div>
+			<div><button type="Submit" name="tambah"class="btn btn-primary">Tampilkan</button>
+			</div>
+			<?php
+			if(isset($_GET['laporan']) && ! empty($_GET['laporan'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
+				$laporan = $_GET['laporan']; // Ambil data filder yang dipilih user
+				if($laporan == '1'){
+					?>
+			
 				<div class="col-xl-12 col-md-12">
 					<div class="card card-stats">
 						<div class="card-body table-responsive">
 							<!-- Card body -->
-							<h1><center>LAPORAN PERPUSTAKAAN MAN 2 MOJOKERTO</center></h1>
+							
+							<div class ="row">
+							<div class="col-md-5"><right>
+							<a class="navbar-brand" href="javascript:void(0)" style="padding: 0.5rem !important">
+							<img src="img/brand/logo.png" class="navbar-brand-img" alt="..." style="max-height: 5rem !important">
+							</a></right>
+							</div>
+							<div class = "col-md-7">
+							<br>
+							<left><h1>LAPORAN PERPUSTAKAAN MAN 2 MOJOKERTO</h1></left>
+							</div>
+							</div>
+							
 							<br></br>
 							<h3>Anggota</h3>
 							<table id="Tabel1" class="table table-bordered">
@@ -131,9 +163,103 @@ $karya2 = $data5['idKaryawan'];
 							<!-- <button class="btn btn-secondary btnprint" data-toggle="modal" data-target="#cetak">Cetak</button> -->
 							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 						</div>
+						<div>
 					</div>
 				</div>
 			</div>
+			<?php
+				}else if($laporan == '2'){
+					$query = mysqli_query($conn, "SELECT * from donasi");
+					//for($row = 0; $row < 10; $row++)) {
+					while ($row = mysqli_fetch_array($query)) {
+			?>
+			<h2>Daftar Donasi</h2>
+			<table id="myTable" class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Judul Buku</th>
+									<th>Pengarang</th>
+                                    <th>Penerbit</th>
+									<th>tahun</th>
+									<th>jumlah</th>
+								</tr>
+
+							</thead>
+							<tbody>
+
+								<tr>
+									<td><?php echo $row['judul_buku'] ?></td>
+									<td><?php echo $row['pengarang'] ?></td>
+									<td><?php echo $row['penerbit'] ?></td>
+									<td><?php echo $row['tahun'] ?></td>
+									<td><?php echo $row['jumlah'] ?></td>									
+								</tr>
+								<?php } ?>
+							</tbody>
+							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+						</table>
+			<?php
+			
+					}else if($laporan == '3'){
+						$query = mysqli_query($conn, "SELECT * from kunjungan");
+						//for($row = 0; $row < 10; $row++)) {
+						while ($row = mysqli_fetch_array($query)) {
+					?>
+			<table id="myTable" class="table table-bordered">
+							<thead>
+								<tr>
+									<!-- <th>Id Kunjungan</th> -->
+									<th>tanggal</th>
+									<th>nama</th>
+									<th>instansi</th>
+									<th>status</th>
+									<th>keterangan</th>
+
+								</tr>
+
+							</thead>
+							<tbody>
+								<tr>
+									<td><?php echo $row['tgl'] ?></td>
+									<td><?php echo $row['nama'] ?></td>
+									<td><?php echo $row['instansi'] ?></td>
+									<td><?php echo $row['status'] ?></td>
+									<td><?php echo $row['keterangan'] ?></td>
+									
+								</tr>
+								<?php } ?>
+							</tbody>
+							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+						</table>
+				<?php
+				}else if($laporan == '4'){
+					$query = mysqli_query($conn, "SELECT id_ppengguna, username, jenis_kegiatan, point from pengguna p join point_pengguna pp on p.id_pengguna=pp.id_pengguna join points pt on pp.id_point=pt.id_point");
+					//for($row = 0; $row < 10; $row++)) {
+					while ($row = mysqli_fetch_array($query)) {
+				?>
+				<table id="myTable" class="table table-bordered">
+						<thead>
+							<tr>
+								
+								<th>Pengguna</th>
+								<th>Jenis Kegiatan</th>
+								<th>Point</th>
+							</tr>
+
+						</thead>
+						<tbody>
+							<tr>
+								<td><?php echo $row['username'] ?></td>
+								<td><?php echo $row['jenis_kegiatan'] ?></td>
+								<td><?php echo $row['point'] ?></td>
+								
+							</tr>
+							<?php } ?>
+						</tbody>
+						<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+					</table>
+					<?php }?>
+
 			<?php include "footer.php"; ?>
 		</div>
 	</div>

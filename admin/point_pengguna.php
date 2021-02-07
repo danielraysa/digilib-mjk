@@ -60,7 +60,6 @@
 									<th>Pengguna</th>
                                     <th>Jenis Kegiatan</th>
 									<th>Point</th>
-									<th>Action</th>
 								</tr>
 
 							</thead>
@@ -76,11 +75,7 @@
 									<td><?php echo $row['username'] ?></td>
 									<td><?php echo $row['jenis_kegiatan'] ?></td>
 									<td><?php echo $row['point'] ?></td>
-									<td>
-										<button class="btn btn-danger btnHapus" data-toggle="modal"
-										data-target="#ModalHapus"
-										data-id="<?php echo $row['id_ppengguna'] ?>">Hapus</button>
-									</td>
+									
 								</tr>
 								<?php } ?>
 							</tbody>
