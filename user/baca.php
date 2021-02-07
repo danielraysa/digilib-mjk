@@ -32,8 +32,8 @@
     $id_log = $row_baca['id_logbaca'];
     $halaman = $row_baca['halaman_bacatg'];
     
-    $cek_pertanyaan = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_koleksi = '$id'");
-    $cek_log_quiz = mysqli_query($conn, "SELECT * FROM log_quiz WHERE id_pengguna = '$user_id' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan WHERE id_koleksi = '$id')")
+    $cek_pertanyaan = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_koleksi = '$id' AND status = 'Aktif'");
+    $cek_log_quiz = mysqli_query($conn, "SELECT * FROM log_quiz WHERE id_pengguna = '$user_id' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan WHERE id_koleksi = '$id' AND status = 'Aktif')")
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,10 +92,12 @@
     }
 
     function redirectQuiz(){
-        if(adaQuiz){
+        // alert(adaQuiz);
+        if(!adaQuiz){
             window.location.href = "../book.php";
+        }else{
+            window.location.href = "quiz.php?id=<?php echo $id; ?>";
         }
-        window.location.href = "quiz.php?id=<?php echo $id; ?>";
     }
 
 	$(document).keydown(function(e) {

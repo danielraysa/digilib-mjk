@@ -205,20 +205,30 @@ while($row = mysqli_fetch_array($koleksi)){
 		</ol>
 		<div class="carousel-inner" style="max-height: 580px">
 			<?php 
-			$poster = mysqli_query($conn, "SELECT id_lomba,judul_lomba, keterangan, poster FROM lomba ");
+			$poster = mysqli_query($conn, "SELECT id_lomba,judul_lomba, keterangan, poster FROM lomba");
 			$i = 1;
 			while($row = mysqli_fetch_array($poster)){ ?>
 				<div class="carousel-item <?php if($i == 1) echo 'active'; ?>">
+					<img class="d-block w-100" src="<?php echo substr($row['poster'],3) ?>" alt="lomba slide" style="cursor: pointer" onclick="location.href = 'lomba_fact.php?id=<?php echo $row['id_lomba'] ?>'">
 					<div class="carousel-caption">
 						<h5><?php echo substr($row['judul_lomba'],0,20) ?></h5>
 						<p><?php echo substr($row['keterangan'],0,20) ?></p>
 					</div>
-					<img class="d-block w-100" src="<?php echo substr($row['poster'],3) ?>" alt="First slide" style="cursor: pointer" onclick="location.href = 'lomba_fact.php?id=<?php echo $row['id_lomba'] ?>'">
 				</div>
 			<?php 
 			$i++;
-			} ?>
-			</div>
+			} 
+			$event = mysqli_query($conn, "SELECT * FROM event");
+			while($row = mysqli_fetch_array($event)){ ?>
+				<div class="carousel-item">
+					<div class="carousel-caption">
+						<h5><?php echo substr($row['judul_event'],0,20) ?></h5>
+						<p><?php echo substr($row['keterangan'],0,20) ?></p>
+					</div>
+					<img class="d-block w-100" src="<?php echo substr($row['gambar'],3) ?>" alt="event slide" style="cursor: pointer" onclick="location.href = 'event_fact.php?id=<?php echo $row['id_event'] ?>'">
+				</div>
+			<?php } ?>
+		</div>
 		<a class="carousel-control-prev" href="#carouselLomba" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			<span class="sr-only">Previous</span>

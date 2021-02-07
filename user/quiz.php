@@ -10,12 +10,12 @@
     } */
     $user_id = $_SESSION['user_id'];
     $id = isset($_GET['id']) ? $_GET['id'] : '';
-    $count_query = mysqli_query($conn, "SELECT * FROM log_quiz WHERE id_pengguna = '$user_id' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan WHERE id_koleksi = '$id')");
+    $count_query = mysqli_query($conn, "SELECT * FROM log_quiz WHERE id_pengguna = '$user_id' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan WHERE id_koleksi = '$id' AND status = 'Aktif')");
     if(mysqli_num_rows($count_query) != 0){
         header('location:score.php?id='.$id);
         exit;
     }
-    if($id != ''){
+    /* if($id != ''){
         $get_quiz = mysqli_query($conn, "SELECT * from log_quiz lq WHERE id_pengguna = '".$user_id."' AND id_pertanyaan IN (SELECT id_pertanyaan FROM pertanyaan p WHERE id_koleksi = '".$id."')") or die(mysqli_error($conn));
         if(mysqli_num_rows($get_quiz) == 0){
             $_quiz = mysqli_query($conn, "SELECT * from pertanyaan WHERE id_koleksi = '".$id."'") or die(mysqli_error($conn));
@@ -23,13 +23,16 @@
                 $insert = mysqli_query($conn, "INSERT INTO log_quiz (id_logquiz, id_pertanyaan, id_pengguna) SELECT IFNULL(MAX(id_logquiz)+1,1), '".$_row['id_pertanyaan']."', '".$user_id."' FROM log_quiz") or die(mysqli_error($conn));
             }
         }
-    }
+    } */
     // $get_point = mysqli_query($conn, "SELECT * FROM point_pengguna pp JOIN points p ON p.id_point = pp.id_point WHERE pp.id_pengguna = '".$_SESSION['user_id']."'");
     $tgl = date('Y-m-d');
     if(isset($_POST['simpan_jawaban'])){
-        $data_pertanyaan = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_koleksi = '$id'");
+        $data_pertanyaan = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_koleksi = '$id' AND status = 'Aktif'");
         while($row = mysqli_fetch_assoc($data_pertanyaan)) {
+            $insert = mysqli_query($conn, "INSERT INTO log_quiz (id_logquiz, id_pertanyaan, id_pengguna) SELECT IFNULL(MAX(id_logquiz)+1,1), '".$row['id_pertanyaan']."', '".$user_id."' FROM log_quiz") or die(mysqli_error($conn));
             $id_arr = 'jawaban_'.$row['id_pertanyaan'];
+            // var_dump($_POST[$id_arr]);
+            // exit;
             $jawab = $_POST[$id_arr];
             $hasil = 'salah';
             if($jawab == $row['jawaban']){
@@ -37,7 +40,7 @@
                 $kode_point = 'PO002';
                 $insert_point = mysqli_query($conn, "INSERT INTO point_pengguna (id_ppengguna, id_pengguna, id_point, tgl_perolehan) SELECT IFNULL(MAX(id_ppengguna)+1,1), '".$user_id."', '".$kode_point."','".date('Y-m-d H:i:s')."' FROM point_pengguna") or die(mysqli_error($conn));
             }
-            $upd = mysqli_query($conn, "UPDATE log_quiz SET jawaban = '$jawab', tanggal_jawab = '$tgl', benar_salah = '$hasil' WHERE id_pengguna = '$user_id' AND id_pertanyaan = '".$row['id_pertanyaan']."'") or die(mysqli_error($conn));
+            $upd = mysqli_query($conn, "UPDATE log_quiz SET id_jawaban = '$jawab', tanggal_jawab = '$tgl', benar_salah = '$hasil' WHERE id_pengguna = '$user_id' AND id_pertanyaan = '".$row['id_pertanyaan']."'") or die(mysqli_error($conn));
         }
         unset($_POST);
         // $_SESSION['testcomplete'] = 'yes';
@@ -72,7 +75,7 @@
                         <div class="card-body">
                             <?php
                             $i = 1;
-                            $data_pertanyaan = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_koleksi = '$id'");
+                            $data_pertanyaan = mysqli_query($conn, "SELECT * FROM pertanyaan WHERE id_koleksi = '$id' AND status = 'Aktif'");
                             while($row = mysqli_fetch_assoc($data_pertanyaan)) {
                             ?>
                             <div class="form-group">

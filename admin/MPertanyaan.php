@@ -97,6 +97,14 @@
 			echo mysqli_error($conn);
 		}
 	}
+
+	if(isset($_POST['hapus_pertanyaan'])){
+		$id_pertanyaan = $_POST['id_pertanyaan'];
+		$query = mysqli_query($conn, "UPDATE pertanyaan SET status = 'Tidak Aktif' WHERE id_pertanyaan = '$id_pertanyaan'");
+		if(!$query){
+			echo mysqli_error($conn);
+		}
+	}
 	// generate id
 	$query = mysqli_query($conn, "SELECT MAX(id_pertanyaan) as idpertanyaan FROM pertanyaan"); // ganti tabel koleksi
 	$data = mysqli_fetch_array($query);
@@ -143,7 +151,7 @@
 					<div class="card card-stats">
 						<div class="card-body table-responsive">
 						<!-- Card body -->
-							<table id="myTable" class="table table-bordered">
+							<table id="myTable" class="table table-bordered" style="width:100%">
 								<thead>
 									<tr>
 										<th>Judul</th>
@@ -154,12 +162,12 @@
 								</thead>
 								<tbody>
 									<?php
-									$query = mysqli_query($conn, "SELECT * FROM pertanyaan p join koleksi k ON p.id_koleksi = k.id_koleksi");
+									$query = mysqli_query($conn, "SELECT * FROM pertanyaan p join koleksi k ON p.id_koleksi = k.id_koleksi JOIN jawaban j ON p.jawaban = j.id_jawaban WHERE p.status = 'Aktif'");
 									while ($row = mysqli_fetch_array($query)) {
 									?>
 									<tr>
-										<td><?php echo $row['judul'] ?></td>
-										<td><?php echo $row['pertanyaan'] ?></td>
+										<td style="width: 30%"><?php echo $row['judul'] ?></td>
+										<td style="width: 30%"><?php echo $row['pertanyaan'] ?></td>
 										<td><?php echo $row['jawaban'] ?></td>
 										<td>
 											<button class="btn btn-success btnEdit" data-toggle="modal"
@@ -321,10 +329,35 @@
 			</form>
 		</div>
 	</div>
+	<!-- modal hapus -->
+	<div class="modal fade" id="ModalHapus" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Hapus Data Pertanyaan</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="" method="post">
+				<div class="modal-body">
+					Apakah anda akan menghapus data pertanyaan ini?
+					<input type="hidden" name="id_pertanyaan" id="id_pertanyaan_hapus" class="form-control form-control-sm" readonly>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" name="hapus_pertanyaan" class="btn btn-primary">Save</button>
+				</div>
+				</form>	
+			</div>
+		</div>
+	</div>
 	
 	<?php include "js-script.php"; ?>
 	<script>
-		$('#myTable').DataTable();
+		$('#myTable').DataTable({
+			// autoWidth: false
+		});
 		$('#myTable tbody').on('click', '.btnEdit', function () {
 			var id_tanya = $(this).attr('data-id');
 			$.ajax({
@@ -355,6 +388,10 @@
 					// $("#jawaban").val(result.jawaban);
 				}
 			})
+		})
+		$('#myTable tbody').on('click', '.btnHapus', function () {
+			var id_tanya = $(this).attr('data-id');
+			$('#id_pertanyaan_hapus').val(id_tanya);
 		})
 	</script>
 </body>

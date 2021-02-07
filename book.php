@@ -43,7 +43,7 @@
 								$query_kat = mysqli_query($conn, "SELECT * FROM kategori");
 								while ($row = mysqli_fetch_array($query_kat)) {
 							?>
-								<option <?= !empty($_GET['kategori'] && in_array($row['id_kategori'], $_GET['kategori'])) ? 'selected' : '' ?> value="<?php echo $row['id_kategori']; ?>"><?php echo $row['nama_kategori'] ?></option>
+								<option <?= isset($_GET['kategori']) && in_array($row['id_kategori'], $_GET['kategori']) ? 'selected' : '' ?> value="<?php echo $row['id_kategori']; ?>"><?php echo $row['nama_kategori'] ?></option>
 							<?php } ?>
 							</select>
 							<button type="submit" class="btn btn-success">Filter</button>
