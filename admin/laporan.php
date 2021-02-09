@@ -272,7 +272,7 @@ $karya2 = $data5['idKaryawan'];
 						<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 					</table>
 					<?php }else if($laporan == '4'){?>
-						<table id="myTable" class="table table-bordered">
+						<table id="myTable4" class="table table-bordered">
 							<thead>
 								<tr>
 									<th>Id usulan</th>
@@ -311,6 +311,80 @@ $karya2 = $data5['idKaryawan'];
 							</tbody>
 							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 						</table>
+						<?php 
+						}else if($laporan == '5'){?>
+						<table id="myTable5" class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Id usulan</th>
+									<th>Pengguna</th>
+                                    <th>Judul Buku</th>
+									<th>Pengarang</th>
+									<th>Penerbit</th>
+									<th>Tahun</th>
+									<th>Status</th>
+									<th>Action</th>
+								</tr>
+
+							</thead>
+							<tbody>
+
+								<?php
+								//querynya belum okeh
+                  $query = mysqli_query($conn, "SELECT u.id_usulan, p.username, u.judul_buku, u.pengarang, u.penerbit, u.tahun, u.status_usulan from usulan u join pengguna p on u.id_pengguna = p.id_pengguna");
+                  //for($row = 0; $row < 10; $row++)) {
+                  while ($row = mysqli_fetch_array($query)) {
+                  ?>
+								<tr>
+									<td><?php echo $row['id_usulan'] ?></td>
+									<td><?php echo $row['username'] ?></td>
+									<td><?php echo $row['judul_buku'] ?></td>
+									<td><?php echo $row['pengarang'] ?></td>
+									<td><?php echo $row['penerbit'] ?></td>
+									<td><?php echo $row['tahun'] ?></td>
+									<td><?php echo $row['status_usulan'] ?></td>
+									<td><button class="btn btn-success btnEdit" data-toggle="modal"
+											data-target="#ModalEdit"
+											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
+											</td>
+								</tr>
+								<?php } ?>
+							</tbody>
+							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+						</table>
+						<?php 
+						}else if($laporan == '6'){?>
+						<table id="myTable6" class="table table-bordered">
+							<thead>
+								<tr>
+									<!-- <th>Id Kunjungan</th> -->
+									<th>tanggal</th>
+									<th>nama</th>
+									<th>status</th>
+									<th>keterangan</th>
+
+								</tr>
+
+							</thead>
+							<?php
+							$query = mysqli_query($conn, "SELECT * from kunjungan");
+							//for($row = 0; $row < 10; $row++)) {
+							while ($row = mysqli_fetch_array($query)) {
+							?>
+							<tbody>
+								<tr>
+									<td><?php echo $row['tgl'] ?></td>
+									<td><?php echo $row['nama'] ?></td>
+									<td><?php echo $row['instansi'] ?></td>
+									<td><?php echo $row['status'] ?></td>
+									<td><?php echo $row['keterangan'] ?></td>
+									
+								</tr>
+								<?php } ?>
+							</tbody>
+							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+						</table>
+						<?php }?>
 				</div>
 			<?php include "footer.php"; ?>
 		</div>
