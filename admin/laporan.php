@@ -208,6 +208,7 @@ $karya2 = $data5['idKaryawan'];
 					}else if($laporan == '3'){
 						
 					?>
+					<a href="export.php?cetak=kunjungan" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 					<h2>Daftar Kunjungan</h2>
 			<table id="myTable2" class="table table-bordered">
 							<thead>
@@ -238,12 +239,11 @@ $karya2 = $data5['idKaryawan'];
 								</tr>
 								<?php } ?>
 							</tbody>
-							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+							
 						</table>
 				<?php
-				}else if($laporan == '4'){
-					
-				?>
+				}else if($laporan == '4'){?>
+				<a href="export.php?cetak=point" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 				<h2>Daftar Point Pengguna</h2>
 				<table id="myTable3" class="table table-bordered" >
 						<thead>
@@ -269,50 +269,11 @@ $karya2 = $data5['idKaryawan'];
 							</tr>
 							<?php } ?>
 						</tbody>
-						<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+						
 					</table>
-					<?php }else if($laporan == '4'){?>
-						<table id="myTable4" class="table table-bordered">
-							<thead>
-								<tr>
-									<th>Id usulan</th>
-									<th>Pengguna</th>
-                                    <th>Judul Buku</th>
-									<th>Pengarang</th>
-									<th>Penerbit</th>
-									<th>Tahun</th>
-									<th>Status</th>
-									<th>Action</th>
-								</tr>
-
-							</thead>
-							<tbody>
-
-								<?php
-								//querynya belum okeh
-                  $query = mysqli_query($conn, "SELECT u.id_usulan, p.username, u.judul_buku, u.pengarang, u.penerbit, u.tahun, u.status_usulan from usulan u join pengguna p on u.id_pengguna = p.id_pengguna");
-                  //for($row = 0; $row < 10; $row++)) {
-                  while ($row = mysqli_fetch_array($query)) {
-                  ?>
-								<tr>
-									<td><?php echo $row['id_usulan'] ?></td>
-									<td><?php echo $row['username'] ?></td>
-									<td><?php echo $row['judul_buku'] ?></td>
-									<td><?php echo $row['pengarang'] ?></td>
-									<td><?php echo $row['penerbit'] ?></td>
-									<td><?php echo $row['tahun'] ?></td>
-									<td><?php echo $row['status_usulan'] ?></td>
-									<td><button class="btn btn-success btnEdit" data-toggle="modal"
-											data-target="#ModalEdit"
-											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
-											</td>
-								</tr>
-								<?php } ?>
-							</tbody>
-							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
-						</table>
-						<?php 
-						}else if($laporan == '5'){?>
+					<?php }else if($laporan == '5'){?>
+						<a href="export.php?cetak=usulan" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+						<h2>Daftar Usulan</h2>
 						<table id="myTable5" class="table table-bordered">
 							<thead>
 								<tr>
@@ -350,24 +311,28 @@ $karya2 = $data5['idKaryawan'];
 								</tr>
 								<?php } ?>
 							</tbody>
-							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+							
 						</table>
+						
 						<?php 
 						}else if($laporan == '6'){?>
+						<a href="export.php?cetak=pengunjung" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+						<h2>Daftar Pengunjung</h2>
 						<table id="myTable6" class="table table-bordered">
 							<thead>
 								<tr>
 									<!-- <th>Id Kunjungan</th> -->
-									<th>tanggal</th>
-									<th>nama</th>
-									<th>status</th>
-									<th>keterangan</th>
+									<th>Tanggal</th>
+									<th>Nama</th>
+									<th>Instansi</th>
+									<th>Status</th>
+									<th>Keterangan</th>
 
 								</tr>
 
 							</thead>
 							<?php
-							$query = mysqli_query($conn, "SELECT * from kunjungan");
+							$query = mysqli_query($conn, "SELECT * FROM kunjungan WHERE STATUS != 'siswa' OR 'karyawan'");
 							//for($row = 0; $row < 10; $row++)) {
 							while ($row = mysqli_fetch_array($query)) {
 							?>
@@ -382,8 +347,7 @@ $karya2 = $data5['idKaryawan'];
 								</tr>
 								<?php } ?>
 							</tbody>
-							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
-						</table>
+							</table>
 						<?php }?>
 				</div>
 			<?php include "footer.php"; ?>
