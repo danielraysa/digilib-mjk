@@ -40,17 +40,14 @@ $karya2 = $data5['idKaryawan'];
             <div class="card card-stats">
                 <div class="card-body table-responsive">
                     <!-- Card body -->
-                    <div class ="row">
-							<div class="col-md-5"><right>
-							<a class="navbar-brand" href="javascript:void(0)" style="padding: 0.5rem !important">
-							<img src="img/brand/logo.png" class="navbar-brand-img" alt="..." style="max-height: 5rem !important">
-							</a></right>
-							</div>
-							<div class = "col-md-7">
-							<br>
-							<left><h1>LAPORAN PERPUSTAKAAN MAN 2 MOJOKERTO</h1></left>
-							</div>
-							</div>
+                    <table style="width: 100%; text-align: center">
+                        <tr>
+                            <td style="width: 30%"><img src="img/brand/logo.png" height="100" /></td>
+                            <td style="width: 70%">
+                                <h2 style="margin: 0">LAPORAN PERPUSTAKAAN MAN 2 MOJOKERTO</h2>
+                            </td>
+                        </tr>
+                    </table>
                     <br></br>
                     <h4>Anggota</h4>
                     <table id="Tabel1" class="table table-bordered">

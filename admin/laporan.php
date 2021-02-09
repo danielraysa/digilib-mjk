@@ -87,7 +87,7 @@ $karya2 = $data5['idKaryawan'];
 				$laporan = $_GET['laporan']; // Ambil data filder yang dipilih user
 				if($laporan == '1'){
 					?>
-			
+				<a href="export.php?cetak=pengguna" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 				<div class="col-xl-12 col-md-12">
 					<div class="card card-stats">
 						<div class="card-body table-responsive">
@@ -167,12 +167,12 @@ $karya2 = $data5['idKaryawan'];
 								</tbody>
 							</table>
 							<!-- <button class="btn btn-secondary btnprint" data-toggle="modal" data-target="#cetak">Cetak</button> -->
-							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 						
 			<?php
 				}else if($laporan == '2'){
 					
 			?>
+			<a href="export.php?cetak=donasi" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
 			<h2>Daftar Donasi</h2>
 			<table id="myTable1" class="table table-bordered">
 							<thead>
@@ -201,7 +201,7 @@ $karya2 = $data5['idKaryawan'];
 								</tr>
 								<?php } ?>
 							</tbody>
-							<a href="export.php?cetak=laporan-all" target="_blank" class="btn btn-secondary btnprint">Cetak</a>
+							
 						</table>
 			<?php
 			
