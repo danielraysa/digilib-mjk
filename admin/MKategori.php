@@ -8,7 +8,7 @@ check_session($dir."/".$filename);
 	if(isset($_POST['tambah_kategori'])){
 		$id = $_POST['id_baru'];
 		$nama = $_POST['nama_baru'];
-		$query = mysqli_query($conn, "INSERT INTO kategori VALUES ('$id','$nama')");
+		$query = mysqli_query($conn, "INSERT INTO kategori(id_kategori, nama_kategori, status) VALUES ('$id','$nama','Aktif')");
 		if(!$query){
 			echo mysqli_error($conn);
 		}
@@ -22,8 +22,8 @@ check_session($dir."/".$filename);
 	if(isset($_POST['hapus_kategori'])){
 		$id = $_POST['id_kategori'];
 		// echo "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'";
-		// $query = mysqli_query($conn, "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'");
-		$query = mysqli_query($conn, "DELETE from kategori WHERE id_kategori = '".$id."'");
+		$query = mysqli_query($conn, "UPDATE kategori SET status = 'Tidak Aktif' WHERE id_kategori = '".$id."'");
+		// $query = mysqli_query($conn, "DELETE from kategori WHERE id_kategori = '".$id."'");
 	}
 	
 	$query = mysqli_query($conn, "SELECT MAX(id_kategori) as idkategori FROM kategori");

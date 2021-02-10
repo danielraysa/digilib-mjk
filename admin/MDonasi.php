@@ -184,7 +184,7 @@
 					<form action="" method="post">
 					<div class="form-group">
 							<label for="id">ID donasi</label>
-							<input type="text" name="id" id="id" class="form-control form-control-sm" placeholder="kegiatan Anda">
+							<input type="text" name="id_donasi" id="id_donasi" class="form-control form-control-sm" placeholder="kegiatan Anda">
 						</div>
 						<div class="form-group">
 							<label for="judul_buku">Judul Buku</label>

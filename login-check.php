@@ -3,8 +3,8 @@
     $user = mysqli_real_escape_string($conn, $_POST['username']);
     $pass = mysqli_real_escape_string($conn, $_POST['password']);
     $tgl = date('Y-m-d');
-    $check = mysqli_query($conn, "SELECT * FROM pengguna p JOIN siswa s ON p.id_pengguna = s.id_pengguna WHERE p.username = '$user' AND p.password = '$pass'");
-    $check_kar = mysqli_query($conn, "SELECT * FROM pengguna p JOIN karyawan k ON p.id_pengguna = k.id_pengguna WHERE p.username = '$user' AND p.password = '$pass'");
+    $check = mysqli_query($conn, "SELECT * FROM pengguna p JOIN siswa s ON p.id_pengguna = s.id_pengguna WHERE (p.username = '$user' OR p.email = '$user') AND p.password = '$pass'");
+    $check_kar = mysqli_query($conn, "SELECT * FROM pengguna p JOIN karyawan k ON p.id_pengguna = k.id_pengguna WHERE (p.username = '$user' OR p.email = '$user') AND p.password = '$pass'");
     $kode_point = 'PO003';
     
     if(mysqli_num_rows($check) == 1 || mysqli_num_rows($check_kar) == 1){

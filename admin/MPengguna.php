@@ -114,8 +114,8 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 	}
 	if(isset($_POST['hapus_karyawan'])){
 		$id = $_POST['id_karyawan'];
-		// echo "UPDATE karyawan SET status = 'Tidak Aktif' WHERE id_karyawan = '".$id."'";
-		$query = mysqli_query($conn, "DELETE from karyawan WHERE id_karyawan = '".$id."'");
+		$sql = "UPDATE karyawan SET status_karyawan = 'Tidak Aktif' WHERE id_karyawan = '".$id."'";
+		$query = mysqli_query($conn, $sql);
 	}
 ?>
 <!DOCTYPE html>
@@ -326,7 +326,7 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Username">
+						<input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Email">
 					</div>
 					<div class="form-group">
 						<label for="username">Username</label>
@@ -481,8 +481,12 @@ $kode4 = $huruf3.sprintf("%03s", $urut4);
 						</select>
 					</div>
 					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Email">
+					</div>
+					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="email" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
+						<input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="Username">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>

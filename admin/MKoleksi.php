@@ -109,7 +109,7 @@
 			$id = $_POST['id_koleksi'];
 			// echo "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'";
 			// $query = mysqli_query($conn, "UPDATE Kategori SET status = 'Tidak Aktif' WHERE id_Kategori = '".$id."'");
-			$query = mysqli_query($conn, "DELETE from koleksi WHERE id_koleksi = '".$id."'");
+			$query = mysqli_query($conn, "UPDATE koleksi SET status = 'Tidak Aktif' WHERE id_koleksi = '".$id."'");
 		}
 	}
 ?>
