@@ -32,7 +32,6 @@
 									<th>Penerbit</th>
 									<th>Tahun</th>
 									<th>Status</th>
-									<th>Action</th>
 								</tr>
 
 							</thead>
@@ -52,10 +51,6 @@
 									<td><?php echo $row['penerbit'] ?></td>
 									<td><?php echo $row['tahun'] ?></td>
 									<td><?php echo $row['status_usulan'] ?></td>
-									<td><button class="btn btn-success btnEdit" data-toggle="modal"
-											data-target="#ModalEdit"
-											data-id="<?php echo $row['id_usulan'] ?>">Edit</button>
-											</td>
 								</tr>
 								<?php } ?>
 							</tbody>
